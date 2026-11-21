@@ -171,7 +171,6 @@ export default function Home() {
             <div><MapPin /><span><b>ASK ARENA</b><small>Nairobi Showground</small></span></div>
           </div>
           <a className="primary-button" href="#tickets">Get your tickets <ArrowRight size={18} /></a>
-          <p className="hero-footnote">Independent ticketing and event promotion platform</p>
         </div>
         <div className="hero-featured-artist" aria-live="polite" aria-atomic="true">
           <span>NOW FEATURING · 0{heroArtistIndex + 1} / 0{artists.length}</span>
@@ -211,7 +210,6 @@ export default function Home() {
             <div className="performance-info"><span>JOHNNY JUNIOR · OFFICIAL ARTIST CHANNEL</span><h3>2025 Luo Festival — Full Live Performance</h3><a href="https://www.youtube.com/watch?v=3_Lgf-9bhqg" target="_blank" rel="noreferrer">Watch on YouTube ↗</a></div>
           </article>
         </div>
-        <p className="performance-disclaimer">Videos remain hosted by their original YouTube publishers. Availability and playback on this site depend on each publisher’s embed settings.</p>
       </section>
 
       <section className="promo-video-section" id="video">
@@ -248,7 +246,7 @@ export default function Home() {
 
       <section className="event-strip"><div><CalendarDays /><span><small>DATE</small><b>12 DECEMBER 2026</b></span></div><div><MapPin /><span><small>LOCATION</small><b>ASK Arena, Nairobi Showground</b></span></div><div><Ticket /><span><small>TICKET OPTIONS</small><b>From KSh 5,000</b></span></div></section>
 
-      <section className="faq-section section" id="faq"><div className="section-kicker">06 — GOOD TO KNOW</div><h2>The <em>details.</em></h2><div className="faq-list"><details><summary>Which payment methods can I use?<ChevronDown /></summary><p>Pay for tickets securely using M-Pesa or PayPal.</p></details><details><summary>How do I confirm my ticket order?<ChevronDown /></summary><p>After your payment is verified, your order status changes to paid. Keep your order reference and payment confirmation. QR-code and PDF tickets are not part of the current ticket delivery process.</p></details><details><summary>Where is Dala Festival taking place?<ChevronDown /></summary><p>Dala Festival takes place at ASK Arena, Nairobi Showground.</p></details><details><summary>Is this the event organiser's official website?<ChevronDown /></summary><p>This is an independent ticketing and event-promotion platform. It is not represented as the organiser's own website.</p></details></div></section>
+      <section className="faq-section section" id="faq"><div className="section-kicker">06 — GOOD TO KNOW</div><h2>The <em>details.</em></h2><div className="faq-list"><details><summary>Which payment methods can I use?<ChevronDown /></summary><p>Pay for tickets securely using M-Pesa or PayPal.</p></details><details><summary>How do I confirm my ticket order?<ChevronDown /></summary><p>After your payment is verified, your order status changes to paid. Keep your order reference and payment confirmation. QR-code and PDF tickets are not part of the current ticket delivery process.</p></details><details><summary>Where is Dala Festival taking place?<ChevronDown /></summary><p>Dala Festival takes place at ASK Arena, Nairobi Showground.</p></details></div></section>
 
       <footer><a className="brand footer-brand" href="#"><span className="brand-mark">D</span><span>DALA<span className="brand-light"> FESTIVAL</span><small>TICKETING & EXPERIENCES</small></span></a><p>Independent event promotion & ticketing platform.</p><nav className="footer-links" aria-label="Footer navigation"><a href="#about">Festival</a><a href="#lineup">Lineup</a><a href="#tickets">Tickets</a><a href="#faq">FAQs</a><a href="/terms">Terms &amp; Conditions</a></nav><div className="footer-contact"><span>CONTACT</span><a href="mailto:dalafestive@gmail.com">dalafestive@gmail.com</a></div><div>© 2026 Dala Festival Ticketing. All rights reserved.</div></footer>
       </main>
