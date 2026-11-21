@@ -14,7 +14,9 @@ export async function POST(request: NextRequest) {
     const ticketType = String(body.ticketType || "");
     const quantity = Number(body.quantity);
     const paymentProvider = String(body.paymentProvider || "");
+    const termsAccepted = body.termsAccepted === true;
     if (customerName.length < 2) return NextResponse.json({ error: "Enter your full name." }, { status: 400 });
+    if (!termsAccepted) return NextResponse.json({ error: "Please accept the Terms & Conditions before continuing." }, { status: 400 });
     if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return NextResponse.json({ error: "Enter a valid email address." }, { status: 400 });
     if (!Number.isInteger(quantity) || quantity < 1 || quantity > 10) return NextResponse.json({ error: "Ticket quantity must be between 1 and 10." }, { status: 400 });
     if (!Object.hasOwn(TICKET_PRICES, ticketType)) return NextResponse.json({ error: "Choose a valid ticket category." }, { status: 400 });
@@ -31,6 +33,7 @@ export async function POST(request: NextRequest) {
         order_reference: orderReference, customer_name: customerName, email, phone,
         ticket_type: ticketType, quantity, amount_kes: amountKes,
         payment_status: "pending", payment_provider: paymentProvider,
+        terms_accepted_at: new Date().toISOString(), terms_version: "2026-11-21",
       })
       .select("order_reference")
       .single();
