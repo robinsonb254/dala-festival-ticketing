@@ -11,7 +11,6 @@ export default function TermsPage() {
       <a className="terms-back" href="/">← BACK TO DALA FESTIVAL</a>
       <h1>Terms &amp; Conditions</h1>
       <p className="terms-updated">Last updated: 21 November 2026</p>
-      <div className="terms-notice">Dala Festival Ticketing is an independent event-promotion and ticketing platform. It is not the event organiser’s official website.</div>
 
       <h2>1. Acceptance of these terms</h2>
       <p>By accessing this website, placing an order or using any ticketing service provided through it, you agree to these Terms &amp; Conditions. If you do not agree, do not use the checkout service. These terms apply alongside any mandatory rights you have under applicable Kenyan law.</p>
