@@ -90,7 +90,7 @@ export default function Home() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          customerName, email, phone, ticketType: selected, quantity, paymentProvider,
+          customerName, email, phone, ticketType: selected, quantity, paymentProvider, termsAccepted,
         }),
       });
       const data = await response.json();
