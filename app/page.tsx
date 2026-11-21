@@ -285,10 +285,15 @@ export default function Home() {
           <div className="section-kicker">03 — WATCH THE VIBE</div>
           <div className="promo-video-copy">
             <div><h2>The sound.<br /><em>The energy.</em></h2><p>Official Dala Festival promotional film.</p></div>
-            <div className="video-placeholder" role="img" aria-label="Dala Festival promotional film">
-              <div className="video-orbit video-orbit-one" /><div className="video-orbit video-orbit-two" />
-              <div className="video-disc"><span>DALA</span><small>FESTIVAL 2026</small></div>
-              
+            <div className="video-placeholder promo-video-player">
+              <iframe
+                src="https://www.youtube-nocookie.com/embed/CeahvaMpxME?rel=0"
+                title="Official Dala Festival 2026 promotional video"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              />
             </div>
           </div>
         </div>
