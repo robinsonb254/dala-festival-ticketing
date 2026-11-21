@@ -23,18 +23,27 @@ export async function POST(request: NextRequest) {
     // Callback result codes are not independently authenticated.
     const resultCode = String(verification.ResultCode ?? "");
     if (resultCode === "0") {
+      // Daraja's STK query confirms success, while the callback metadata carries
+      // the receipt, amount and payer number. Require all three and compare them
+      // with the saved order before marking it paid.
       const metadata = callback.CallbackMetadata?.Item || [];
-      const receiptFromCallback = metadata.find((item: any) => item.Name === "MpesaReceiptNumber")?.Value;
-      const receipt = String(receiptFromCallback || "");
-      const amountFromCallback = Number(metadata.find((item: any) => item.Name === "Amount")?.Value);
-      const phoneFromCallback = String(metadata.find((item: any) => item.Name === "PhoneNumber")?.Value || "");
-      const verifiedAmount = Number(verification.Amount ?? amountFromCallback);
-      const verifiedPhone = String(verification.PhoneNumber ?? phoneFromCallback);
-      const verifiedReceipt = String(verification.MpesaReceiptNumber ?? receipt);
-      if (verifiedAmount === order.amount_kes && verifiedPhone === order.phone && verifiedReceipt) {
-        await supabaseAdmin.from("ticket_orders").update({
-          payment_status: "paid", mpesa_receipt_number: verifiedReceipt, paid_at: new Date().toISOString(),
+      const valueOf = (name: string) => metadata.find((item: any) => item.Name === name)?.Value;
+      const receipt = String(valueOf("MpesaReceiptNumber") || "");
+      const amount = Number(valueOf("Amount"));
+      const phone = String(valueOf("PhoneNumber") || "");
+      if (receipt && Number.isFinite(amount) && amount === Number(order.amount_kes) &&
+          phone && phone === order.phone) {
+        const { error: paidError } = await supabaseAdmin.from("ticket_orders").update({
+          payment_status: "paid",
+          mpesa_receipt_number: receipt,
+          paid_at: new Date().toISOString(),
         }).eq("id", order.id).eq("payment_status", "pending");
+        if (paidError) throw paidError;
+      } else {
+        console.error("M-Pesa success query did not include matching callback metadata:", {
+          orderReference: order.id, hasReceipt: Boolean(receipt), amountMatches: amount === Number(order.amount_kes),
+          phoneMatches: phone === order.phone,
+        });
       }
     } else if (verification.ResultCode !== undefined && resultCode !== "0") {
       await supabaseAdmin.from("ticket_orders").update({ payment_status: "failed" })
