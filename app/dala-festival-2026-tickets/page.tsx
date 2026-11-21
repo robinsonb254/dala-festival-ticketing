@@ -5,8 +5,8 @@ const siteUrl = "https://dalafestivaltickets.com";
 const pageUrl = `${siteUrl}/dala-festival-2026-tickets`;
 
 export const metadata: Metadata = {
-  title: "Dala Festival 2026 Tickets Kenya | Ferré Gola in Nairobi",
-  description: "Find Dala Festival 2026 event details, artists, venue and ticket prices. Ferré Gola, Prince Indah, Johnny Junior and more at ASK Arena, Nairobi Showground on 12 December 2026.",
+  title: "Dala Festival December 2026 Tickets Kenya | Ferré Gola in Nairobi",
+  description: "Dala Festival December 2026 tickets, event details, artists, venue and prices. See Ferré Gola, Prince Indah, Johnny Junior and more at ASK Arena, Nairobi on 12 December.",
   alternates: { canonical: pageUrl },
   openGraph: {
     title: "Dala Festival 2026 Tickets Kenya | Ferré Gola in Nairobi",
