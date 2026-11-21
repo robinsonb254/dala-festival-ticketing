@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ArrowRight, CalendarDays, MapPin, Music2, ShieldCheck, Ticket, Menu, X, ChevronDown } from "lucide-react";
 
 const tickets = [
@@ -21,8 +21,70 @@ export default function Home() {
   const [selected, setSelected] = useState("Regular");
   const [quantity, setQuantity] = useState(1);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [customerName, setCustomerName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [paymentProvider, setPaymentProvider] = useState<"mpesa" | "paypal">("mpesa");
+  const [checkoutLoading, setCheckoutLoading] = useState(false);
+  const [checkoutError, setCheckoutError] = useState("");
+  const [checkoutMessage, setCheckoutMessage] = useState("");
+  const [orderReference, setOrderReference] = useState("");
+  const [paymentStatus, setPaymentStatus] = useState("");
   const chosen = useMemo(() => tickets.find((item) => item.name === selected) ?? tickets[0], [selected]);
   const total = chosen.price * quantity;
+
+  useEffect(() => {
+    if (!orderReference || paymentProvider !== "mpesa" || paymentStatus === "paid" || paymentStatus === "failed") return;
+    let active = true;
+    const checkStatus = async () => {
+      try {
+        const response = await fetch("/api/orders/" + encodeURIComponent(orderReference), { cache: "no-store" });
+        const data = await response.json();
+        if (!active || !response.ok || !data.order) return;
+        setPaymentStatus(data.order.payment_status);
+        if (data.order.payment_status === "paid") {
+          setCheckoutMessage("Payment received. Your order is confirmed. Keep your order reference safe: " + orderReference);
+        } else if (data.order.payment_status === "failed") {
+          setCheckoutMessage("The M-Pesa payment was not completed. You can start a new checkout.");
+        }
+      } catch {
+        // Keep polling if the status endpoint is temporarily unavailable.
+      }
+    };
+    void checkStatus();
+    const timer = window.setInterval(checkStatus, 4000);
+    return () => { active = false; window.clearInterval(timer); };
+  }, [orderReference, paymentProvider, paymentStatus]);
+
+  async function startCheckout() {
+    setCheckoutLoading(true);
+    setCheckoutError("");
+    setCheckoutMessage("");
+    setOrderReference("");
+    setPaymentStatus("");
+    try {
+      const response = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          customerName, email, phone, ticketType: selected, quantity, paymentProvider,
+        }),
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || "Checkout could not be started.");
+      setOrderReference(data.reference);
+      if (data.provider === "paypal" && data.approvalUrl) {
+        window.location.assign(data.approvalUrl);
+        return;
+      }
+      setPaymentStatus("pending");
+      setCheckoutMessage(data.message || "Check your phone and complete the M-Pesa prompt.");
+    } catch (error) {
+      setCheckoutError(error instanceof Error ? error.message : "Checkout could not be started.");
+    } finally {
+      setCheckoutLoading(false);
+    }
+  }
 
   return (
     <main>
@@ -71,11 +133,11 @@ export default function Home() {
       <section className="lineup-section" id="lineup"><div className="section"><div className="section-kicker">02 — THE SOUNDTRACK</div><div className="lineup-head"><h2>THE<br /><em>LINEUP.</em></h2><p>Get ready for a powerful mix of live performances and DJ sets. Artist appearances and running order are subject to organiser confirmation.</p></div><div className="lineup-list">{lineup.map((artist, i) => <div className="artist-row" key={artist}><span className="artist-number">0{i + 1}</span><span className="artist-name">{artist}</span><span className="artist-type">{i === 0 ? "HEADLINER" : i === 4 ? "DJ SETS" : "LIVE PERFORMANCE"}</span><Music2 className="artist-icon" /></div>)}</div></div></section>
 
       <section className="tickets-section section" id="tickets">
-        <div className="section-kicker">03 — MAKE IT YOURS</div><div className="tickets-head"><h2>YOUR NIGHT.<br /><em>YOUR TICKET.</em></h2><p>Choose your experience and reserve your place. Secure checkout will be enabled once payment credentials and event inventory are configured.</p></div>
+        <div className="section-kicker">03 — MAKE IT YOURS</div><div className="tickets-head"><h2>YOUR NIGHT.<br /><em>YOUR TICKET.</em></h2><p>Choose your experience, enter your details and pay securely using M-Pesa or PayPal.</p></div>
         <div className="ticket-layout"><div className="ticket-options">{tickets.map((ticket, i) => <button key={ticket.name} className={selected === ticket.name ? "ticket-option active" : "ticket-option"} onClick={() => setSelected(ticket.name)}><span className="ticket-index">0{i + 1}</span><span className="ticket-info"><b>{ticket.name}</b><small>{ticket.note}</small></span><strong>{money(ticket.price)}</strong><span className="radio-dot" /></button>)}</div>
-          <aside className="order-card"><div className="order-top"><span>YOUR SELECTION</span><Ticket /></div><h3>{chosen.name}</h3><p>{chosen.note}</p><div className="order-divider" /><div className="quantity-row"><span>Quantity</span><div className="quantity-control"><button onClick={() => setQuantity(Math.max(1, quantity - 1))} aria-label="Decrease quantity">−</button><b>{quantity}</b><button onClick={() => setQuantity(Math.min(10, quantity + 1))} aria-label="Increase quantity">+</button></div></div><div className="total-row"><span>Total</span><strong>{money(total)}</strong></div><button className="checkout-button" onClick={() => document.getElementById("checkout-note")?.scrollIntoView({behavior:"smooth"})}>Continue <ArrowRight size={18} /></button><div className="secure-note"><ShieldCheck size={15} /> M-Pesa & PayPal planned for checkout</div></aside>
+          <aside className="order-card"><div className="order-top"><span>YOUR SELECTION</span><Ticket /></div><h3>{chosen.name}</h3><p>{chosen.note}</p><div className="order-divider" /><div className="quantity-row"><span>Quantity</span><div className="quantity-control"><button onClick={() => setQuantity(Math.max(1, quantity - 1))} aria-label="Decrease quantity">−</button><b>{quantity}</b><button onClick={() => setQuantity(Math.min(10, quantity + 1))} aria-label="Increase quantity">+</button></div></div><div className="total-row"><span>Total</span><strong>{money(total)}</strong></div><div className="checkout-fields"><label>Full name<input value={customerName} onChange={(event) => setCustomerName(event.target.value)} autoComplete="name" placeholder="Your full name" required /></label><label>Email (optional)<input value={email} onChange={(event) => setEmail(event.target.value)} type="email" autoComplete="email" placeholder="you@example.com" /></label><label>M-Pesa phone number<input value={phone} onChange={(event) => setPhone(event.target.value)} type="tel" autoComplete="tel" placeholder="07XXXXXXXX" required /></label></div><div className="payment-choice"><span>PAY WITH</span><label><input type="radio" name="paymentProvider" checked={paymentProvider === "mpesa"} onChange={() => setPaymentProvider("mpesa")} /> M-Pesa</label><label><input type="radio" name="paymentProvider" checked={paymentProvider === "paypal"} onChange={() => setPaymentProvider("paypal")} /> PayPal</label></div><button className="checkout-button" onClick={startCheckout} disabled={checkoutLoading || !customerName.trim() || !phone.trim()}>{checkoutLoading ? "Starting checkout..." : paymentProvider === "mpesa" ? "Pay with M-Pesa" : "Continue to PayPal"} <ArrowRight size={18} /></button><div className="secure-note"><ShieldCheck size={15} /> Secure payment verification · M-Pesa & PayPal</div>{checkoutError && <p className="checkout-error" role="alert">{checkoutError}</p>}{checkoutMessage && <div className="checkout-status" role="status"><b>{paymentStatus === "paid" ? "PAYMENT CONFIRMED" : paymentStatus === "failed" ? "PAYMENT NOT COMPLETED" : "ORDER " + orderReference}</b><span>{checkoutMessage}</span></div>}</aside>
         </div>
-        <div className="checkout-note" id="checkout-note"><b>Online checkout is being prepared.</b><span>We are setting up secure M-Pesa and PayPal payment verification. No payment is collected on this preview.</span></div>
+        <div className="checkout-note" id="checkout-note"><b>Payment confirmation</b><span>Your order is only confirmed after the payment provider verifies the transaction. Keep your order reference for support. QR and PDF tickets are not included in this release.</span></div>
       </section>
 
       <section className="event-strip"><div><CalendarDays /><span><small>DATE</small><b>12 DECEMBER 2026</b></span></div><div><MapPin /><span><small>LOCATION</small><b>ASK Arena, Nairobi Showground</b></span></div><div><Ticket /><span><small>TICKET OPTIONS</small><b>From KSh 5,000</b></span></div></section>
