@@ -117,6 +117,8 @@ export default function Home() {
         <nav className={mobileOpen ? "nav-links open" : "nav-links"}>
           <a href="#about" onClick={() => setMobileOpen(false)}>The festival</a>
           <a href="#lineup" onClick={() => setMobileOpen(false)}>Lineup</a>
+          <a href="#video" onClick={() => setMobileOpen(false)}>Watch</a>
+          <a href="#gallery" onClick={() => setMobileOpen(false)}>Gallery</a>
           <a href="#tickets" onClick={() => setMobileOpen(false)}>Tickets</a>
           <a href="#faq" onClick={() => setMobileOpen(false)}>FAQs</a>
           <a className="nav-cta" href="#tickets" onClick={() => setMobileOpen(false)}>Get tickets <ArrowRight size={16} /></a>
@@ -155,8 +157,32 @@ export default function Home() {
 
       <section className="lineup-section" id="lineup"><div className="section"><div className="section-kicker">02 — THE SOUNDTRACK</div><div className="lineup-head"><h2>THE<br /><em>LINEUP.</em></h2><p>Meet the featured performers bringing the Dala Festival stage to life. Artist appearances and running order remain subject to organiser confirmation.</p></div><div className="artist-card-grid">{artists.map((artist, i) => <article className="artist-card" key={artist.name}><div className="artist-photo-wrap"><img src={artist.image} alt={artist.alt} loading={i === 0 ? "eager" : "lazy"} /><span className="artist-photo-index">0{i + 1}</span></div><div className="artist-card-info"><div><span>{artist.role}</span><h3>{artist.name}</h3></div><Music2 className="artist-icon" /></div></article>)}</div><div className="additional-acts"><span>ALSO ON THE BILL</span>{additionalActs.map((act) => <b key={act}>{act}</b>)}</div></div></section>
 
+      <section className="promo-video-section" id="video">
+        <div className="section promo-video-inner">
+          <div className="section-kicker">03 — WATCH THE VIBE</div>
+          <div className="promo-video-copy">
+            <div><h2>THE SOUND.<br /><em>THE ENERGY.</em></h2><p>The official Dala Festival promotional film will appear here. We are keeping this space ready for the organiser-approved video.</p></div>
+            <div className="video-placeholder" role="img" aria-label="Dala Festival promotional video coming soon">
+              <div className="video-orbit video-orbit-one" /><div className="video-orbit video-orbit-two" />
+              <div className="video-disc"><span>DALA</span><small>FESTIVAL 2026</small></div>
+              <div className="video-coming-soon">OFFICIAL PROMO FILM · COMING SOON</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="festival-gallery section" id="gallery">
+        <div className="section-kicker">04 — THE ARTISTS</div>
+        <div className="gallery-heading"><h2>FACES OF<br /><em>DALA.</em></h2><p>A first look at the featured performers. More festival moments and approved event photography will be added as they become available.</p></div>
+        <div className="gallery-grid">
+          <figure className="gallery-item gallery-feature"><img src="/artists/ferre-gola.jpg" alt="Ferré Gola featured artist photograph" loading="lazy" /><figcaption><span>01 / HEADLINER</span><b>Ferré Gola</b></figcaption></figure>
+          <figure className="gallery-item"><img src="/artists/prince-indah.jpg" alt="Prince Indah featured artist photograph" loading="lazy" /><figcaption><span>02 / LIVE PERFORMANCE</span><b>Prince Indah</b></figcaption></figure>
+          <figure className="gallery-item"><img src="/artists/johnny-junior.jpg" alt="Johnny Junior featured artist photograph" loading="lazy" /><figcaption><span>03 / LIVE PERFORMANCE</span><b>Johnny Junior</b></figcaption></figure>
+        </div>
+      </section>
+
       <section className="tickets-section section" id="tickets">
-        <div className="section-kicker">03 — MAKE IT YOURS</div><div className="tickets-head"><h2>YOUR NIGHT.<br /><em>YOUR TICKET.</em></h2><p>Choose your experience, enter your details and pay securely using M-Pesa or PayPal.</p></div>
+        <div className="section-kicker">05 — MAKE IT YOURS</div><div className="tickets-head"><h2>YOUR NIGHT.<br /><em>YOUR TICKET.</em></h2><p>Choose your experience, enter your details and pay securely using M-Pesa or PayPal.</p></div>
         <div className="ticket-layout"><div className="ticket-options">{tickets.map((ticket, i) => <button key={ticket.name} className={selected === ticket.name ? "ticket-option active" : "ticket-option"} onClick={() => setSelected(ticket.name)}><span className="ticket-index">0{i + 1}</span><span className="ticket-info"><b>{ticket.name}</b><small>{ticket.note}</small></span><strong>{money(ticket.price)}</strong><span className="radio-dot" /></button>)}</div>
           <aside className="order-card"><div className="order-top"><span>YOUR SELECTION</span><Ticket /></div><h3>{chosen.name}</h3><p>{chosen.note}</p><div className="order-divider" /><div className="quantity-row"><span>Quantity</span><div className="quantity-control"><button onClick={() => setQuantity(Math.max(1, quantity - 1))} aria-label="Decrease quantity">−</button><b>{quantity}</b><button onClick={() => setQuantity(Math.min(10, quantity + 1))} aria-label="Increase quantity">+</button></div></div><div className="total-row"><span>Total</span><strong>{money(total)}</strong></div><div className="checkout-fields"><label>Full name<input value={customerName} onChange={(event) => setCustomerName(event.target.value)} autoComplete="name" placeholder="Your full name" required /></label><label>Email (optional)<input value={email} onChange={(event) => setEmail(event.target.value)} type="email" autoComplete="email" placeholder="you@example.com" /></label><label>M-Pesa phone number<input value={phone} onChange={(event) => setPhone(event.target.value)} type="tel" autoComplete="tel" placeholder="07XXXXXXXX" required /></label></div><div className="payment-choice"><span>PAY WITH</span><label><input type="radio" name="paymentProvider" checked={paymentProvider === "mpesa"} onChange={() => setPaymentProvider("mpesa")} /> M-Pesa</label><label><input type="radio" name="paymentProvider" checked={paymentProvider === "paypal"} onChange={() => setPaymentProvider("paypal")} /> PayPal</label></div><button className="checkout-button" onClick={startCheckout} disabled={checkoutLoading || !customerName.trim() || !phone.trim()}>{checkoutLoading ? "Starting checkout..." : paymentProvider === "mpesa" ? "Pay with M-Pesa" : "Continue to PayPal"} <ArrowRight size={18} /></button><div className="secure-note"><ShieldCheck size={15} /> Secure payment verification · M-Pesa & PayPal</div>{checkoutError && <p className="checkout-error" role="alert">{checkoutError}</p>}{checkoutMessage && <div className="checkout-status" role="status"><b>{paymentStatus === "paid" ? "PAYMENT CONFIRMED" : paymentStatus === "failed" ? "PAYMENT NOT COMPLETED" : "ORDER " + orderReference}</b><span>{checkoutMessage}</span></div>}</aside>
         </div>
@@ -165,7 +191,7 @@ export default function Home() {
 
       <section className="event-strip"><div><CalendarDays /><span><small>DATE</small><b>12 DECEMBER 2026</b></span></div><div><MapPin /><span><small>LOCATION</small><b>ASK Arena, Nairobi Showground</b></span></div><div><Ticket /><span><small>TICKET OPTIONS</small><b>From KSh 5,000</b></span></div></section>
 
-      <section className="faq-section section" id="faq"><div className="section-kicker">04 — GOOD TO KNOW</div><h2>THE <em>DETAILS.</em></h2><div className="faq-list"><details><summary>Which payment methods will be available?<ChevronDown /></summary><p>At launch, the planned payment options are M-Pesa and PayPal. Checkout will only go live after payment verification has been tested.</p></details><details><summary>Will I receive a QR or PDF ticket?<ChevronDown /></summary><p>Not in the first release. The initial version will use an order reference and payment confirmation. QR and PDF delivery are planned for a later phase.</p></details><details><summary>Where is the event taking place?<ChevronDown /></summary><p>The current event listing states ASK Arena at Nairobi Showground. Please confirm final venue details with the organiser before travelling.</p></details><details><summary>Is this the event organiser's official website?<ChevronDown /></summary><p>This is an independent ticketing and event-promotion platform. It is not represented as the organiser's own website.</p></details></div></section>
+      <section className="faq-section section" id="faq"><div className="section-kicker">06 — GOOD TO KNOW</div><h2>THE <em>DETAILS.</em></h2><div className="faq-list"><details><summary>Which payment methods will be available?<ChevronDown /></summary><p>At launch, the planned payment options are M-Pesa and PayPal. Checkout will only go live after payment verification has been tested.</p></details><details><summary>Will I receive a QR or PDF ticket?<ChevronDown /></summary><p>Not in the first release. The initial version will use an order reference and payment confirmation. QR and PDF delivery are planned for a later phase.</p></details><details><summary>Where is the event taking place?<ChevronDown /></summary><p>The current event listing states ASK Arena at Nairobi Showground. Please confirm final venue details with the organiser before travelling.</p></details><details><summary>Is this the event organiser's official website?<ChevronDown /></summary><p>This is an independent ticketing and event-promotion platform. It is not represented as the organiser's own website.</p></details></div></section>
 
       <footer><a className="brand footer-brand" href="#"><span className="brand-mark">D</span><span>DALA<span className="brand-light"> FESTIVAL</span><small>TICKETING & EXPERIENCES</small></span></a><p>Independent event promotion & ticketing platform.</p><div>© 2026 Dala Festival Ticketing. All rights reserved.</div></footer>
     </main>
