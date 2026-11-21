@@ -28,17 +28,20 @@ const eventData = {
   "endDate": "2026-12-13T04:00:00+03:00",
   "eventStatus": "https://schema.org/EventScheduled",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "url": pageUrl,
   "location": {
     "@type": "Place",
     "name": "ASK Arena, Nairobi Showground",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Nairobi Showground",
+      "streetAddress": "Nairobi Showground, Jamhuri Park, off Ngong Road",
       "addressLocality": "Nairobi",
+      "addressRegion": "Nairobi County",
       "addressCountry": "KE"
     }
   },
   "image": [
+    "https://i.ibb.co/TDVhfnGC/file-00000000ab5482089142cc3e3b527b44.png",
     `${siteUrl}/artists/ferre-gola.jpg`,
     `${siteUrl}/artists/prince-indah.jpg`,
     `${siteUrl}/artists/johnny-junior.jpg`
@@ -50,11 +53,11 @@ const eventData = {
     { "@type": "MusicGroup", "name": "Les Wanyika" }
   ],
   "offers": [
-    { "@type": "Offer", "name": "Regular", "url": `${siteUrl}/tickets/regular`, "priceCurrency": "KES", "price": "5000" },
-    { "@type": "Offer", "name": "VIP", "url": `${siteUrl}/tickets/vip`, "priceCurrency": "KES", "price": "10000" },
-    { "@type": "Offer", "name": "VVIP", "url": `${siteUrl}/tickets/vvip`, "priceCurrency": "KES", "price": "25000" },
-    { "@type": "Offer", "name": "Table of 4", "url": `${siteUrl}/tickets/table-of-4`, "priceCurrency": "KES", "price": "100000" },
-    { "@type": "Offer", "name": "Table of 8", "url": `${siteUrl}/tickets/table-of-8`, "priceCurrency": "KES", "price": "200000" }
+    { "@type": "Offer", "name": "Regular", "url": `${siteUrl}/?ticket=regular#tickets`, "priceCurrency": "KES", "price": 5000 },
+    { "@type": "Offer", "name": "VIP", "url": `${siteUrl}/?ticket=vip#tickets`, "priceCurrency": "KES", "price": 10000 },
+    { "@type": "Offer", "name": "VVIP", "url": `${siteUrl}/?ticket=vvip#tickets`, "priceCurrency": "KES", "price": 25000 },
+    { "@type": "Offer", "name": "Table of 4", "url": `${siteUrl}/?ticket=table-of-4#tickets`, "priceCurrency": "KES", "price": 100000 },
+    { "@type": "Offer", "name": "Table of 8", "url": `${siteUrl}/?ticket=table-of-8#tickets`, "priceCurrency": "KES", "price": 200000 }
   ]
 };
 
