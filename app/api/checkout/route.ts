@@ -17,7 +17,7 @@ export async function POST(request: NextRequest) {
     if (customerName.length < 2) return NextResponse.json({ error: "Enter your full name." }, { status: 400 });
     if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return NextResponse.json({ error: "Enter a valid email address." }, { status: 400 });
     if (!Number.isInteger(quantity) || quantity < 1 || quantity > 10) return NextResponse.json({ error: "Ticket quantity must be between 1 and 10." }, { status: 400 });
-    if (!(ticketType in TICKET_PRICES)) return NextResponse.json({ error: "Choose a valid ticket category." }, { status: 400 });
+    if (!Object.hasOwn(TICKET_PRICES, ticketType)) return NextResponse.json({ error: "Choose a valid ticket category." }, { status: 400 });
     if (!["mpesa", "paypal"].includes(paymentProvider)) return NextResponse.json({ error: "Choose M-Pesa or PayPal." }, { status: 400 });
     let phone: string;
     try { phone = normalizeKenyanPhone(String(body.phone || "")); }
