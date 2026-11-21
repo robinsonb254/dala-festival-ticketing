@@ -128,6 +128,12 @@ export default function DalaFestivalTicketsPage() {
         <div style={{ borderBottom: "1px solid #292a2d", padding: "16px 0" }}><h3>How can I buy Dala Festival tickets?</h3><p style={{ color: "#d0c9bd", lineHeight: 1.7 }}>Select a ticket category on the <Link href="/#tickets" style={{ color: "#e7b85c" }}>ticket checkout page</Link> and follow the payment steps.</p></div>
       </section>
 
+      <section style={{ ...sectionStyle, borderTop: "1px solid #292a2d" }}>
+        <h2 style={{ fontSize: 28, marginTop: 0 }}>Read the Nairobi concert guide</h2>
+        <p style={{ color: "#d0c9bd", lineHeight: 1.8 }}>Planning to see Ferré Gola in Nairobi? Read our guide to the 12 December 2026 Dala Festival, including the venue and announced performers.</p>
+        <p><Link href="/ferre-gola-nairobi-december-2026" style={{ color: "#e7b85c", fontWeight: 800, textDecoration: "none" }}>Ferré Gola in Nairobi: December 2026 concert guide ↗</Link></p>
+      </section>
+
       <footer style={{ borderTop: "1px solid #292a2d", padding: "26px 24px", color: "#aaa196", textAlign: "center", fontSize: 13 }}>
         © 2026 Dala Festival Ticketing · <Link href="/" style={{ color: "#e7b85c" }}>Main website</Link> · <Link href="/terms" style={{ color: "#e7b85c" }}>Terms &amp; Conditions</Link>
       </footer>
