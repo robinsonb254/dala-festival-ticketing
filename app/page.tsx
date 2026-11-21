@@ -62,7 +62,7 @@ export default function Home() {
   }, [selectedArtistIndex]);
 
   useEffect(() => {
-    const eventTime = new Date("2026-12-12T00:00:00+03:00").getTime();
+    const eventTime = new Date("2026-12-12T14:00:00+03:00").getTime();
     const updateCountdown = () => {
       const distance = Math.max(0, eventTime - Date.now());
       setCountdown({
@@ -187,10 +187,10 @@ export default function Home() {
           <p className="eyebrow"><span /> MUSIC. CULTURE. ENERGY.</p>
           <p className="hero-pretitle">THE STARS ARE COMING TO NAIROBI</p>
           <h1>Dala Festival<br /><em>2026 in Nairobi.</em></h1>
-          <p className="hero-copy">Experience Ferré Gola, Prince Indah, Johnny Junior and more at ASK Arena, Nairobi Showground on 12 December 2026. Choose your tickets and book online.</p>
+          <p className="hero-copy">Experience Ferré Gola, Prince Indah, Johnny Junior and more at ASK Arena, Nairobi Showground on 12 December 2026, from 2:00 PM until 4:00 AM on 13 December. Choose your tickets and book online.</p>
           <div className="hero-meta">
-            <div><CalendarDays /><span><b>12 DECEMBER 2026</b><small>Save the date</small></span></div>
-            <div><MapPin /><span><b>ASK ARENA</b><small>Nairobi Showground</small></span></div>
+            <div><CalendarDays /><span><b>12 DECEMBER 2026</b><small>2:00 PM – 4:00 AM (13 Dec)</small></span></div>
+            <div><MapPin /><span><b>ASK ARENA</b><small>Nairobi Showground · Jamhuri Park</small></span></div>
           </div>
           <a className="primary-button" href="#tickets">Get your tickets <ArrowRight size={18} /></a>
         </div>
@@ -270,7 +270,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="event-strip"><div><CalendarDays /><span><small>DATE</small><b>12 DECEMBER 2026</b></span></div><div><MapPin /><span><small>LOCATION</small><b>ASK Arena, Nairobi Showground</b></span></div><div><Ticket /><span><small>TICKET OPTIONS</small><b>From KSh 5,000</b></span></div></section>
+      <section className="event-strip"><div><CalendarDays /><span><small>DATE</small><b>12 DECEMBER 2026</b></span></div><div><MapPin /><span><small>LOCATION</small><b>ASK Arena, Nairobi Showground</b><a href="https://www.google.com/maps/search/?api=1&query=ASK+Arena%2C+Nairobi+Showground%2C+Nairobi" target="_blank" rel="noreferrer">Get directions ↗</a></span></div><div><CalendarDays /><span><small>EVENT HOURS · EAT</small><b>Sat 12 Dec, 2:00 PM – Sun 13 Dec, 4:00 AM</b></span></div><div><Ticket /><span><small>TICKET OPTIONS</small><b>From KSh 5,000</b></span></div></section>
 
       <section className="faq-section section" id="faq"><div className="section-kicker">06 — GOOD TO KNOW</div><h2>The <em>details.</em></h2><div className="faq-list"><details><summary>Which payment methods can I use?<ChevronDown /></summary><p>Pay for tickets securely using M-Pesa or PayPal.</p></details><details><summary>How do I confirm my ticket order?<ChevronDown /></summary><p>Keep your order reference and payment confirmation for your records.</p></details><details><summary>Where is Dala Festival taking place?<ChevronDown /></summary><p>Dala Festival takes place at ASK Arena, Nairobi Showground.</p></details></div></section>
 
