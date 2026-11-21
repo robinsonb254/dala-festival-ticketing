@@ -48,19 +48,19 @@ const eventData = {
     { "@type": "Person", "name": "Johnny Junior" },
     { "@type": "MusicGroup", "name": "Les Wanyika" }
   ],
-  "offers": {
-    "@type": "AggregateOffer",
-    "url": `${siteUrl}/#tickets`,
-    "priceCurrency": "KES",
-    "lowPrice": "5000",
-    "highPrice": "200000"
-  }
+  "offers": [
+    { "@type": "Offer", "name": "Regular", "url": `${siteUrl}/tickets/regular`, "priceCurrency": "KES", "price": "5000" },
+    { "@type": "Offer", "name": "VIP", "url": `${siteUrl}/tickets/vip`, "priceCurrency": "KES", "price": "10000" },
+    { "@type": "Offer", "name": "VVIP", "url": `${siteUrl}/tickets/vvip`, "priceCurrency": "KES", "price": "25000" },
+    { "@type": "Offer", "name": "Table of 4", "url": `${siteUrl}/tickets/table-of-4`, "priceCurrency": "KES", "price": "100000" },
+    { "@type": "Offer", "name": "Table of 8", "url": `${siteUrl}/tickets/table-of-8`, "priceCurrency": "KES", "price": "200000" }
+  ]
 };
 
 const ticketPrices = [
   ["Regular", "KSh 5,000", "General admission"],
-  ["VIP", "KSh 10,000", "Premium festival access"],
-  ["VVIP", "KSh 25,000", "Elevated festival experience"],
+  ["VIP", "KSh 10,000", "VIP ticket category"],
+  ["VVIP", "KSh 25,000", "VVIP ticket category"],
   ["Table of 4", "KSh 100,000", "Reserved table for four"],
   ["Table of 8", "KSh 200,000", "Reserved table for eight"]
 ];
@@ -112,6 +112,16 @@ export default function DalaFestivalTicketsPage() {
           </table>
         </div>
         <p style={{ marginTop: 24 }}><Link href="/#tickets" style={buttonStyle}>Choose tickets and checkout</Link></p>
+        <div style={{ marginTop: 22 }}>
+          <h3 style={{ fontSize: 20 }}>Explore each ticket category</h3>
+          <ul style={{ lineHeight: 2.1, paddingLeft: 22 }}>
+            <li><Link href="/tickets/regular" style={{ color: "#e7b85c" }}>Regular tickets — KSh 5,000</Link></li>
+            <li><Link href="/tickets/vip" style={{ color: "#e7b85c" }}>VIP tickets — KSh 10,000</Link></li>
+            <li><Link href="/tickets/vvip" style={{ color: "#e7b85c" }}>VVIP tickets — KSh 25,000</Link></li>
+            <li><Link href="/tickets/table-of-4" style={{ color: "#e7b85c" }}>Table of 4 — KSh 100,000</Link></li>
+            <li><Link href="/tickets/table-of-8" style={{ color: "#e7b85c" }}>Table of 8 — KSh 200,000</Link></li>
+          </ul>
+        </div>
       </section>
 
       <section style={{ ...sectionStyle, borderTop: "1px solid #292a2d" }}>
