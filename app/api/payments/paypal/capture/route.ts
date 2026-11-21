@@ -11,7 +11,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Missing PayPal order details." }, { status: 400 });
     }
     const { data: order, error } = await supabaseAdmin.from("ticket_orders")
-      .select("id, order_reference, amount_kes, payment_status, payment_provider, paypal_order_id")
+      .select("id, order_reference, amount_kes, paypal_amount_usd, payment_status, payment_provider, paypal_order_id")
       .eq("order_reference", reference).maybeSingle();
     if (error || !order) return NextResponse.json({ error: "Order not found." }, { status: 404 });
     if (order.payment_provider !== "paypal" || order.paypal_order_id !== paypalOrderId) {
@@ -22,8 +22,7 @@ export async function POST(request: NextRequest) {
     const capture = await capturePaypalOrder(paypalOrderId);
     const unit = capture.purchase_units?.[0];
     const captureRecord = unit?.payments?.captures?.[0];
-    const rate = Number(process.env.PAYPAL_KES_TO_USD_RATE);
-    const expectedUsd = (order.amount_kes / rate).toFixed(2);
+    const expectedUsd = Number(order.paypal_amount_usd).toFixed(2);
     const capturedAmount = Number(captureRecord?.amount?.value);
     const customReference = unit?.custom_id || unit?.invoice_id;
     if (capture.status !== "COMPLETED" || captureRecord?.status !== "COMPLETED" ||
