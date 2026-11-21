@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
-export default function PaypalReturnPage() {
+function PaypalReturnContent() {
   const params = useSearchParams();
   const reference = params.get("reference") || "";
   const paypalOrderId = params.get("token") || "";
@@ -40,3 +40,5 @@ export default function PaypalReturnPage() {
 
   return <main className="payment-result"><div className="payment-result-card"><span className="payment-result-kicker">DALA FESTIVAL · PAYPAL</span><h1>{done ? "PAYMENT UPDATE" : "VERIFYING PAYMENT"}</h1><p>{message}</p>{reference && <small>ORDER REFERENCE: {reference}</small>}<a href="/#tickets">Return to Dala Festival</a></div></main>;
 }
+
+export default function PaypalReturnPage() { return <Suspense fallback={<main className="payment-result"><p>Loading payment details...</p></main>}><PaypalReturnContent /></Suspense>; }
