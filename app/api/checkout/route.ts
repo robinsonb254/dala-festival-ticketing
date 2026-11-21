@@ -26,7 +26,19 @@ export async function POST(request: NextRequest) {
     catch (error) { return NextResponse.json({ error: error instanceof Error ? error.message : "Invalid phone number." }, { status: 400 }); }
 
     if (paymentProvider === "mpesa") {
+      const preparationCutoff = new Date(Date.now() - 30 * 1000).toISOString();
       const recentCutoff = new Date(Date.now() - 5 * 60 * 1000).toISOString();
+
+      // A request that never received a Daraja CheckoutRequestID is a failed
+      // preparation, not an active customer prompt. Release it after 30 seconds.
+      const { error: expirePreparationError } = await supabaseAdmin.from("ticket_orders")
+        .update({ payment_status: "failed" })
+        .eq("phone", phone)
+        .eq("payment_provider", "mpesa")
+        .eq("payment_status", "pending")
+        .is("checkout_request_id", null)
+        .lt("created_at", preparationCutoff);
+      if (expirePreparationError) throw expirePreparationError;
 
       // Expire abandoned prompts before checking for an active order. A partial
       // unique index in the Supabase migration below makes this reservation atomic.
@@ -92,17 +104,24 @@ export async function POST(request: NextRequest) {
     if (insertError || !order) throw new Error("We could not create your order. Please try again.");
 
     if (paymentProvider === "mpesa") {
-      const stk = await initiateMpesaStk({ phone, amount: amountKes, orderReference });
-      const { error: updateError } = await supabaseAdmin.from("ticket_orders").update({
-        checkout_request_id: stk.CheckoutRequestID,
-        merchant_request_id: stk.MerchantRequestID,
-      }).eq("order_reference", orderReference);
-      if (updateError) throw new Error("M-Pesa was started, but the order could not be updated. Contact support with reference " + orderReference + ".");
-      return NextResponse.json({ ok: true, provider: "mpesa", reference: orderReference, message: stk.CustomerMessage || "Check your phone and enter your M-Pesa PIN to complete payment." });
+      try {
+        const stk = await initiateMpesaStk({ phone, amount: amountKes, orderReference });
+        const { error: updateError } = await supabaseAdmin.from("ticket_orders").update({
+          checkout_request_id: stk.CheckoutRequestID,
+          merchant_request_id: stk.MerchantRequestID,
+        }).eq("order_reference", orderReference);
+        if (updateError) throw new Error("M-Pesa was started, but the order could not be updated. Contact support with reference " + orderReference + ".");
+        return NextResponse.json({ ok: true, provider: "mpesa", reference: orderReference, message: stk.CustomerMessage || "Check your phone and enter your M-Pesa PIN to complete payment." });
+      } catch (error) {
+        const { error: failError } = await supabaseAdmin.from("ticket_orders").update({ payment_status: "failed" })
+          .eq("order_reference", orderReference).eq("payment_status", "pending");
+        if (failError) console.error("Unable to expire failed M-Pesa checkout:", failError);
+        throw error;
+      }
     }
 
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || request.nextUrl.origin;
-    const paypal = await createPaypalOrder({ amountKes, orderReference, siteUrl });
+    const paypal = await createPaypalOrder({ amountKes, orderReference, siteUrl, landingPage: body.paypalCheckoutMode === "card" ? "GUEST_CHECKOUT" : "NO_PREFERENCE" });
     const { error: updateError } = await supabaseAdmin.from("ticket_orders").update({
       paypal_order_id: paypal.id,
       paypal_amount_usd: paypal.usdAmount,

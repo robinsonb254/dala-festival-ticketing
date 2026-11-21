@@ -11,7 +11,7 @@ export async function darajaAccessToken() {
   const base = environment === "sandbox" ? "https://sandbox.safaricom.co.ke" : "https://api.safaricom.co.ke";
   const credentials = Buffer.from(required("MPESA_CONSUMER_KEY") + ":" + required("MPESA_CONSUMER_SECRET")).toString("base64");
   const response = await fetch(base + "/oauth/v1/generate?grant_type=client_credentials", {
-    headers: { Authorization: "Basic " + credentials }, cache: "no-store",
+    headers: { Authorization: "Basic " + credentials }, cache: "no-store", signal: AbortSignal.timeout(12000),
   });
   const data = await response.json();
   if (!response.ok || !data.access_token) throw new Error("Unable to authenticate with M-Pesa. Check Daraja credentials.");
@@ -42,7 +42,7 @@ export async function initiateMpesaStk(input: { phone: string; amount: number; o
       CallBackURL: required("MPESA_CALLBACK_URL"),
       AccountReference: input.orderReference.slice(0, 12), TransactionDesc: "Dala Festival ticket",
     }),
-    cache: "no-store",
+    cache: "no-store", signal: AbortSignal.timeout(12000),
   });
   const data = await response.json();
   if (!response.ok || !data.CheckoutRequestID) throw new Error(data.errorMessage || data.ResponseDescription || "M-Pesa STK Push could not be started.");
@@ -78,7 +78,7 @@ export async function paypalAccessToken() {
   return { token: data.access_token as string, base };
 }
 
-export async function createPaypalOrder(input: { amountKes: number; orderReference: string; siteUrl: string }) {
+export async function createPaypalOrder(input: { amountKes: number; orderReference: string; siteUrl: string; landingPage?: "NO_PREFERENCE" | "GUEST_CHECKOUT" }) {
   const { token, base } = await paypalAccessToken();
   const kesUsdRate = Number(process.env.PAYPAL_KES_TO_USD_RATE);
   if (!Number.isFinite(kesUsdRate) || kesUsdRate <= 0) throw new Error("PayPal checkout is not configured with an approved KES-to-USD rate.");
@@ -93,6 +93,7 @@ export async function createPaypalOrder(input: { amountKes: number; orderReferen
         return_url: input.siteUrl + "/payment/paypal/return?reference=" + encodeURIComponent(input.orderReference),
         cancel_url: input.siteUrl + "/payment/paypal/cancel?reference=" + encodeURIComponent(input.orderReference),
         user_action: "PAY_NOW", shipping_preference: "NO_SHIPPING",
+        landing_page: input.landingPage || "NO_PREFERENCE", payment_method_preference: "UNRESTRICTED",
       } } },
     }),
     cache: "no-store",
