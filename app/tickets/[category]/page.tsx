@@ -157,7 +157,7 @@ export default async function TicketCategoryPage({
       <header style={{ borderBottom: "1px solid #292a2d", padding: "18px 24px" }}>
         <div style={{ maxWidth: 900, margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", gap: 16 }}>
           <Link href="/" style={{ color: "#f7f3eb", textDecoration: "none", fontWeight: 900, letterSpacing: 2 }}>DALA FESTIVAL <span style={{ color: "#e7b85c" }}>2026</span></Link>
-          <Link href="/#tickets" style={linkStyle}>Ticket checkout ↗</Link>
+          <Link href={`/?ticket=${category}#tickets`} style={linkStyle}>Ticket checkout ↗</Link>
         </div>
       </header>
 
@@ -172,7 +172,7 @@ export default async function TicketCategoryPage({
             <span style={{ color: "#aaa196", fontSize: 13 }}>{category.startsWith("table-") ? "Per table booking" : "Per ticket"}</span>
           </div>
           <p style={{ color: "#d0c9bd", lineHeight: 1.8, maxWidth: 760, marginTop: 24 }}>{ticket.detail}</p>
-          <p style={{ marginTop: 28 }}><Link href="/#tickets" style={buttonStyle}>Choose {ticket.name} and checkout</Link></p>
+          <p style={{ marginTop: 28 }}><Link href={`/?ticket=${category}#tickets`} style={buttonStyle}>Choose {ticket.name} and checkout</Link></p>
         </section>
 
         <section style={{ ...sectionStyle, borderTop: "1px solid #292a2d" }}>
@@ -202,7 +202,7 @@ export default async function TicketCategoryPage({
             </div>
           ))}
           <p style={{ color: "#d0c9bd", lineHeight: 1.8, marginTop: 24 }}>For ticket enquiries, contact <a href="mailto:dalafestive@gmail.com" style={linkStyle}>dalafestive@gmail.com</a>.</p>
-          <p><Link href="/#tickets" style={buttonStyle}>Buy Dala Festival tickets</Link></p>
+          <p><Link href={`/?ticket=${category}#tickets`} style={buttonStyle}>Buy Dala Festival tickets</Link></p>
         </section>
       </article>
 
