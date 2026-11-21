@@ -25,6 +25,37 @@ export async function POST(request: NextRequest) {
     try { phone = normalizeKenyanPhone(String(body.phone || "")); }
     catch (error) { return NextResponse.json({ error: error instanceof Error ? error.message : "Invalid phone number." }, { status: 400 }); }
 
+    if (paymentProvider === "mpesa") {
+      const recentCutoff = new Date(Date.now() - 5 * 60 * 1000).toISOString();
+      const { data: activeOrder, error: activeOrderError } = await supabaseAdmin
+        .from("ticket_orders")
+        .select("order_reference, checkout_request_id")
+        .eq("phone", phone)
+        .eq("ticket_type", ticketType)
+        .eq("quantity", quantity)
+        .eq("payment_provider", "mpesa")
+        .eq("payment_status", "pending")
+        .gte("created_at", recentCutoff)
+        .order("created_at", { ascending: false })
+        .limit(1)
+        .maybeSingle();
+      if (activeOrderError) throw activeOrderError;
+      if (activeOrder) {
+        if (!activeOrder.checkout_request_id) {
+          return NextResponse.json(
+            { error: "Your M-Pesa checkout is already being prepared. Wait a moment and check your phone before trying again." },
+            { status: 409 }
+          );
+        }
+        return NextResponse.json({
+          ok: true,
+          provider: "mpesa",
+          reference: activeOrder.order_reference,
+          message: "An M-Pesa request is already active for this order. Complete the prompt already sent to your phone. Do not request or pay again.",
+        });
+      }
+    }
+
     const amountKes = TICKET_PRICES[ticketType] * quantity;
     const orderReference = makeOrderReference();
     const { data: order, error: insertError } = await supabaseAdmin
