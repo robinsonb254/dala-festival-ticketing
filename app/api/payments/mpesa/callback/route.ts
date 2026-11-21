@@ -19,7 +19,9 @@ export async function POST(request: NextRequest) {
 
     // A callback alone is not trusted as proof of payment. Query Daraja independently.
     const verification = await queryMpesaStk(checkoutId);
-    const resultCode = String(verification.ResultCode ?? callback.ResultCode ?? "");
+    // Only the server-to-server Daraja query may determine the transaction result.
+    // Callback result codes are not independently authenticated.
+    const resultCode = String(verification.ResultCode ?? "");
     if (resultCode === "0") {
       const metadata = callback.CallbackMetadata?.Item || [];
       const receiptFromCallback = metadata.find((item: any) => item.Name === "MpesaReceiptNumber")?.Value;
@@ -34,7 +36,7 @@ export async function POST(request: NextRequest) {
           payment_status: "paid", mpesa_receipt_number: verifiedReceipt, paid_at: new Date().toISOString(),
         }).eq("id", order.id).eq("payment_status", "pending");
       }
-    } else if (callback.ResultCode !== undefined && String(callback.ResultCode) !== "0") {
+    } else if (verification.ResultCode !== undefined && resultCode !== "0") {
       await supabaseAdmin.from("ticket_orders").update({ payment_status: "failed" })
         .eq("id", order.id).eq("payment_status", "pending");
     }
