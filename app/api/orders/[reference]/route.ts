@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
-import { supabaseAdmin } from "@/lib/server/supabase-admin";
+import { getSupabaseAdmin } from "@/lib/server/supabase-admin";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 export async function GET(_request: NextRequest, context: { params: Promise<{ reference: string }> }) {
+  const supabaseAdmin = getSupabaseAdmin();
   const { reference } = await context.params;
   if (!/^DALA-[A-F0-9-]{36}$/.test(reference)) return NextResponse.json({ error: "Invalid order reference." }, { status: 400 });
   const { data, error } = await supabaseAdmin.from("ticket_orders")
