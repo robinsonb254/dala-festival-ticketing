@@ -17,9 +17,8 @@ export function createAdminSession() {
   const payload = Buffer.from(JSON.stringify({ exp: Math.floor(Date.now() / 1000) + MAX_AGE })).toString("base64url");
   return { value: payload + "." + signature(payload), maxAge: MAX_AGE, cookieName: COOKIE };
 }
-export function isAdminRequest(request: NextRequest) {
+export function isAdminToken(token: string | undefined) {
   try {
-    const token = request.cookies.get(COOKIE)?.value;
     if (!token) return false;
     const [payload, supplied] = token.split(".");
     if (!payload || !supplied) return false;
@@ -30,6 +29,9 @@ export function isAdminRequest(request: NextRequest) {
     const data = JSON.parse(Buffer.from(payload, "base64url").toString("utf8"));
     return Number.isFinite(data.exp) && data.exp > Math.floor(Date.now() / 1000);
   } catch { return false; }
+}
+export function isAdminRequest(request: NextRequest) {
+  return isAdminToken(request.cookies.get(COOKIE)?.value);
 }
 export function credentialsMatch(email: string, password: string) {
   const expectedEmail = process.env.DALA_ADMIN_EMAIL || "";
