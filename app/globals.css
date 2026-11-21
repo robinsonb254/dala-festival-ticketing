@@ -155,3 +155,27 @@ body{font-family:Manrope,Arial,sans-serif;font-size:15px;line-height:1.65;-webki
  .hero-bottom{bottom:18px}
 }
 @media(prefers-reduced-motion:reduce){.hero-slide,.hero-slide.active{transition:none;transform:none}}
+
+
+/* Artist photo lightbox */
+.artist-photo-trigger,.gallery-photo-trigger{display:block;width:100%;height:100%;padding:0;border:0;background:transparent;cursor:zoom-in;text-align:inherit}
+.artist-photo-trigger img,.gallery-photo-trigger img{display:block;width:100%;height:100%;object-fit:cover}
+.artist-lightbox{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;gap:clamp(10px,3vw,34px);padding:68px 24px 28px;background:rgba(3,4,4,.96);backdrop-filter:blur(12px)}
+.artist-lightbox-content{width:min(780px,76vw);height:min(78vh,820px);display:grid;grid-template-rows:minmax(0,1fr) auto;min-width:0}
+.artist-lightbox-content>img{width:100%;height:100%;min-height:0;object-fit:contain;display:block;filter:drop-shadow(0 16px 48px rgba(0,0,0,.45))}
+.artist-lightbox-caption{display:flex;align-items:center;gap:16px;padding:16px 4px 0;color:#fff}
+.artist-lightbox-caption span{font:9px 'DM Mono';letter-spacing:1.5px;color:var(--lime)}
+.artist-lightbox-caption strong{font:700 clamp(18px,3vw,28px) Manrope}
+.artist-lightbox-caption small{margin-left:auto;font:10px 'DM Mono';color:#aaa}
+.artist-lightbox-close,.artist-lightbox-nav{display:grid;place-items:center;border:1px solid rgba(255,255,255,.28);background:rgba(20,22,20,.75);color:#fff;cursor:pointer}
+.artist-lightbox-close{position:absolute;top:20px;right:22px;width:44px;height:44px;border-radius:50%;font:300 30px/1 Manrope}
+.artist-lightbox-nav{flex:0 0 48px;width:48px;height:48px;border-radius:50%;font:300 34px/1 Manrope}
+.artist-lightbox-close:hover,.artist-lightbox-nav:hover{background:var(--lime);border-color:var(--lime);color:#111}
+@media(max-width:600px){
+ .artist-lightbox{gap:8px;padding:64px 10px 24px}
+ .artist-lightbox-content{width:calc(100vw - 92px);height:min(72vh,700px)}
+ .artist-lightbox-nav{flex-basis:34px;width:34px;height:34px;font-size:27px}
+ .artist-lightbox-close{top:12px;right:12px;width:38px;height:38px}
+ .artist-lightbox-caption{gap:8px;flex-wrap:wrap}
+ .artist-lightbox-caption span{width:100%}
+}
