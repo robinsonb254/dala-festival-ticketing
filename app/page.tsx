@@ -18,6 +18,51 @@ const artists = [
 ];
 const additionalActs = ["Les Wanyika", "Special guest DJs"];
 
+const eventStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "Dala Festival 2026",
+  "description": "Dala Festival 2026 in Nairobi featuring Ferré Gola, Prince Indah, Johnny Junior and Les Wanyika at ASK Arena, Nairobi Showground.",
+  "startDate": "2026-12-12T14:00:00+03:00",
+  "endDate": "2026-12-13T04:00:00+03:00",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "image": [
+    "https://dalafestivaltickets.com/artists/ferre-gola.jpg",
+    "https://dalafestivaltickets.com/artists/prince-indah.jpg",
+    "https://dalafestivaltickets.com/artists/johnny-junior.jpg"
+  ],
+  "location": {
+    "@type": "Place",
+    "name": "ASK Arena, Nairobi Showground",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Nairobi Showground",
+      "addressLocality": "Nairobi",
+      "addressCountry": "KE"
+    }
+  },
+  "organizer": {
+    "@type": "Organization",
+    "name": "Dala Festival",
+    "url": "https://dalafestival.com/"
+  },
+  "performer": [
+    { "@type": "Person", "name": "Ferré Gola" },
+    { "@type": "Person", "name": "Prince Indah" },
+    { "@type": "Person", "name": "Johnny Junior" },
+    { "@type": "MusicGroup", "name": "Les Wanyika" }
+  ],
+  "offers": {
+    "@type": "AggregateOffer",
+    "url": "https://dalafestivaltickets.com/#tickets",
+    "priceCurrency": "KES",
+    "lowPrice": "5000",
+    "highPrice": "200000"
+  }
+};
+
+
 const money = (value: number) => new Intl.NumberFormat("en-KE", {
   style: "currency", currency: "KES", maximumFractionDigits: 0
 }).format(value);
@@ -163,6 +208,7 @@ export default function Home() {
     <>
       <a className="skip-link" href="#main-content">Skip to content</a>
       <main id="main-content">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(eventStructuredData) }} />
       <div className="announcement">THE COUNTDOWN TO AN UNFORGETTABLE EXPERIENCE IS ON</div>
       <header className="nav-wrap">
         <a className="brand" href="#" aria-label="Dala Festival home"><span className="brand-mark">D</span><span>DALA<span className="brand-light"> FESTIVAL</span><small>TICKETING & EXPERIENCES</small></span></a>
@@ -186,8 +232,8 @@ export default function Home() {
         <div className="hero-content hero-cinematic-content">
           <p className="eyebrow"><span /> MUSIC. CULTURE. ENERGY.</p>
           <p className="hero-pretitle">THE STARS ARE COMING TO NAIROBI</p>
-          <h1>One stage.<br /><em>Three icons.</em><br />One Dala.</h1>
-          <p className="hero-copy">A landmark night of live music, culture and unforgettable energy. Nairobi, get ready.</p>
+          <h1>Dala Festival<br /><em>2026 in Nairobi.</em></h1>
+          <p className="hero-copy">Experience Ferré Gola, Prince Indah, Johnny Junior and more at ASK Arena, Nairobi Showground on 12 December 2026. Choose your tickets and book online.</p>
           <div className="hero-meta">
             <div><CalendarDays /><span><b>12 DECEMBER 2026</b><small>Save the date</small></span></div>
             <div><MapPin /><span><b>ASK ARENA</b><small>Nairobi Showground</small></span></div>
