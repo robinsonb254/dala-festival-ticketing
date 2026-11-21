@@ -94,7 +94,7 @@ export async function generateMetadata({
   params: Promise<{ category: string }>;
 }): Promise<Metadata> {
   const { category } = await params;
-  if (!(category in ticketCategories)) return {};
+  if (!Object.prototype.hasOwnProperty.call(ticketCategories, category)) return {};
   const ticket = ticketCategories[category as TicketSlug];
   const pageUrl = `${siteUrl}/tickets/${category}`;
   return {
@@ -123,7 +123,7 @@ export default async function TicketCategoryPage({
   params: Promise<{ category: string }>;
 }) {
   const { category } = await params;
-  if (!(category in ticketCategories)) notFound();
+  if (!Object.prototype.hasOwnProperty.call(ticketCategories, category)) notFound();
   const ticket = ticketCategories[category as TicketSlug];
   const pageUrl = `${siteUrl}/tickets/${category}`;
   const offerData = {
@@ -136,7 +136,6 @@ export default async function TicketCategoryPage({
       "url": `${siteUrl}/#tickets`,
       "priceCurrency": "KES",
       "price": ticket.price,
-      "availability": "https://schema.org/InStock",
       "validFrom": "2026-11-22"
     }
   };
