@@ -193,7 +193,7 @@ export default function Home() {
             <div className="video-placeholder" role="img" aria-label="Dala Festival promotional film">
               <div className="video-orbit video-orbit-one" /><div className="video-orbit video-orbit-two" />
               <div className="video-disc"><span>DALA</span><small>FESTIVAL 2026</small></div>
-              <div className="video-coming-soon">OFFICIAL DALA FESTIVAL FILM</div>
+              
             </div>
           </div>
         </div>
