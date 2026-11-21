@@ -5,8 +5,8 @@ const siteUrl = "https://dalafestivaltickets.com";
 const pageUrl = `${siteUrl}/ferre-gola-nairobi-december-2026`;
 
 export const metadata: Metadata = {
-  title: "Ferré Gola in Nairobi December 2026 | Dala Festival",
-  description: "Ferré Gola brings Congolese rhumba to Nairobi on 12 December 2026 at ASK Arena for Dala Festival, alongside Prince Indah, Johnny Junior and more.",
+  title: "Ferré Gola Live in Nairobi 2026 | December Dala Festival",
+  description: "See Ferré Gola live in Nairobi in 2026 at Dala Festival on 12 December. Venue, lineup and ticket details for ASK Arena, Nairobi Showground, with Prince Indah and more.",
   alternates: { canonical: pageUrl },
   openGraph: {
     title: "Ferré Gola in Nairobi December 2026 | Dala Festival",
