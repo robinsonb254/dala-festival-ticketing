@@ -1,11 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
-import { supabaseAdmin } from "@/lib/server/supabase-admin";
+import { getSupabaseAdmin } from "@/lib/server/supabase-admin";
 import { queryMpesaStk } from "@/lib/server/payments";
 
 export const runtime = "nodejs";
 
 export async function POST(request: NextRequest) {
   try {
+    const supabaseAdmin = getSupabaseAdmin();
     const payload = await request.json();
     const callback = payload?.Body?.stkCallback;
     const checkoutId = callback?.CheckoutRequestID;
