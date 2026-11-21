@@ -23,6 +23,36 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8
     },
     {
+      url: `${siteUrl}/tickets/regular`,
+      lastModified: new Date("2026-11-22T00:00:00+03:00"),
+      changeFrequency: "weekly",
+      priority: 0.75
+    },
+    {
+      url: `${siteUrl}/tickets/vip`,
+      lastModified: new Date("2026-11-22T00:00:00+03:00"),
+      changeFrequency: "weekly",
+      priority: 0.75
+    },
+    {
+      url: `${siteUrl}/tickets/vvip`,
+      lastModified: new Date("2026-11-22T00:00:00+03:00"),
+      changeFrequency: "weekly",
+      priority: 0.75
+    },
+    {
+      url: `${siteUrl}/tickets/table-of-4`,
+      lastModified: new Date("2026-11-22T00:00:00+03:00"),
+      changeFrequency: "weekly",
+      priority: 0.75
+    },
+    {
+      url: `${siteUrl}/tickets/table-of-8`,
+      lastModified: new Date("2026-11-22T00:00:00+03:00"),
+      changeFrequency: "weekly",
+      priority: 0.75
+    },
+    {
       url: `${siteUrl}/terms`,
       changeFrequency: "yearly",
       priority: 0.2
