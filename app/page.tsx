@@ -37,7 +37,7 @@ export default function Home() {
   const [paymentStatus, setPaymentStatus] = useState("");
   const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   useEffect(() => {
-    const eventTime = new Date("2026-12-12T14:00:00+03:00").getTime();
+    const eventTime = new Date("2026-12-12T00:00:00+03:00").getTime();
     const updateCountdown = () => {
       const distance = Math.max(0, eventTime - Date.now());
       setCountdown({
