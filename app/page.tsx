@@ -198,6 +198,5 @@ export default function Home() {
       <footer><a className="brand footer-brand" href="#"><span className="brand-mark">D</span><span>DALA<span className="brand-light"> FESTIVAL</span><small>TICKETING & EXPERIENCES</small></span></a><p>Independent event promotion & ticketing platform.</p><nav className="footer-links" aria-label="Footer navigation"><a href="#about">Festival</a><a href="#lineup">Lineup</a><a href="#tickets">Tickets</a><a href="#faq">FAQs</a></nav><div>© 2026 Dala Festival Ticketing. All rights reserved.</div></footer>
       </main>
     </>
-    </main>
   );
 }
