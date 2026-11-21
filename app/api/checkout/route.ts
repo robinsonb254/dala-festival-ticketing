@@ -25,6 +25,52 @@ export async function POST(request: NextRequest) {
     try { phone = normalizeKenyanPhone(String(body.phone || "")); }
     catch (error) { return NextResponse.json({ error: error instanceof Error ? error.message : "Invalid phone number." }, { status: 400 }); }
 
+    if (paymentProvider === "mpesa") {
+      const recentCutoff = new Date(Date.now() - 5 * 60 * 1000).toISOString();
+
+      // Expire abandoned prompts before checking for an active order. A partial
+      // unique index in the Supabase migration below makes this reservation atomic.
+      const { error: expireError } = await supabaseAdmin.from("ticket_orders")
+        .update({ payment_status: "failed" })
+        .eq("phone", phone)
+        .eq("payment_provider", "mpesa")
+        .eq("payment_status", "pending")
+        .lt("created_at", recentCutoff);
+      if (expireError) throw expireError;
+      const { data: activeOrder, error: activeOrderError } = await supabaseAdmin
+        .from("ticket_orders")
+        .select("order_reference, checkout_request_id, ticket_type, quantity")
+        .eq("phone", phone)
+        .eq("payment_provider", "mpesa")
+        .eq("payment_status", "pending")
+        .gte("created_at", recentCutoff)
+        .order("created_at", { ascending: false })
+        .limit(1)
+        .maybeSingle();
+      if (activeOrderError) throw activeOrderError;
+      if (activeOrder) {
+        const sameSelection = activeOrder.ticket_type === ticketType && Number(activeOrder.quantity) === quantity;
+        if (!sameSelection) {
+          return NextResponse.json(
+            { error: "Another M-Pesa checkout is already pending for this phone number. Complete that payment or wait for its status before starting a different order." },
+            { status: 409 }
+          );
+        }
+        if (!activeOrder.checkout_request_id) {
+          return NextResponse.json(
+            { error: "Your M-Pesa checkout is already being prepared. Wait a moment and check your phone before trying again." },
+            { status: 409 }
+          );
+        }
+        return NextResponse.json({
+          ok: true,
+          provider: "mpesa",
+          reference: activeOrder.order_reference,
+          message: "An M-Pesa request is already active for this order. Complete the prompt already sent to your phone. Do not request or pay again.",
+        });
+      }
+    }
+
     const amountKes = TICKET_PRICES[ticketType] * quantity;
     const orderReference = makeOrderReference();
     const { data: order, error: insertError } = await supabaseAdmin
@@ -37,6 +83,12 @@ export async function POST(request: NextRequest) {
       })
       .select("order_reference")
       .single();
+    if (insertError?.code === "23505" && paymentProvider === "mpesa") {
+      return NextResponse.json(
+        { error: "An M-Pesa checkout is already active for this phone number. Complete that payment or check its status before trying again." },
+        { status: 409 }
+      );
+    }
     if (insertError || !order) throw new Error("We could not create your order. Please try again.");
 
     if (paymentProvider === "mpesa") {
