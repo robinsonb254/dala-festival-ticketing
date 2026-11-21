@@ -132,11 +132,18 @@ export default function DalaFestivalTicketsPage() {
       </section>
 
       <section style={{ ...sectionStyle, borderTop: "1px solid #292a2d" }}>
-        <h2 style={{ fontSize: 32, marginTop: 0 }}>Dala Festival tickets: frequently asked questions</h2>
-        <div style={{ borderBottom: "1px solid #292a2d", padding: "16px 0" }}><h3>When is Dala Festival 2026?</h3><p style={{ color: "#d0c9bd", lineHeight: 1.7 }}>Dala Festival 2026 runs from 2:00 PM on Saturday, 12 December until 4:00 AM on Sunday, 13 December 2026 (EAT).</p></div>
-        <div style={{ borderBottom: "1px solid #292a2d", padding: "16px 0" }}><h3>Where is Dala Festival held?</h3><p style={{ color: "#d0c9bd", lineHeight: 1.7 }}>The venue is ASK Arena, Nairobi Showground, Nairobi, Kenya. <a href="https://www.google.com/maps/search/?api=1&query=ASK+Arena%2C+Nairobi+Showground%2C+Nairobi" style={{ color: "#e7b85c" }}>Get directions in Google Maps</a>.</p></div>
-        <div style={{ borderBottom: "1px solid #292a2d", padding: "16px 0" }}><h3>Who is performing at Dala Festival?</h3><p style={{ color: "#d0c9bd", lineHeight: 1.7 }}>The announced lineup includes Ferré Gola, Prince Indah, Johnny Junior, Les Wanyika and special guest DJs.</p></div>
-        <div style={{ borderBottom: "1px solid #292a2d", padding: "16px 0" }}><h3>How can I buy Dala Festival tickets?</h3><p style={{ color: "#d0c9bd", lineHeight: 1.7 }}>Select a ticket category on the <Link href="/#tickets" style={{ color: "#e7b85c" }}>ticket checkout page</Link> and follow the payment steps.</p></div>
+        <h2 style={{ fontSize: 32, marginTop: 0 }}>Dala Festival 2026: frequently asked questions</h2>
+        {[
+          ["When is Dala Festival 2026?", "The event starts at 2:00 PM on Saturday, 12 December 2026 and runs until 4:00 AM on Sunday, 13 December 2026 (East Africa Time)."],
+          ["Where is Dala Festival held?", "Dala Festival takes place at ASK Arena, Nairobi Showground, in the Jamhuri Park area off Ngong Road, Nairobi."],
+          ["Who is performing at Dala Festival?", "The announced lineup features Ferré Gola, Prince Indah, Johnny Junior, Les Wanyika and special guest DJs."],
+          ["How much are Dala Festival tickets?", "Regular tickets are KSh 5,000; VIP KSh 10,000; VVIP KSh 25,000; Table of 4 KSh 100,000; and Table of 8 KSh 200,000."],
+          ["How can I buy tickets online?", "Choose a ticket category and quantity on the ticket checkout page, enter your details, select a payment method and follow the checkout instructions."],
+          ["Which payment methods can I use?", "M-Pesa and PayPal are available. A debit/credit card option is also shown at checkout and is processed through PayPal."],
+          ["When is my order confirmed?", "Your order is confirmed after the payment provider verifies successful payment and the platform records the confirmed status. Keep your order reference and payment confirmation."],
+          ["What should I do if payment is deducted but my order is not confirmed?", "Do not create a duplicate order while the payment is pending. Email dalafestive@gmail.com with your order reference so the payment can be checked."],
+          ["How do I get help with my ticket order?", "Email dalafestive@gmail.com. Include your order reference where available, and never share your M-Pesa PIN, PayPal password or one-time verification codes."]
+        ].map(([question, answer]) => <div key={question} style={{ borderBottom: "1px solid #292a2d", padding: "16px 0" }}><h3>{question}</h3><p style={{ color: "#d0c9bd", lineHeight: 1.7 }}>{answer}</p></div>)}
       </section>
 
       <section style={{ ...sectionStyle, borderTop: "1px solid #292a2d" }}>
