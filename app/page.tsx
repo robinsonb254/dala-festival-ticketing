@@ -41,6 +41,12 @@ export default function Home() {
   const [paymentStatus, setPaymentStatus] = useState("");
   const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   useEffect(() => {
+    const requestedTicket = new URLSearchParams(window.location.search).get("ticket");
+    if (!requestedTicket) return;
+    const matchingTicket = tickets.find((ticket) => ticket.name.toLowerCase().replace(/\\s+/g, "-") === requestedTicket.toLowerCase());
+    if (matchingTicket) setSelected(matchingTicket.name);
+  }, []);
+  useEffect(() => {
     const timer = window.setInterval(() => setHeroArtistIndex((current) => (current + 1) % artists.length), 5200);
     return () => window.clearInterval(timer);
   }, []);
