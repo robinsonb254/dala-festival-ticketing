@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 const siteUrl = "https://dalafestivaltickets.com";
+const festivalImage = "https://i.ibb.co/TDVhfnGC/file-00000000ab5482089142cc3e3b527b44.png";
 
 const ticketCategories = {
   regular: {
@@ -131,9 +132,10 @@ export default async function TicketCategoryPage({
     "@type": "Product",
     "name": `Dala Festival 2026 ${ticket.name} Ticket`,
     "description": ticket.description,
+    "image": festivalImage,
     "offers": {
       "@type": "Offer",
-      "url": `${siteUrl}/#tickets`,
+      "url": pageUrl,
       "priceCurrency": "KES",
       "price": ticket.price,
       "validFrom": "2026-11-22"
