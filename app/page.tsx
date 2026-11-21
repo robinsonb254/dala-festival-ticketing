@@ -110,11 +110,12 @@ export default function Home() {
       setCheckoutError("Please enter your full name before continuing.");
       return;
     }
-    if (!/^\\+?254[17]\\d{8}$|^0[17]\\d{8}$/.test(phone.replace(/[\\s-]/g, ""))) {
+    const phoneDigits = phone.replace(/\D/g, "");
+    if (!/^(?:254[17]\d{8}|0[17]\d{8}|[17]\d{8})$/.test(phoneDigits)) {
       setCheckoutError("Enter a valid Kenyan M-Pesa phone number, for example 07XXXXXXXX.");
       return;
     }
-    if (email.trim() && !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email.trim())) {
+    if (email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
       setCheckoutError("Please enter a valid email address or leave the email field empty.");
       return;
     }
@@ -175,7 +176,7 @@ export default function Home() {
 
       <section className="hero hero-cinematic">
         <div className="hero-slideshow" aria-hidden="true">
-          {artists.map((artist, index) => <div key={artist.name} className={index === heroArtistIndex ? "hero-slide active" : "hero-slide"} style={{ backgroundImage: `url("${artist.image}")` }} />)}
+          {artists.map((artist, index) => <div key={artist.name} className={index === heroArtistIndex ? "hero-slide active" : "hero-slide"}><img src={artist.image} alt="" loading="eager" decoding="async" /></div>)}
         </div>
         <div className="hero-image-shade" />
         <div className="hero-content hero-cinematic-content">
