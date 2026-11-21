@@ -29,10 +29,8 @@ export async function POST(request: NextRequest) {
       const recentCutoff = new Date(Date.now() - 5 * 60 * 1000).toISOString();
       const { data: activeOrder, error: activeOrderError } = await supabaseAdmin
         .from("ticket_orders")
-        .select("order_reference, checkout_request_id")
+        .select("order_reference, checkout_request_id, ticket_type, quantity")
         .eq("phone", phone)
-        .eq("ticket_type", ticketType)
-        .eq("quantity", quantity)
         .eq("payment_provider", "mpesa")
         .eq("payment_status", "pending")
         .gte("created_at", recentCutoff)
@@ -41,6 +39,13 @@ export async function POST(request: NextRequest) {
         .maybeSingle();
       if (activeOrderError) throw activeOrderError;
       if (activeOrder) {
+        const sameSelection = activeOrder.ticket_type === ticketType && Number(activeOrder.quantity) === quantity;
+        if (!sameSelection) {
+          return NextResponse.json(
+            { error: "Another M-Pesa checkout is already pending for this phone number. Complete that payment or wait for its status before starting a different order." },
+            { status: 409 }
+          );
+        }
         if (!activeOrder.checkout_request_id) {
           return NextResponse.json(
             { error: "Your M-Pesa checkout is already being prepared. Wait a moment and check your phone before trying again." },
