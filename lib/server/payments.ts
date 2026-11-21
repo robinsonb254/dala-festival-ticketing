@@ -38,7 +38,7 @@ export async function initiateMpesaStk(input: { phone: string; amount: number; o
     body: JSON.stringify({
       BusinessShortCode: shortcode, Password: password, Timestamp: timestamp,
       TransactionType: process.env.MPESA_TRANSACTION_TYPE || "CustomerBuyGoodsOnline",
-      Amount: input.amount, PartyA: input.phone, PartyB: shortcode, PhoneNumber: input.phone,
+      Amount: input.amount, PartyA: input.phone, PartyB: required("MPESA_TILL_NUMBER"), PhoneNumber: input.phone,
       CallBackURL: required("MPESA_CALLBACK_URL"),
       AccountReference: input.orderReference.slice(0, 12), TransactionDesc: "Dala Festival ticket",
     }),
