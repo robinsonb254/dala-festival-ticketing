@@ -65,3 +65,23 @@ html{scroll-padding-top:20px}
 .footer-contact{display:grid;gap:6px;font-size:10px}.footer-contact span{font:9px "DM Mono";letter-spacing:1.5px;color:var(--lime)}.footer-contact a{color:#d5d3ca}.footer-contact a:hover{color:var(--lime)}.terms-page{max-width:900px;margin:0 auto;padding:72px 28px 100px}.terms-back{display:inline-block;color:var(--lime);font:10px "DM Mono";letter-spacing:1px;margin-bottom:30px}.terms-page h1{font:800 clamp(38px,7vw,64px)/1 Syne;margin:0 0 14px}.terms-updated{font:10px "DM Mono";color:#aaa;margin-bottom:42px}.terms-page h2{font:700 20px Syne;margin:32px 0 10px;color:var(--lime)}.terms-page p,.terms-page li{font-size:13px;line-height:1.9;color:#c4c2b9}.terms-page ul{padding-left:22px}.terms-contact{display:inline-block;color:var(--lime)}.terms-notice{padding:16px 18px;border:1px solid #505a31;background:#151a10;margin:28px 0;color:#ddd;font-size:12px;line-height:1.8}
 
 .terms-consent{display:flex;align-items:flex-start;gap:10px;margin:14px 0 18px;font-size:11px;line-height:1.6;color:#c4c2b9;cursor:pointer}.terms-consent input{width:16px;height:16px;flex:0 0 16px;margin:1px 0 0;accent-color:var(--lime)}.terms-consent a{color:var(--lime);text-decoration:underline;text-underline-offset:3px}.checkout-button:disabled{opacity:.45;cursor:not-allowed;transform:none}
+
+
+.artist-performances{padding-top:88px;padding-bottom:96px}
+.performances-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:32px;margin:28px 0 38px}
+.performances-heading h2{font:800 clamp(38px,7vw,68px)/.98 Syne;margin:0;letter-spacing:-2px}
+.performances-heading h2 em{color:var(--lime);font-style:normal}
+.performances-heading>p{max-width:380px;color:#aaa;font-size:13px;line-height:1.8;margin:0 0 5px}
+.performance-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.performance-card{min-width:0;background:#141511;border:1px solid #303128;overflow:hidden}
+.performance-frame{position:relative;width:100%;aspect-ratio:16/9;background:#080908}
+.performance-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.performance-info{padding:18px 18px 20px}
+.performance-info>span{font:9px "DM Mono";letter-spacing:1px;color:var(--lime)}
+.performance-info h3{font:700 18px Syne;line-height:1.35;margin:10px 0 14px}
+.performance-info a{font-size:11px;color:#ddd;text-decoration:underline;text-underline-offset:4px}
+.performance-info a:hover{color:var(--lime)}
+.performance-disclaimer{margin:20px 0 0;color:#888;font-size:10px;line-height:1.7}
+#performances{scroll-margin-top:24px}
+@media(max-width:900px){.performance-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.artist-performances{padding-top:64px;padding-bottom:68px}.performances-heading{display:block;margin:22px 0 28px}.performances-heading>p{margin-top:16px}.performance-grid{grid-template-columns:1fr;gap:16px}.performance-info{padding:15px}}
