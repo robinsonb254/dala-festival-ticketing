@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { supabaseAdmin } from "@/lib/server/supabase-admin";
+import { getSupabaseAdmin } from "@/lib/server/supabase-admin";
 import { TICKET_PRICES, makeOrderReference, normalizeKenyanPhone } from "@/lib/server/tickets";
 import { createPaypalOrder, initiateMpesaStk } from "@/lib/server/payments";
 
@@ -7,6 +7,7 @@ export const runtime = "nodejs";
 
 export async function POST(request: NextRequest) {
   try {
+    const supabaseAdmin = getSupabaseAdmin();
     const body = await request.json();
     const customerName = String(body.customerName || "").trim().slice(0, 120);
     const email = String(body.email || "").trim().slice(0, 254) || null;
