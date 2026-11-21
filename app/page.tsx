@@ -173,7 +173,7 @@ export default function Home() {
           <a href="#performances" onClick={() => setMobileOpen(false)}>Performances</a><a href="#video" onClick={() => setMobileOpen(false)}>Promo film</a>
           <a href="#gallery" onClick={() => setMobileOpen(false)}>Gallery</a>
           <a href="#tickets" onClick={() => setMobileOpen(false)}>Tickets</a>
-          <a href="#faq" onClick={() => setMobileOpen(false)}>FAQs</a>
+          <a href="#venue" onClick={() => setMobileOpen(false)}>Venue & travel</a>\n          <a href="#faq" onClick={() => setMobileOpen(false)}>FAQs</a>
           <a className="nav-cta" href="#tickets" onClick={() => setMobileOpen(false)}>Get tickets <ArrowRight size={16} /></a>
         </nav>
       </header>
@@ -272,9 +272,43 @@ export default function Home() {
 
       <section className="event-strip"><div><CalendarDays /><span><small>DATE</small><b>12 DECEMBER 2026</b></span></div><div><MapPin /><span><small>LOCATION</small><b>ASK Arena, Nairobi Showground</b><a href="https://www.google.com/maps/search/?api=1&query=ASK+Arena%2C+Nairobi+Showground%2C+Nairobi" target="_blank" rel="noreferrer">Get directions ↗</a></span></div><div><CalendarDays /><span><small>EVENT HOURS · EAT</small><b>Sat 12 Dec, 2:00 PM – Sun 13 Dec, 4:00 AM</b></span></div><div><Ticket /><span><small>TICKET OPTIONS</small><b>From KSh 5,000</b></span></div></section>
 
+      <section className="section travel-section" id="venue">
+        <div className="section-kicker">06 — PLAN YOUR JOURNEY</div>
+        <div className="lineup-head">
+          <h2>Find your<br /><em>way to Dala.</em></h2>
+          <p>Make your way to ASK Arena at the Nairobi Showground, Jamhuri Park, off Ngong Road. The venue is approximately 10 km from Nairobi CBD.</p>
+        </div>
+        <div className="travel-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(230px, 1fr))", gap: 18, marginTop: 28 }}>
+          <article className="travel-card" style={{ border: "1px solid #383838", borderRadius: 16, padding: 22 }}>
+            <MapPin />
+            <h3>Navigate to the venue</h3>
+            <p>Use Google Maps for live directions from your starting point. Search for ASK Showground / Jamhuri Park and follow the route shown on the day.</p>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=ASK+Showground%2C+Jamhuri+Park%2C+Nairobi" target="_blank" rel="noreferrer">Get directions ↗</a>
+          </article>
+          <article className="travel-card" style={{ border: "1px solid #383838", borderRadius: 16, padding: 22 }}>
+            <Ticket />
+            <h3>Public transport</h3>
+            <p>Public transport routes serving the Jamhuri Park / Showground area include routes 24C and 111. Confirm the correct direction and final stop with the conductor before boarding.</p>
+            <a href="https://moovitapp.com/index/en/public_transit-Jamhuri_park-Nairobi-site_36555654-3540" target="_blank" rel="noreferrer">Check nearby bus routes ↗</a>
+          </article>
+          <article className="travel-card" style={{ border: "1px solid #383838", borderRadius: 16, padding: 22 }}>
+            <MapPin />
+            <h3>Taxi and ride-hailing</h3>
+            <p>Set your destination to ASK Showground, Jamhuri Park, Nairobi. Check the pin with your driver and agree on a convenient pick-up point for your return journey.</p>
+          </article>
+          <article className="travel-card" style={{ border: "1px solid #383838", borderRadius: 16, padding: 22 }}>
+            <CalendarDays />
+            <h3>Parking and arrival</h3>
+            <p>The Agricultural Society of Kenya indicates that visitor parking is available at the showground for a charge. Event-night arrangements and fees should be confirmed with event staff. Consider arriving before the 2:00 PM start.</p>
+            <a href="https://ask.co.ke/faqs/" target="_blank" rel="noreferrer">ASK visitor information ↗</a>
+          </article>
+        </div>
+        <p className="muted" style={{ marginTop: 18 }}>Event schedule: Saturday, 12 December 2026, 2:00 PM to Sunday, 13 December 2026, 4:00 AM (EAT). Public transport services may be limited after the event ends; plan your return trip in advance.</p>
+      </section>
+
       <section className="faq-section section" id="faq"><div className="section-kicker">06 — GOOD TO KNOW</div><h2>The <em>details.</em></h2><div className="faq-list"><details><summary>Which payment methods can I use?<ChevronDown /></summary><p>Pay for tickets securely using M-Pesa or PayPal.</p></details><details><summary>How do I confirm my ticket order?<ChevronDown /></summary><p>Keep your order reference and payment confirmation for your records.</p></details><details><summary>Where is Dala Festival taking place?<ChevronDown /></summary><p>Dala Festival takes place at ASK Arena, Nairobi Showground.</p></details></div></section>
 
-      <footer><a className="brand footer-brand" href="#"><span className="brand-mark">D</span><span>DALA<span className="brand-light"> FESTIVAL</span><small>TICKETING & EXPERIENCES</small></span></a><nav className="footer-links" aria-label="Footer navigation"><a href="#about">Festival</a><a href="#lineup">Lineup</a><a href="#tickets">Tickets</a><a href="#faq">FAQs</a><a href="/dala-festival-2026-tickets">Event guide</a><a href="/terms">Terms &amp; Conditions</a></nav><div className="footer-contact"><span>CONTACT</span><a href="mailto:dalafestive@gmail.com">dalafestive@gmail.com</a></div><div>© 2026 Dala Festival Ticketing. All rights reserved.</div></footer>
+      <footer><a className="brand footer-brand" href="#"><span className="brand-mark">D</span><span>DALA<span className="brand-light"> FESTIVAL</span><small>TICKETING & EXPERIENCES</small></span></a><nav className="footer-links" aria-label="Footer navigation"><a href="#about">Festival</a><a href="#lineup">Lineup</a><a href="#tickets">Tickets</a><a href="#venue">Venue & travel</a><a href="#faq">FAQs</a><a href="/dala-festival-2026-tickets">Event guide</a><a href="/terms">Terms &amp; Conditions</a></nav><div className="footer-contact"><span>CONTACT</span><a href="mailto:dalafestive@gmail.com">dalafestive@gmail.com</a></div><div>© 2026 Dala Festival Ticketing. All rights reserved.</div></footer>
       {selectedArtistIndex !== null && (
         <div className="artist-lightbox" role="dialog" aria-modal="true" aria-label={`Artist photograph: ${artists[selectedArtistIndex].name}`} onClick={() => setSelectedArtistIndex(null)}>
           <button type="button" className="artist-lightbox-close" onClick={() => setSelectedArtistIndex(null)} aria-label="Close photo">×</button>
