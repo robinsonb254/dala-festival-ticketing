@@ -120,7 +120,7 @@ export default function Home() {
         <nav id="main-navigation" aria-label="Main navigation" className={mobileOpen ? "nav-links open" : "nav-links"}>
           <a href="#about" onClick={() => setMobileOpen(false)}>The festival</a>
           <a href="#lineup" onClick={() => setMobileOpen(false)}>Lineup</a>
-          <a href="#video" onClick={() => setMobileOpen(false)}>Watch</a>
+          <a href="#performances" onClick={() => setMobileOpen(false)}>Performances</a><a href="#video" onClick={() => setMobileOpen(false)}>Promo film</a>
           <a href="#gallery" onClick={() => setMobileOpen(false)}>Gallery</a>
           <a href="#tickets" onClick={() => setMobileOpen(false)}>Tickets</a>
           <a href="#faq" onClick={() => setMobileOpen(false)}>FAQs</a>
@@ -159,6 +159,26 @@ export default function Home() {
       </section>
 
       <section className="lineup-section" id="lineup"><div className="section"><div className="section-kicker">02 — THE SOUNDTRACK</div><div className="lineup-head"><h2>THE<br /><em>LINEUP.</em></h2><p>Meet the featured performers bringing the Dala Festival stage to life. Artist appearances and running order remain subject to organiser confirmation.</p></div><div className="artist-card-grid">{artists.map((artist, i) => <article className="artist-card" key={artist.name}><div className="artist-photo-wrap"><img src={artist.image} alt={artist.alt} loading={i === 0 ? "eager" : "lazy"} /><span className="artist-photo-index">0{i + 1}</span></div><div className="artist-card-info"><div><span>{artist.role}</span><h3>{artist.name}</h3></div><Music2 className="artist-icon" /></div></article>)}</div><div className="additional-acts"><span>ALSO ON THE BILL</span>{additionalActs.map((act) => <b key={act}>{act}</b>)}</div></div></section>
+
+      <section className="artist-performances section" id="performances">
+        <div className="section-kicker">03 — LIVE PERFORMANCE HIGHLIGHTS</div>
+        <div className="performances-heading"><h2>FEEL THE<br /><em>LIVE ENERGY.</em></h2><p>Watch selected performances from the featured Dala Festival artists. Videos are embedded from their original YouTube channels and publishers.</p></div>
+        <div className="performance-grid">
+          <article className="performance-card">
+            <div className="performance-frame"><iframe src="https://www.youtube-nocookie.com/embed/kBOYEghF9Ts" title="Ferré Gola — Accor Arena Live (Official Video)" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen /></div>
+            <div className="performance-info"><span>FERRÉ GOLA · OFFICIAL ARTIST CHANNEL</span><h3>Accor Arena Live</h3><a href="https://www.youtube.com/watch?v=kBOYEghF9Ts" target="_blank" rel="noreferrer">Watch on YouTube ↗</a></div>
+          </article>
+          <article className="performance-card">
+            <div className="performance-frame"><iframe src="https://www.youtube-nocookie.com/embed/4L4Kc2pFBlk" title="Prince Indah live performance from Nyali, Mombasa" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen /></div>
+            <div className="performance-info"><span>PRINCE INDAH · FREDY ENT. OFFICIAL</span><h3>Live Performance in Nyali, Mombasa</h3><a href="https://www.youtube.com/watch?v=4L4Kc2pFBlk" target="_blank" rel="noreferrer">Watch on YouTube ↗</a></div>
+          </article>
+          <article className="performance-card">
+            <div className="performance-frame"><iframe src="https://www.youtube-nocookie.com/embed/3_Lgf-9bhqg" title="Johnny Junior and BV Band — Full Live Performance at 2025 Luo Festival" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen /></div>
+            <div className="performance-info"><span>JOHNNY JUNIOR · OFFICIAL ARTIST CHANNEL</span><h3>2025 Luo Festival — Full Live Performance</h3><a href="https://www.youtube.com/watch?v=3_Lgf-9bhqg" target="_blank" rel="noreferrer">Watch on YouTube ↗</a></div>
+          </article>
+        </div>
+        <p className="performance-disclaimer">Videos remain hosted by their original YouTube publishers. Availability and playback on this site depend on each publisher’s embed settings.</p>
+      </section>
 
       <section className="promo-video-section" id="video">
         <div className="section promo-video-inner">
