@@ -1,14 +1,27 @@
+"use client";
+
 import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Dala Festival | Tickets & Event Information",
-  description: "Discover Dala Festival, explore ticket categories and secure your place.",
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://example.com"),
+  title: "Dala Festival 2026 | Tickets, Lineup & Event Information",
+  description: "Explore Dala Festival 2026 in Nairobi on 12 December. Discover the featured artists, ticket categories and M-Pesa or PayPal checkout.",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://dala-festival-ticketing.vercel.app"),
+  alternates: { canonical: "/" },
+  keywords: ["Dala Festival", "Dala Festival 2026", "Nairobi music festival", "Kenya festival tickets", "Ferré Gola", "Prince Indah", "Johnny Junior"],
+  robots: { index: true, follow: true },
   openGraph: {
-    title: "Dala Festival",
-    description: "A celebration of music, culture and unforgettable live experiences.",
+    title: "Dala Festival 2026 | Nairobi",
+    description: "Music, culture and unforgettable live experiences. Explore the lineup and ticket options for 12 December 2026.",
+    url: "/",
+    siteName: "Dala Festival Ticketing",
+    locale: "en_KE",
     type: "website"
+  },
+  twitter: {
+    card: "summary",
+    title: "Dala Festival 2026 | Nairobi",
+    description: "Explore the lineup and ticket options for 12 December 2026."
   }
 };
 
