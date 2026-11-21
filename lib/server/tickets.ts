@@ -15,6 +15,5 @@ export function normalizeKenyanPhone(value: string) {
 }
 
 export function makeOrderReference() {
-  return "DALA-" + Date.now().toString(36).toUpperCase() + "-" +
-    crypto.randomUUID().slice(0, 8).toUpperCase();
+  return "DALA-" + crypto.randomUUID().toUpperCase();
 }
