@@ -49,6 +49,7 @@ export async function POST(request: NextRequest) {
     const paypal = await createPaypalOrder({ amountKes, orderReference, siteUrl });
     const { error: updateError } = await supabaseAdmin.from("ticket_orders").update({
       paypal_order_id: paypal.id,
+      paypal_amount_usd: paypal.usdAmount,
     }).eq("order_reference", orderReference);
     if (updateError) throw new Error("PayPal was prepared, but the order could not be updated. Contact support with reference " + orderReference + ".");
     return NextResponse.json({ ok: true, provider: "paypal", reference: orderReference, approvalUrl: paypal.approvalUrl, currency: "USD", amount: paypal.usdAmount });
