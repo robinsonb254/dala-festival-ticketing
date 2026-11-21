@@ -29,7 +29,7 @@ export default function TermsPage() {
       <p>Never share your M-Pesa PIN, PayPal password or one-time verification codes with anyone claiming to provide ticket support. The platform will not ask you to send these credentials by email or message.</p>
 
       <h2>5. Ticket delivery and entry</h2>
-      <p>The platform provides an order reference and payment confirmation. QR-code tickets, PDF ticket downloads and on-site ticket scanning are not provided. Keep your order reference and proof of payment. The organiser is responsible for communicating the final event-entry procedure and any identification or admission requirements.</p>
+      <p>The platform provides an order reference and payment confirmation. Keep your order reference and proof of payment. The organiser communicates the event-entry procedure and any identification or admission requirements.</p>
 
       <h2>6. Cancellations, postponements and refunds</h2>
       <p>Refunds, cancellations, postponements and changes to the event are subject to applicable law and the organiser’s confirmed event policy. The platform does not promise that every ticket is refundable. If the event is cancelled, postponed or materially changed, contact the support email below for information about the process communicated by the organiser and payment provider.</p>
