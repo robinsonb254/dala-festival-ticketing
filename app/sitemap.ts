@@ -17,6 +17,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9
     },
     {
+      url: `${siteUrl}/ferre-gola-nairobi-december-2026`,
+      lastModified: new Date("2026-11-22T00:00:00+03:00"),
+      changeFrequency: "weekly",
+      priority: 0.8
+    },
+    {
       url: `${siteUrl}/terms`,
       changeFrequency: "yearly",
       priority: 0.2
