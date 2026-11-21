@@ -11,7 +11,12 @@ const tickets = [
   { name: "Table of 8", price: 200000, note: "Reserved table for eight" }
 ];
 
-const lineup = ["Ferré Gola", "Prince Indah", "Johnny Junior", "Les Wanyika", "Special guest DJs"];
+const artists = [
+  { name: "Ferré Gola", role: "HEADLINER", image: "/artists/ferre-gola.jpg", alt: "Ferré Gola artist photograph" },
+  { name: "Prince Indah", role: "LIVE PERFORMANCE", image: "/artists/prince-indah.jpg", alt: "Prince Indah artist photograph" },
+  { name: "Johnny Junior", role: "LIVE PERFORMANCE", image: "/artists/johnny-junior.jpg", alt: "Johnny Junior artist photograph" }
+];
+const additionalActs = ["Les Wanyika", "Special guest DJs"];
 
 const money = (value: number) => new Intl.NumberFormat("en-KE", {
   style: "currency", currency: "KES", maximumFractionDigits: 0
@@ -30,6 +35,23 @@ export default function Home() {
   const [checkoutMessage, setCheckoutMessage] = useState("");
   const [orderReference, setOrderReference] = useState("");
   const [paymentStatus, setPaymentStatus] = useState("");
+  const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  useEffect(() => {
+    const eventTime = new Date("2026-12-12T14:00:00+03:00").getTime();
+    const updateCountdown = () => {
+      const distance = Math.max(0, eventTime - Date.now());
+      setCountdown({
+        days: Math.floor(distance / 86400000),
+        hours: Math.floor((distance % 86400000) / 3600000),
+        minutes: Math.floor((distance % 3600000) / 60000),
+        seconds: Math.floor((distance % 60000) / 1000)
+      });
+    };
+    updateCountdown();
+    const timer = window.setInterval(updateCountdown, 1000);
+    return () => window.clearInterval(timer);
+  }, []);
+
   const chosen = useMemo(() => tickets.find((item) => item.name === selected) ?? tickets[0], [selected]);
   const total = chosen.price * quantity;
 
@@ -124,13 +146,14 @@ export default function Home() {
       </section>
 
       <section className="ticker"><div>{Array.from({length: 4}).map((_, i) => <span key={i}>GOOD MUSIC <b>✳</b> GREAT PEOPLE <b>✳</b> PURE ENERGY <b>✳</b> DALA FESTIVAL <b>✳</b></span>)}</div></section>
+      <section className="countdown-section" aria-label="Countdown to Dala Festival"><div className="countdown-label">THE DATE IS SET · 12 DECEMBER 2026</div><div className="countdown-grid">{[["DAYS", countdown.days], ["HOURS", countdown.hours], ["MINUTES", countdown.minutes], ["SECONDS", countdown.seconds]].map(([label, value]) => <div className="countdown-unit" key={label}><strong>{String(value).padStart(2, "0")}</strong><span>{label}</span></div>)}</div></section>
 
       <section className="section about-section" id="about">
         <div className="section-kicker">01 — THE EXPERIENCE</div>
         <div className="about-grid"><h2>MORE THAN<br />A SHOW. <em>A MOVEMENT.</em></h2><div><p className="lead">A meeting place for music lovers, culture shapers and everyone who lives for the moment.</p><p className="muted">Come together for a full festival experience in Nairobi. From the first beat to the final encore, Dala Festival brings people together through sound, celebration and shared memories.</p><div className="stat-row"><div><b>01</b><small>BIG STAGE</small></div><div><b>05+</b><small>PERFORMERS</small></div><div><b>∞</b><small>MEMORIES</small></div></div></div></div>
       </section>
 
-      <section className="lineup-section" id="lineup"><div className="section"><div className="section-kicker">02 — THE SOUNDTRACK</div><div className="lineup-head"><h2>THE<br /><em>LINEUP.</em></h2><p>Get ready for a powerful mix of live performances and DJ sets. Artist appearances and running order are subject to organiser confirmation.</p></div><div className="lineup-list">{lineup.map((artist, i) => <div className="artist-row" key={artist}><span className="artist-number">0{i + 1}</span><span className="artist-name">{artist}</span><span className="artist-type">{i === 0 ? "HEADLINER" : i === 4 ? "DJ SETS" : "LIVE PERFORMANCE"}</span><Music2 className="artist-icon" /></div>)}</div></div></section>
+      <section className="lineup-section" id="lineup"><div className="section"><div className="section-kicker">02 — THE SOUNDTRACK</div><div className="lineup-head"><h2>THE<br /><em>LINEUP.</em></h2><p>Meet the featured performers bringing the Dala Festival stage to life. Artist appearances and running order remain subject to organiser confirmation.</p></div><div className="artist-card-grid">{artists.map((artist, i) => <article className="artist-card" key={artist.name}><div className="artist-photo-wrap"><img src={artist.image} alt={artist.alt} loading={i === 0 ? "eager" : "lazy"} /><span className="artist-photo-index">0{i + 1}</span></div><div className="artist-card-info"><div><span>{artist.role}</span><h3>{artist.name}</h3></div><Music2 className="artist-icon" /></div></article>)}</div><div className="additional-acts"><span>ALSO ON THE BILL</span>{additionalActs.map((act) => <b key={act}>{act}</b>)}</div></div></section>
 
       <section className="tickets-section section" id="tickets">
         <div className="section-kicker">03 — MAKE IT YOURS</div><div className="tickets-head"><h2>YOUR NIGHT.<br /><em>YOUR TICKET.</em></h2><p>Choose your experience, enter your details and pay securely using M-Pesa or PayPal.</p></div>
