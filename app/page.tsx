@@ -43,7 +43,7 @@ export default function Home() {
   useEffect(() => {
     const requestedTicket = new URLSearchParams(window.location.search).get("ticket");
     if (!requestedTicket) return;
-    const matchingTicket = tickets.find((ticket) => ticket.name.toLowerCase().replace(/\\s+/g, "-") === requestedTicket.toLowerCase());
+    const matchingTicket = tickets.find((ticket) => ticket.name.toLowerCase().replace(/\s+/g, "-") === requestedTicket.toLowerCase());
     if (matchingTicket) setSelected(matchingTicket.name);
   }, []);
   useEffect(() => {
