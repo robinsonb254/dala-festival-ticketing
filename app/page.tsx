@@ -18,51 +18,6 @@ const artists = [
 ];
 const additionalActs = ["Les Wanyika", "Special guest DJs"];
 
-const eventStructuredData = {
-  "@context": "https://schema.org",
-  "@type": "Event",
-  "name": "Dala Festival 2026",
-  "description": "Dala Festival 2026 in Nairobi featuring Ferré Gola, Prince Indah, Johnny Junior and Les Wanyika at ASK Arena, Nairobi Showground.",
-  "startDate": "2026-12-12T14:00:00+03:00",
-  "endDate": "2026-12-13T04:00:00+03:00",
-  "eventStatus": "https://schema.org/EventScheduled",
-  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-  "image": [
-    "https://dalafestivaltickets.com/artists/ferre-gola.jpg",
-    "https://dalafestivaltickets.com/artists/prince-indah.jpg",
-    "https://dalafestivaltickets.com/artists/johnny-junior.jpg"
-  ],
-  "location": {
-    "@type": "Place",
-    "name": "ASK Arena, Nairobi Showground",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Nairobi Showground",
-      "addressLocality": "Nairobi",
-      "addressCountry": "KE"
-    }
-  },
-  "organizer": {
-    "@type": "Organization",
-    "name": "Dala Festival",
-    "url": "https://dalafestival.com/"
-  },
-  "performer": [
-    { "@type": "Person", "name": "Ferré Gola" },
-    { "@type": "Person", "name": "Prince Indah" },
-    { "@type": "Person", "name": "Johnny Junior" },
-    { "@type": "MusicGroup", "name": "Les Wanyika" }
-  ],
-  "offers": {
-    "@type": "AggregateOffer",
-    "url": "https://dalafestivaltickets.com/#tickets",
-    "priceCurrency": "KES",
-    "lowPrice": "5000",
-    "highPrice": "200000"
-  }
-};
-
-
 const money = (value: number) => new Intl.NumberFormat("en-KE", {
   style: "currency", currency: "KES", maximumFractionDigits: 0
 }).format(value);
@@ -208,7 +163,6 @@ export default function Home() {
     <>
       <a className="skip-link" href="#main-content">Skip to content</a>
       <main id="main-content">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(eventStructuredData) }} />
       <div className="announcement">THE COUNTDOWN TO AN UNFORGETTABLE EXPERIENCE IS ON</div>
       <header className="nav-wrap">
         <a className="brand" href="#" aria-label="Dala Festival home"><span className="brand-mark">D</span><span>DALA<span className="brand-light"> FESTIVAL</span><small>TICKETING & EXPERIENCES</small></span></a>
@@ -320,7 +274,7 @@ export default function Home() {
 
       <section className="faq-section section" id="faq"><div className="section-kicker">06 — GOOD TO KNOW</div><h2>The <em>details.</em></h2><div className="faq-list"><details><summary>Which payment methods can I use?<ChevronDown /></summary><p>Pay for tickets securely using M-Pesa or PayPal.</p></details><details><summary>How do I confirm my ticket order?<ChevronDown /></summary><p>Keep your order reference and payment confirmation for your records.</p></details><details><summary>Where is Dala Festival taking place?<ChevronDown /></summary><p>Dala Festival takes place at ASK Arena, Nairobi Showground.</p></details></div></section>
 
-      <footer><a className="brand footer-brand" href="#"><span className="brand-mark">D</span><span>DALA<span className="brand-light"> FESTIVAL</span><small>TICKETING & EXPERIENCES</small></span></a><nav className="footer-links" aria-label="Footer navigation"><a href="#about">Festival</a><a href="#lineup">Lineup</a><a href="#tickets">Tickets</a><a href="#faq">FAQs</a><a href="/terms">Terms &amp; Conditions</a></nav><div className="footer-contact"><span>CONTACT</span><a href="mailto:dalafestive@gmail.com">dalafestive@gmail.com</a></div><div>© 2026 Dala Festival Ticketing. All rights reserved.</div></footer>
+      <footer><a className="brand footer-brand" href="#"><span className="brand-mark">D</span><span>DALA<span className="brand-light"> FESTIVAL</span><small>TICKETING & EXPERIENCES</small></span></a><nav className="footer-links" aria-label="Footer navigation"><a href="#about">Festival</a><a href="#lineup">Lineup</a><a href="#tickets">Tickets</a><a href="#faq">FAQs</a><a href="/dala-festival-2026-tickets">Event guide</a><a href="/terms">Terms &amp; Conditions</a></nav><div className="footer-contact"><span>CONTACT</span><a href="mailto:dalafestive@gmail.com">dalafestive@gmail.com</a></div><div>© 2026 Dala Festival Ticketing. All rights reserved.</div></footer>
       {selectedArtistIndex !== null && (
         <div className="artist-lightbox" role="dialog" aria-modal="true" aria-label={`Artist photograph: ${artists[selectedArtistIndex].name}`} onClick={() => setSelectedArtistIndex(null)}>
           <button type="button" className="artist-lightbox-close" onClick={() => setSelectedArtistIndex(null)} aria-label="Close photo">×</button>
