@@ -24,6 +24,7 @@ const money = (value: number) => new Intl.NumberFormat("en-KE", {
 
 export default function Home() {
   const [selected, setSelected] = useState("Regular");
+  const [heroArtistIndex, setHeroArtistIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [customerName, setCustomerName] = useState("");
@@ -38,6 +39,11 @@ export default function Home() {
   const [orderReference, setOrderReference] = useState("");
   const [paymentStatus, setPaymentStatus] = useState("");
   const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  useEffect(() => {
+    const timer = window.setInterval(() => setHeroArtistIndex((current) => (current + 1) % artists.length), 5200);
+    return () => window.clearInterval(timer);
+  }, []);
+
   useEffect(() => {
     const eventTime = new Date("2026-12-12T00:00:00+03:00").getTime();
     const updateCountdown = () => {
@@ -133,24 +139,30 @@ export default function Home() {
         </nav>
       </header>
 
-      <section className="hero">
-        <div className="hero-glow glow-one" /><div className="hero-glow glow-two" />
-        <div className="hero-content">
+      <section className="hero hero-cinematic">
+        <div className="hero-slideshow" aria-hidden="true">
+          {artists.map((artist, index) => <div key={artist.name} className={index === heroArtistIndex ? "hero-slide active" : "hero-slide"} style={{ backgroundImage: `url("${artist.image}")` }} />)}
+        </div>
+        <div className="hero-image-shade" />
+        <div className="hero-content hero-cinematic-content">
           <p className="eyebrow"><span /> MUSIC. CULTURE. ENERGY.</p>
-          <h1>Feel the<br /><em>Dala</em> vibe.</h1>
-          <p className="hero-copy">One stage. Iconic sounds. A whole day of unforgettable moments. Nairobi, get ready.</p>
+          <p className="hero-pretitle">THE STARS ARE COMING TO NAIROBI</p>
+          <h1>One stage.<br /><em>Three icons.</em><br />One Dala.</h1>
+          <p className="hero-copy">A landmark night of live music, culture and unforgettable energy. Nairobi, get ready.</p>
           <div className="hero-meta">
             <div><CalendarDays /><span><b>12 DECEMBER 2026</b><small>Save the date</small></span></div>
             <div><MapPin /><span><b>ASK ARENA</b><small>Nairobi Showground</small></span></div>
           </div>
-          <a className="primary-button" href="#tickets">Explore tickets <ArrowRight size={18} /></a>
+          <a className="primary-button" href="#tickets">Get your tickets <ArrowRight size={18} /></a>
           <p className="hero-footnote">Independent ticketing and event promotion platform</p>
         </div>
-        <div className="hero-art" aria-label="Abstract festival artwork">
-          <div className="orbit orbit-a" /><div className="orbit orbit-b" />
-          <div className="disc"><div className="disc-inner"><span>DALA</span><small>FESTIVAL 2026</small></div></div>
-          <div className="art-tag tag-top">NAIROBI / KENYA</div><div className="art-tag tag-bottom">LIVE • LOUD • LEGENDARY</div>
-          <div className="art-star">✳</div>
+        <div className="hero-featured-artist" aria-live="polite" aria-atomic="true">
+          <span>NOW FEATURING · 0{heroArtistIndex + 1} / 0{artists.length}</span>
+          <strong>{artists[heroArtistIndex].name}</strong>
+          <small>{artists[heroArtistIndex].role}</small>
+        </div>
+        <div className="hero-slide-progress" aria-label="Featured artists">
+          {artists.map((artist, index) => <button key={artist.name} type="button" className={index === heroArtistIndex ? "active" : ""} onClick={() => setHeroArtistIndex(index)} aria-label={`Show ${artist.name}`} aria-pressed={index === heroArtistIndex} />)}
         </div>
         <div className="hero-bottom"><span>01 / THE EXPERIENCE</span><span>SCROLL TO EXPLORE ↓</span></div>
       </section>
