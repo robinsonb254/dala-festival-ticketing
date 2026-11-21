@@ -129,7 +129,7 @@ body{font-family:Manrope,Arial,sans-serif;font-size:15px;line-height:1.65;-webki
 .hero-slideshow,.hero-image-shade{position:absolute;inset:0;pointer-events:none}
 .hero-slideshow{z-index:0;overflow:hidden}
 .hero-slide{position:absolute;inset:-3%;background-size:cover;background-position:center 24%;opacity:0;transform:scale(1.055) translateX(2.5%);transition:opacity 1.25s ease,transform 6.2s cubic-bezier(.2,.65,.25,1);will-change:opacity,transform}
-.hero-slide.active{opacity:.43;transform:scale(1) translateX(0)}
+.hero-slide img{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover;object-position:center 24%}.hero-slide.active{opacity:.43;transform:scale(1) translateX(0)}
 .hero-image-shade{z-index:1;background:linear-gradient(90deg,rgba(5,6,7,.97) 0%,rgba(5,6,7,.84) 38%,rgba(5,6,7,.35) 72%,rgba(5,6,7,.68) 100%),linear-gradient(0deg,#090a0b 0%,transparent 30%,rgba(0,0,0,.22) 100%)}
 .hero-cinematic-content{max-width:690px}
 .hero-pretitle{margin:22px 0 -10px;color:#fff;font:500 10px "DM Mono",monospace;letter-spacing:2.4px}
