@@ -110,12 +110,12 @@ export default function Home() {
       setCheckoutError("Please enter your full name before continuing.");
       return;
     }
-    const phoneDigits = phone.replace(/\\D/g, "");
-    if (!/^(?:254[17]\\d{8}|0[17]\\d{8}|[17]\\d{8})$/.test(phoneDigits)) {
+    const phoneDigits = phone.replace(/\D/g, "");
+    if (!/^(?:254[17]\d{8}|0[17]\d{8}|[17]\d{8})$/.test(phoneDigits)) {
       setCheckoutError("Enter a valid Kenyan M-Pesa phone number, for example 07XXXXXXXX.");
       return;
     }
-    if (email.trim() && !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email.trim())) {
+    if (email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
       setCheckoutError("Please enter a valid email address or leave the email field empty.");
       return;
     }
