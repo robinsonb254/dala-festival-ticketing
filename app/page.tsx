@@ -25,6 +25,7 @@ const money = (value: number) => new Intl.NumberFormat("en-KE", {
 export default function Home() {
   const [selected, setSelected] = useState("Regular");
   const [heroArtistIndex, setHeroArtistIndex] = useState(0);
+  const [selectedArtistIndex, setSelectedArtistIndex] = useState<number | null>(null);
   const [quantity, setQuantity] = useState(1);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [customerName, setCustomerName] = useState("");
@@ -43,6 +44,22 @@ export default function Home() {
     const timer = window.setInterval(() => setHeroArtistIndex((current) => (current + 1) % artists.length), 5200);
     return () => window.clearInterval(timer);
   }, []);
+
+  useEffect(() => {
+    if (selectedArtistIndex === null) return;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setSelectedArtistIndex(null);
+      if (event.key === "ArrowRight") setSelectedArtistIndex((current) => current === null ? null : (current + 1) % artists.length);
+      if (event.key === "ArrowLeft") setSelectedArtistIndex((current) => current === null ? null : (current - 1 + artists.length) % artists.length);
+    };
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [selectedArtistIndex]);
 
   useEffect(() => {
     const eventTime = new Date("2026-12-12T00:00:00+03:00").getTime();
@@ -191,7 +208,7 @@ export default function Home() {
         <div className="about-grid"><h2>More than<br />a show. <em>A movement.</em></h2><div><p className="lead">A meeting place for music lovers, culture shapers and everyone who lives for the moment.</p><p className="muted">Come together for a full festival experience in Nairobi. From the first beat to the final encore, Dala Festival brings people together through sound, celebration and shared memories.</p><div className="stat-row"><div><b>01</b><small>BIG STAGE</small></div><div><b>05+</b><small>PERFORMERS</small></div><div><b>∞</b><small>MEMORIES</small></div></div></div></div>
       </section>
 
-      <section className="lineup-section" id="lineup"><div className="section"><div className="section-kicker">02 — THE SOUNDTRACK</div><div className="lineup-head"><h2>The<br /><em>lineup.</em></h2><p>Meet the featured performers bringing the Dala Festival stage to life. The featured lineup includes Ferré Gola, Prince Indah and Johnny Junior, alongside Les Wanyika and special guest DJs.</p></div><div className="artist-card-grid">{artists.map((artist, i) => <article className="artist-card" key={artist.name}><div className="artist-photo-wrap"><img src={artist.image} alt={artist.alt} loading={i === 0 ? "eager" : "lazy"} /><span className="artist-photo-index">0{i + 1}</span></div><div className="artist-card-info"><div><span>{artist.role}</span><h3>{artist.name}</h3></div><Music2 className="artist-icon" /></div></article>)}</div><div className="additional-acts"><span>ALSO ON THE BILL</span>{additionalActs.map((act) => <b key={act}>{act}</b>)}</div></div></section>
+      <section className="lineup-section" id="lineup"><div className="section"><div className="section-kicker">02 — THE SOUNDTRACK</div><div className="lineup-head"><h2>The<br /><em>lineup.</em></h2><p>Meet the featured performers bringing the Dala Festival stage to life. The featured lineup includes Ferré Gola, Prince Indah and Johnny Junior, alongside Les Wanyika and special guest DJs.</p></div><div className="artist-card-grid">{artists.map((artist, i) => <article className="artist-card" key={artist.name}><div className="artist-photo-wrap"><button type="button" className="artist-photo-trigger" onClick={() => setSelectedArtistIndex(i)} aria-label={`Enlarge ${artist.name} photo`}><img src={artist.image} alt={artist.alt} loading={i === 0 ? "eager" : "lazy"} /></button><span className="artist-photo-index">0{i + 1}</span></div><div className="artist-card-info"><div><span>{artist.role}</span><h3>{artist.name}</h3></div><Music2 className="artist-icon" /></div></article>)}</div><div className="additional-acts"><span>ALSO ON THE BILL</span>{additionalActs.map((act) => <b key={act}>{act}</b>)}</div></div></section>
 
       <section className="artist-performances section" id="performances">
         <div className="section-kicker">03 — LIVE PERFORMANCE HIGHLIGHTS</div>
@@ -230,9 +247,9 @@ export default function Home() {
         <div className="section-kicker">04 — THE ARTISTS</div>
         <div className="gallery-heading"><h2>Faces of<br /><em>Dala.</em></h2><p>Featured artist portraits from the Dala Festival lineup.</p></div>
         <div className="gallery-grid">
-          <figure className="gallery-item gallery-feature"><img src="/artists/ferre-gola.jpg" alt="Ferré Gola featured artist photograph" loading="lazy" /><figcaption><span>01 / HEADLINER</span><b>Ferré Gola</b></figcaption></figure>
-          <figure className="gallery-item"><img src="/artists/prince-indah.jpg" alt="Prince Indah featured artist photograph" loading="lazy" /><figcaption><span>02 / LIVE PERFORMANCE</span><b>Prince Indah</b></figcaption></figure>
-          <figure className="gallery-item"><img src="/artists/johnny-junior.jpg" alt="Johnny Junior featured artist photograph" loading="lazy" /><figcaption><span>03 / LIVE PERFORMANCE</span><b>Johnny Junior</b></figcaption></figure>
+          <figure className="gallery-item gallery-feature"><button type="button" className="gallery-photo-trigger" onClick={() => setSelectedArtistIndex(0)} aria-label="Enlarge Ferré Gola photo"><img src="/artists/ferre-gola.jpg" alt="Ferré Gola featured artist photograph" loading="lazy" /></button><figcaption><span>01 / HEADLINER</span><b>Ferré Gola</b></figcaption></figure>
+          <figure className="gallery-item"><button type="button" className="gallery-photo-trigger" onClick={() => setSelectedArtistIndex(1)} aria-label="Enlarge Prince Indah photo"><img src="/artists/prince-indah.jpg" alt="Prince Indah featured artist photograph" loading="lazy" /></button><figcaption><span>02 / LIVE PERFORMANCE</span><b>Prince Indah</b></figcaption></figure>
+          <figure className="gallery-item"><button type="button" className="gallery-photo-trigger" onClick={() => setSelectedArtistIndex(2)} aria-label="Enlarge Johnny Junior photo"><img src="/artists/johnny-junior.jpg" alt="Johnny Junior featured artist photograph" loading="lazy" /></button><figcaption><span>03 / LIVE PERFORMANCE</span><b>Johnny Junior</b></figcaption></figure>
         </div>
       </section>
 
@@ -249,6 +266,17 @@ export default function Home() {
       <section className="faq-section section" id="faq"><div className="section-kicker">06 — GOOD TO KNOW</div><h2>The <em>details.</em></h2><div className="faq-list"><details><summary>Which payment methods can I use?<ChevronDown /></summary><p>Pay for tickets securely using M-Pesa or PayPal.</p></details><details><summary>How do I confirm my ticket order?<ChevronDown /></summary><p>After your payment is verified, your order status changes to paid. Keep your order reference and payment confirmation. QR-code and PDF tickets are not part of the current ticket delivery process.</p></details><details><summary>Where is Dala Festival taking place?<ChevronDown /></summary><p>Dala Festival takes place at ASK Arena, Nairobi Showground.</p></details></div></section>
 
       <footer><a className="brand footer-brand" href="#"><span className="brand-mark">D</span><span>DALA<span className="brand-light"> FESTIVAL</span><small>TICKETING & EXPERIENCES</small></span></a><nav className="footer-links" aria-label="Footer navigation"><a href="#about">Festival</a><a href="#lineup">Lineup</a><a href="#tickets">Tickets</a><a href="#faq">FAQs</a><a href="/terms">Terms &amp; Conditions</a></nav><div className="footer-contact"><span>CONTACT</span><a href="mailto:dalafestive@gmail.com">dalafestive@gmail.com</a></div><div>© 2026 Dala Festival Ticketing. All rights reserved.</div></footer>
+      {selectedArtistIndex !== null && (
+        <div className="artist-lightbox" role="dialog" aria-modal="true" aria-label={`Artist photograph: ${artists[selectedArtistIndex].name}`} onClick={() => setSelectedArtistIndex(null)}>
+          <button type="button" className="artist-lightbox-close" onClick={() => setSelectedArtistIndex(null)} aria-label="Close photo">×</button>
+          <button type="button" className="artist-lightbox-nav artist-lightbox-prev" onClick={(event) => { event.stopPropagation(); setSelectedArtistIndex((selectedArtistIndex - 1 + artists.length) % artists.length); }} aria-label="Previous artist">‹</button>
+          <div className="artist-lightbox-content" onClick={(event) => event.stopPropagation()}>
+            <img src={artists[selectedArtistIndex].image} alt={artists[selectedArtistIndex].alt} />
+            <div className="artist-lightbox-caption"><span>{artists[selectedArtistIndex].role}</span><strong>{artists[selectedArtistIndex].name}</strong><small>{String(selectedArtistIndex + 1).padStart(2, "0")} / {String(artists.length).padStart(2, "0")}</small></div>
+          </div>
+          <button type="button" className="artist-lightbox-nav artist-lightbox-next" onClick={(event) => { event.stopPropagation(); setSelectedArtistIndex((selectedArtistIndex + 1) % artists.length); }} aria-label="Next artist">›</button>
+        </div>
+      )}
       </main>
     </>
   );
