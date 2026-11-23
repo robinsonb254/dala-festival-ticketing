@@ -5,12 +5,12 @@ const siteUrl = "https://dalafestivaltickets.com";
 const pageUrl = `${siteUrl}/ferre-gola-nairobi-december-2026`;
 
 export const metadata: Metadata = {
-  title: "Ferré Gola Live in Nairobi 2026 | December Dala Festival",
-  description: "See Ferré Gola live in Nairobi in 2026 at Dala Festival on 12 December. Venue, lineup and ticket details for ASK Arena, Nairobi Showground, with Prince Indah and more.",
+  title: "Ferré Gola in Nairobi 2026 | Dala Festival, 12 December",
+  description: "Find Ferré Gola concert details for Nairobi on 12 December 2026: Dala Festival venue, event hours, lineup and ticket prices at ASK Arena.",
   alternates: { canonical: pageUrl },
   openGraph: {
-    title: "Ferré Gola in Nairobi December 2026 | Dala Festival",
-    description: "Event guide to Ferré Gola's Nairobi performance at Dala Festival on 12 December 2026: venue, lineup and ticket information.",
+    title: "Ferré Gola in Nairobi, 12 December 2026 | Dala Festival",
+    description: "Plan for Ferré Gola at Dala Festival in Nairobi on 12 December 2026, with venue directions, event hours, lineup and ticket information.",
     url: pageUrl,
     siteName: "Dala Festival Ticketing",
     locale: "en_KE",
@@ -25,7 +25,8 @@ const articleData = {
   "headline": "Ferré Gola in Nairobi: Dala Festival December 2026",
   "description": "A guide to Ferré Gola's live performance in Nairobi at Dala Festival on 12 December 2026.",
   "datePublished": "2026-11-22",
-  "dateModified": "2026-11-22",
+  "dateModified": "2026-11-23",
+  "image": "https://i.ibb.co/TDVhfnGC/file-00000000ab5482089142cc3e3b527b44.png",
   "mainEntityOfPage": pageUrl,
   "author": { "@type": "Organization", "name": "Dala Festival Ticketing" },
   "publisher": { "@type": "Organization", "name": "Dala Festival Ticketing", "url": siteUrl }
@@ -50,7 +51,7 @@ export default function FerreGolaNairobiArticle() {
         <section style={{ ...sectionStyle, paddingTop: 68, paddingBottom: 36 }}>
           <p style={{ color: "#e7b85c", fontSize: 12, fontWeight: 800, letterSpacing: 3, textTransform: "uppercase" }}>Nairobi concert guide · 12 December 2026</p>
           <h1 style={{ fontSize: "clamp(38px, 7vw, 68px)", lineHeight: 1.04, letterSpacing: -2, margin: "18px 0" }}>Ferré Gola in Nairobi: Dala Festival December 2026</h1>
-          <p style={{ color: "#d0c9bd", fontSize: 19, lineHeight: 1.75, maxWidth: 780 }}>Nairobi is set for a major night of Congolese rhumba as Ferré Gola, known to fans as Le Padre, headlines Dala Festival on Saturday, 12 December 2026. The concert takes place from 2:00 PM on Saturday, 12 December until 4:00 AM on Sunday, 13 December 2026 at ASK Arena, Nairobi Showground, with a lineup that also features popular Kenyan performers.</p>
+          <p style={{ color: "#d0c9bd", fontSize: 19, lineHeight: 1.75, maxWidth: 780 }}>Looking for Ferré Gola concert details in Nairobi for December 2026? Ferré Gola, known to fans as Le Padre, is scheduled to headline Dala Festival on Saturday, 12 December 2026. The concert takes place from 2:00 PM on Saturday, 12 December until 4:00 AM on Sunday, 13 December 2026 at ASK Arena, Nairobi Showground, with a lineup that also features popular Kenyan performers.</p>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: 24 }}>
             <span style={{ border: "1px solid #444", borderRadius: 999, padding: "10px 15px" }}>📅 12 December 2026</span>
             <span style={{ border: "1px solid #444", borderRadius: 999, padding: "10px 15px" }}>📍 ASK Arena, Nairobi</span>\n            <span style={{ border: "1px solid #444", borderRadius: 999, padding: "10px 15px" }}>🕑 2:00 PM – 4:00 AM (overnight)</span>
@@ -58,7 +59,7 @@ export default function FerreGolaNairobiArticle() {
         </section>
 
         <section style={{ ...sectionStyle, borderTop: "1px solid #292a2d" }}>
-          <h2 style={{ fontSize: 30, marginTop: 0 }}>Ferré Gola brings Congolese rhumba to Nairobi</h2>
+          <h2 style={{ fontSize: 30, marginTop: 0 }}>Ferré Gola live in Nairobi on 12 December 2026</h2>
           <p style={{ color: "#d0c9bd", lineHeight: 1.85 }}>Ferré Gola is widely recognised for his expressive vocals and his place in modern Congolese music. His Nairobi appearance gives fans an opportunity to experience his music live alongside other performers from Kenya's vibrant music scene.</p>
           <p style={{ color: "#d0c9bd", lineHeight: 1.85 }}>Dala Festival brings together live music, culture and entertainment for a one-day festival programme in Nairobi. The event is scheduled for Saturday, 12 December 2026, at ASK Arena within the Nairobi Showground.</p>
         </section>
