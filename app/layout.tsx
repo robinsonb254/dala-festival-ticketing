@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
+import { Cormorant_Garamond, DM_Mono, Manrope } from "next/font/google";
 import "./globals.css";
 
 const siteUrl = "https://dalafestivaltickets.com";
+
+const manrope = Manrope({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"], display: "swap", variable: "--font-manrope" });
+const cormorant = Cormorant_Garamond({ subsets: ["latin"], weight: ["500", "600", "700"], style: ["normal", "italic"], display: "swap", variable: "--font-cormorant" });
+const dmMono = DM_Mono({ subsets: ["latin"], weight: ["400", "500"], display: "swap", variable: "--font-dm-mono" });
 
 const websiteStructuredData = {
   "@context": "https://schema.org",
