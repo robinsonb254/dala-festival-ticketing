@@ -192,3 +192,10 @@ body{font-family:var(--font-manrope),Arial,sans-serif;font-size:15px;line-height
 /* Official Dala Festival promo film — vertical YouTube Shorts embed */
 .promo-video-player{width:100%;max-width:390px;min-height:0;aspect-ratio:9/16;margin-inline:auto;display:block;overflow:hidden;background:#080a08;border:1px solid #46502a}
 .promo-video-player iframe{display:block;width:100%;height:100%;min-height:0;aspect-ratio:9/16;border:0}
+
+
+/* Keep the rotating featured-artist label in a stable box to prevent layout shifts */
+.hero-featured-artist{width:42%;max-width:520px;min-height:96px;align-content:end}
+.hero-featured-artist strong{display:block;min-height:1em}
+.hero-featured-artist small{min-height:1.2em}
+@media(max-width:800px){.hero-featured-artist{width:auto;max-width:none;min-height:86px}}
