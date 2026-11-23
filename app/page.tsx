@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import Image from "next/image";
 import { ArrowRight, CalendarDays, MapPin, Music2, ShieldCheck, Ticket, Menu, X, ChevronDown } from "lucide-react";
 
 const tickets = [
@@ -173,7 +174,7 @@ export default function Home() {
       <main id="main-content">
       <div className="announcement">THE COUNTDOWN TO AN UNFORGETTABLE EXPERIENCE IS ON</div>
       <header className="nav-wrap">
-        <a className="brand" href="#" aria-label="Dala Festival home"><span className="brand-mark">D</span><span>DALA<span className="brand-light"> FESTIVAL</span><small>TICKETING & EXPERIENCES</small></span></a>
+        <a className="brand" href="#" aria-label="Dala Festival Ticketing & Experiences home"><span className="brand-mark">D</span><span>DALA<span className="brand-light"> FESTIVAL</span><small>TICKETING & EXPERIENCES</small></span></a>
         <button className="menu-toggle" type="button" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Toggle navigation" aria-expanded={mobileOpen} aria-controls="main-navigation">{mobileOpen ? <X /> : <Menu />}</button>
         <nav id="main-navigation" aria-label="Main navigation" className={mobileOpen ? "nav-links open" : "nav-links"}>
           <a href="#about" onClick={() => setMobileOpen(false)}>The festival</a>
@@ -188,7 +189,7 @@ export default function Home() {
 
       <section className="hero hero-cinematic">
         <div className="hero-slideshow" aria-hidden="true">
-          {artists.map((artist, index) => <div key={artist.name} className={index === heroArtistIndex ? "hero-slide active" : "hero-slide"}><img src={artist.image} alt="" loading="eager" decoding="async" /></div>)}
+          <div className="hero-slide active"><Image src={artists[heroArtistIndex].image} alt="" fill priority sizes="100vw" quality={72} /></div>
         </div>
         <div className="hero-image-shade" />
         <div className="hero-content hero-cinematic-content">
@@ -221,7 +222,7 @@ export default function Home() {
         <div className="about-grid"><h2>More than<br />a show. <em>A movement.</em></h2><div><p className="lead">A meeting place for music lovers, culture shapers and everyone who lives for the moment.</p><p className="muted">Come together for a full festival experience in Nairobi. From the first beat to the final encore, Dala Festival brings people together through sound, celebration and shared memories.</p><div className="stat-row"><div><b>01</b><small>BIG STAGE</small></div><div><b>05+</b><small>PERFORMERS</small></div><div><b>∞</b><small>MEMORIES</small></div></div></div></div>
       </section>
 
-      <section className="lineup-section" id="lineup"><div className="section"><div className="section-kicker">02 — THE SOUNDTRACK</div><div className="lineup-head"><h2>The<br /><em>lineup.</em></h2><p>Meet the featured performers bringing the Dala Festival stage to life. The featured lineup includes Ferré Gola, Prince Indah and Johnny Junior, alongside Les Wanyika and special guest DJs.</p></div><div className="artist-card-grid">{artists.map((artist, i) => <article className="artist-card" key={artist.name}><div className="artist-photo-wrap"><button type="button" className="artist-photo-trigger" onClick={() => setSelectedArtistIndex(i)} aria-label={`Enlarge ${artist.name} photo`}><img src={artist.image} alt={artist.alt} loading={i === 0 ? "eager" : "lazy"} /></button><span className="artist-photo-index">0{i + 1}</span></div><div className="artist-card-info"><div><span>{artist.role}</span><h3>{artist.name}</h3></div><Music2 className="artist-icon" /></div></article>)}</div><div className="additional-acts"><span>ALSO ON THE BILL</span>{additionalActs.map((act) => <b key={act}>{act}</b>)}</div></div></section>
+      <section className="lineup-section" id="lineup"><div className="section"><div className="section-kicker">02 — THE SOUNDTRACK</div><div className="lineup-head"><h2>The<br /><em>lineup.</em></h2><p>Meet the featured performers bringing the Dala Festival stage to life. The featured lineup includes Ferré Gola, Prince Indah and Johnny Junior, alongside Les Wanyika and special guest DJs.</p></div><div className="artist-card-grid">{artists.map((artist, i) => <article className="artist-card" key={artist.name}><div className="artist-photo-wrap"><button type="button" className="artist-photo-trigger" onClick={() => setSelectedArtistIndex(i)} aria-label={`Enlarge ${artist.name} photo`}><Image src={artist.image} alt={artist.alt} fill sizes="(max-width: 800px) 100vw, 33vw" quality={76} /></button><span className="artist-photo-index">0{i + 1}</span></div><div className="artist-card-info"><div><span>{artist.role}</span><h3>{artist.name}</h3></div><Music2 className="artist-icon" /></div></article>)}</div><div className="additional-acts"><span>ALSO ON THE BILL</span>{additionalActs.map((act) => <b key={act}>{act}</b>)}</div></div></section>
 
       <section className="artist-performances section" id="performances">
         <div className="section-kicker">03 — LIVE PERFORMANCE HIGHLIGHTS</div>
@@ -265,9 +266,9 @@ export default function Home() {
         <div className="section-kicker">04 — THE ARTISTS</div>
         <div className="gallery-heading"><h2>Faces of<br /><em>Dala.</em></h2><p>Featured artist portraits from the Dala Festival lineup.</p></div>
         <div className="gallery-grid">
-          <figure className="gallery-item gallery-feature"><button type="button" className="gallery-photo-trigger" onClick={() => setSelectedArtistIndex(0)} aria-label="Enlarge Ferré Gola photo"><img src="/artists/ferre-gola.jpg" alt="Ferré Gola featured artist photograph" loading="lazy" /></button><figcaption><span>01 / HEADLINER</span><b>Ferré Gola</b></figcaption></figure>
-          <figure className="gallery-item"><button type="button" className="gallery-photo-trigger" onClick={() => setSelectedArtistIndex(1)} aria-label="Enlarge Prince Indah photo"><img src="/artists/prince-indah.jpg" alt="Prince Indah featured artist photograph" loading="lazy" /></button><figcaption><span>02 / LIVE PERFORMANCE</span><b>Prince Indah</b></figcaption></figure>
-          <figure className="gallery-item"><button type="button" className="gallery-photo-trigger" onClick={() => setSelectedArtistIndex(2)} aria-label="Enlarge Johnny Junior photo"><img src="/artists/johnny-junior.jpg" alt="Johnny Junior featured artist photograph" loading="lazy" /></button><figcaption><span>03 / LIVE PERFORMANCE</span><b>Johnny Junior</b></figcaption></figure>
+          <figure className="gallery-item gallery-feature"><button type="button" className="gallery-photo-trigger" onClick={() => setSelectedArtistIndex(0)} aria-label="Enlarge Ferré Gola photo"><Image src="/artists/ferre-gola.jpg" alt="Ferré Gola featured artist photograph" fill sizes="(max-width: 800px) 100vw, 42vw" quality={72} /></button><figcaption><span>01 / HEADLINER</span><b>Ferré Gola</b></figcaption></figure>
+          <figure className="gallery-item"><button type="button" className="gallery-photo-trigger" onClick={() => setSelectedArtistIndex(1)} aria-label="Enlarge Prince Indah photo"><Image src="/artists/prince-indah.jpg" alt="Prince Indah featured artist photograph" fill sizes="(max-width: 800px) 100vw, 29vw" quality={72} /></button><figcaption><span>02 / LIVE PERFORMANCE</span><b>Prince Indah</b></figcaption></figure>
+          <figure className="gallery-item"><button type="button" className="gallery-photo-trigger" onClick={() => setSelectedArtistIndex(2)} aria-label="Enlarge Johnny Junior photo"><Image src="/artists/johnny-junior.jpg" alt="Johnny Junior featured artist photograph" fill sizes="(max-width: 800px) 100vw, 29vw" quality={72} /></button><figcaption><span>03 / LIVE PERFORMANCE</span><b>Johnny Junior</b></figcaption></figure>
         </div>
       </section>
 
@@ -322,7 +323,7 @@ export default function Home() {
           <button type="button" className="artist-lightbox-close" onClick={() => setSelectedArtistIndex(null)} aria-label="Close photo">×</button>
           <button type="button" className="artist-lightbox-nav artist-lightbox-prev" onClick={(event) => { event.stopPropagation(); setSelectedArtistIndex((selectedArtistIndex - 1 + artists.length) % artists.length); }} aria-label="Previous artist">‹</button>
           <div className="artist-lightbox-content" onClick={(event) => event.stopPropagation()}>
-            <img src={artists[selectedArtistIndex].image} alt={artists[selectedArtistIndex].alt} />
+            <Image src={artists[selectedArtistIndex].image} alt={artists[selectedArtistIndex].alt} width={1200} height={1600} sizes="76vw" quality={85} />
             <div className="artist-lightbox-caption"><span>{artists[selectedArtistIndex].role}</span><strong>{artists[selectedArtistIndex].name}</strong><small>{String(selectedArtistIndex + 1).padStart(2, "0")} / {String(artists.length).padStart(2, "0")}</small></div>
           </div>
           <button type="button" className="artist-lightbox-nav artist-lightbox-next" onClick={(event) => { event.stopPropagation(); setSelectedArtistIndex((selectedArtistIndex + 1) % artists.length); }} aria-label="Next artist">›</button>
