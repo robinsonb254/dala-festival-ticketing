@@ -26,9 +26,9 @@ export async function POST(request: NextRequest) {
       try { phone = normalizeKenyanPhone(String(body.phone || "")); }
       catch (error) { return NextResponse.json({ error: error instanceof Error ? error.message : "Invalid phone number." }, { status: 400 }); }
     }
+    const mpesaPhone = phone;
 
     if (paymentProvider === "mpesa") {
-      const mpesaPhone = phone;
       if (!mpesaPhone) return NextResponse.json({ error: "Enter your M-Pesa phone number." }, { status: 400 });
       const preparationCutoff = new Date(Date.now() - 30 * 1000).toISOString();
       const recentCutoff = new Date(Date.now() - 5 * 60 * 1000).toISOString();
