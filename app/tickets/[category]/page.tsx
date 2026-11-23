@@ -138,7 +138,6 @@ export default async function TicketCategoryPage({
       "url": pageUrl,
       "priceCurrency": "KES",
       "price": ticket.price,
-      "validFrom": "2026-11-22"
     }
   };
   const faqData = {
