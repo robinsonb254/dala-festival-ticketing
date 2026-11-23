@@ -103,7 +103,7 @@ export default function DalaVenueLocationPage() {
       </section>
 
       <footer style={{ borderTop: "1px solid #292a2d", padding: "26px 24px", color: "#aaa196", textAlign: "center", fontSize: 13 }}>
-        © 2026 Dala Festival Ticketing · <Link href="/" style={gold}>Home</Link> · <Link href="/dala-festival-2026-tickets" style={gold}>Festival tickets</Link> · <Link href="/terms" style={gold}>Terms & Conditions</Link>
+        © 2026 Dala Festival Ticketing · <Link href="/" style={gold}>Home</Link> · <Link href="/dala-festival-2026-tickets" style={gold}>Festival tickets and event guide</Link> · <Link href="/ferre-gola-nairobi-december-2026" style={gold}>Ferré Gola in Nairobi</Link> · <Link href="/terms" style={gold}>Terms & Conditions</Link>
       </footer>
     </main>
   );
