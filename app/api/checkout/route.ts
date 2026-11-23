@@ -37,7 +37,7 @@ export async function POST(request: NextRequest) {
       // preparation, not an active customer prompt. Release it after 30 seconds.
       const { error: expirePreparationError } = await supabaseAdmin.from("ticket_orders")
         .update({ payment_status: "failed" })
-        .eq("phone", phone)
+        .eq("phone", mpesaPhone)
         .eq("payment_provider", "mpesa")
         .eq("payment_status", "pending")
         .is("checkout_request_id", null)
@@ -48,7 +48,7 @@ export async function POST(request: NextRequest) {
       // unique index in the Supabase migration below makes this reservation atomic.
       const { error: expireError } = await supabaseAdmin.from("ticket_orders")
         .update({ payment_status: "failed" })
-        .eq("phone", phone)
+        .eq("phone", mpesaPhone)
         .eq("payment_provider", "mpesa")
         .eq("payment_status", "pending")
         .lt("created_at", recentCutoff);
@@ -56,7 +56,7 @@ export async function POST(request: NextRequest) {
       const { data: activeOrder, error: activeOrderError } = await supabaseAdmin
         .from("ticket_orders")
         .select("order_reference, checkout_request_id, ticket_type, quantity")
-        .eq("phone", phone)
+        .eq("phone", mpesaPhone)
         .eq("payment_provider", "mpesa")
         .eq("payment_status", "pending")
         .gte("created_at", recentCutoff)
