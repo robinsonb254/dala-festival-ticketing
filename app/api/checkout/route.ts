@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
       try { phone = normalizeKenyanPhone(String(body.phone || "")); }
       catch (error) { return NextResponse.json({ error: error instanceof Error ? error.message : "Invalid phone number." }, { status: 400 }); }
     }
-    const mpesaPhone = phone;
+    const mpesaPhone = phone ?? "";
 
     if (paymentProvider === "mpesa") {
       if (!mpesaPhone) return NextResponse.json({ error: "Enter your M-Pesa phone number." }, { status: 400 });
