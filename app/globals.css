@@ -199,3 +199,10 @@ body{font-family:var(--font-manrope),Arial,sans-serif;font-size:15px;line-height
 .hero-featured-artist strong{display:block;min-height:1em}
 .hero-featured-artist small{min-height:1.2em}
 @media(max-width:800px){.hero-featured-artist{width:auto;max-width:none;min-height:86px}}
+
+
+/* Stabilize changing numeric content and reduce font-swap layout movement */
+.countdown-unit strong{display:block;min-width:3ch;text-align:center;font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+.hero-featured-artist{min-height:104px}
+.hero-featured-artist strong{min-height:1.1em;line-height:1.1}
+@media(max-width:800px){.hero-featured-artist{min-height:90px}}
