@@ -21,11 +21,15 @@ export async function POST(request: NextRequest) {
     if (!Number.isInteger(quantity) || quantity < 1 || quantity > 10) return NextResponse.json({ error: "Ticket quantity must be between 1 and 10." }, { status: 400 });
     if (!Object.hasOwn(TICKET_PRICES, ticketType)) return NextResponse.json({ error: "Choose a valid ticket category." }, { status: 400 });
     if (!["mpesa", "paypal"].includes(paymentProvider)) return NextResponse.json({ error: "Choose M-Pesa or PayPal." }, { status: 400 });
-    let phone: string;
-    try { phone = normalizeKenyanPhone(String(body.phone || "")); }
-    catch (error) { return NextResponse.json({ error: error instanceof Error ? error.message : "Invalid phone number." }, { status: 400 }); }
+    let phone: string | null = null;
+    if (paymentProvider === "mpesa") {
+      try { phone = normalizeKenyanPhone(String(body.phone || "")); }
+      catch (error) { return NextResponse.json({ error: error instanceof Error ? error.message : "Invalid phone number." }, { status: 400 }); }
+    }
 
     if (paymentProvider === "mpesa") {
+      const mpesaPhone = phone;
+      if (!mpesaPhone) return NextResponse.json({ error: "Enter your M-Pesa phone number." }, { status: 400 });
       const preparationCutoff = new Date(Date.now() - 30 * 1000).toISOString();
       const recentCutoff = new Date(Date.now() - 5 * 60 * 1000).toISOString();
 
@@ -105,7 +109,7 @@ export async function POST(request: NextRequest) {
 
     if (paymentProvider === "mpesa") {
       try {
-        const stk = await initiateMpesaStk({ phone, amount: amountKes, orderReference });
+        const stk = await initiateMpesaStk({ phone: mpesaPhone, amount: amountKes, orderReference });
         const { error: updateError } = await supabaseAdmin.from("ticket_orders").update({
           checkout_request_id: stk.CheckoutRequestID,
           merchant_request_id: stk.MerchantRequestID,
