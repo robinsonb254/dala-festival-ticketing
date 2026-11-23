@@ -144,7 +144,7 @@ export default function Home() {
         headers: { "Content-Type": "application/json" },
         signal: AbortSignal.timeout(27000),
         body: JSON.stringify({
-          customerName, email, phone, ticketType: selected, quantity,
+          customerName, email, ticketType: selected, quantity,
           paymentProvider,
           phone: paymentProvider === "mpesa" ? phone : null,
           termsAccepted,
