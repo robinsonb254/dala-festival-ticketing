@@ -174,7 +174,7 @@ export default function Home() {
       <main id="main-content">
       <div className="announcement">THE COUNTDOWN TO AN UNFORGETTABLE EXPERIENCE IS ON</div>
       <header className="nav-wrap">
-        <a className="brand" href="#" aria-label="Dala Festival Ticketing & Experiences home"><span className="brand-mark">D</span><span>DALA<span className="brand-light"> FESTIVAL</span><small>TICKETING & EXPERIENCES</small></span></a>
+        <a className="brand" href="#"><span className="brand-mark" aria-hidden="true">D</span><span>DALA<span className="brand-light"> FESTIVAL</span><small>TICKETING & EXPERIENCES</small></span></a>
         <button className="menu-toggle" type="button" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Toggle navigation" aria-expanded={mobileOpen} aria-controls="main-navigation">{mobileOpen ? <X /> : <Menu />}</button>
         <nav id="main-navigation" aria-label="Main navigation" className={mobileOpen ? "nav-links open" : "nav-links"}>
           <a href="#about" onClick={() => setMobileOpen(false)}>The festival</a>
