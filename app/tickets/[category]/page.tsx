@@ -127,19 +127,6 @@ export default async function TicketCategoryPage({
   if (!Object.prototype.hasOwnProperty.call(ticketCategories, category)) notFound();
   const ticket = ticketCategories[category as TicketSlug];
   const pageUrl = `${siteUrl}/tickets/${category}`;
-  const offerData = {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    "name": `Dala Festival 2026 ${ticket.name} Ticket`,
-    "description": ticket.description,
-    "image": festivalImage,
-    "offers": {
-      "@type": "Offer",
-      "url": pageUrl,
-      "priceCurrency": "KES",
-      "price": ticket.price,
-    }
-  };
   const faqData = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -152,7 +139,7 @@ export default async function TicketCategoryPage({
 
   return (
     <main style={{ minHeight: "100vh", background: "#090a0d", color: "#f7f3eb", fontFamily: "Arial, Helvetica, sans-serif" }}>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([offerData, faqData]) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqData) }} />
       <header style={{ borderBottom: "1px solid #292a2d", padding: "18px 24px" }}>
         <div style={{ maxWidth: 900, margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", gap: 16 }}>
           <Link href="/" style={{ color: "#f7f3eb", textDecoration: "none", fontWeight: 900, letterSpacing: 2 }}>DALA FESTIVAL <span style={{ color: "#e7b85c" }}>2026</span></Link>
