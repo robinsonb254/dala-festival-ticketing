@@ -23,6 +23,30 @@ const money = (value: number) => new Intl.NumberFormat("en-KE", {
   style: "currency", currency: "KES", maximumFractionDigits: 0
 }).format(value);
 
+
+function YouTubeClickToPlay({ videoId, title }: { videoId: string; title: string }) {
+  const [playing, setPlaying] = useState(false);
+  return (
+    <div className="youtube-click-player">
+      {playing ? (
+        <iframe
+          src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0`}
+          title={title}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+        />
+      ) : (
+        <button type="button" className="youtube-poster" onClick={() => setPlaying(true)} aria-label={`Play video: ${title}`}>
+          <img src={`https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`} alt="" loading="lazy" decoding="async" />
+          <span className="youtube-play-icon" aria-hidden="true">▶</span>
+          <span className="youtube-play-label">PLAY VIDEO</span>
+        </button>
+      )}
+    </div>
+  );
+}
+
 export default function Home() {
   const [selected, setSelected] = useState("Regular");
   const [heroArtistIndex, setHeroArtistIndex] = useState(0);
@@ -229,15 +253,15 @@ export default function Home() {
         <div className="performances-heading"><h2>Feel the<br /><em>live energy.</em></h2><p>Watch selected performances from the featured Dala Festival artists. Videos are embedded from their original YouTube channels and publishers.</p></div>
         <div className="performance-grid">
           <article className="performance-card">
-            <div className="performance-frame"><iframe src="https://www.youtube-nocookie.com/embed/kBOYEghF9Ts" title="Ferré Gola — Accor Arena Live (Official Video)" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen /></div>
+            <div className="performance-frame"><YouTubeClickToPlay videoId="kBOYEghF9Ts" title="Ferré Gola — Accor Arena Live (Official Video)" /></div>
             <div className="performance-info"><span>FERRÉ GOLA · OFFICIAL ARTIST CHANNEL</span><h3>Accor Arena Live</h3><a href="https://www.youtube.com/watch?v=kBOYEghF9Ts" target="_blank" rel="noreferrer">Watch on YouTube ↗</a></div>
           </article>
           <article className="performance-card">
-            <div className="performance-frame"><iframe src="https://www.youtube-nocookie.com/embed/4L4Kc2pFBlk" title="Prince Indah live performance from Nyali, Mombasa" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen /></div>
+            <div className="performance-frame"><YouTubeClickToPlay videoId="4L4Kc2pFBlk" title="Prince Indah live performance from Nyali, Mombasa" /></div>
             <div className="performance-info"><span>PRINCE INDAH · FREDY ENT. OFFICIAL</span><h3>Live Performance in Nyali, Mombasa</h3><a href="https://www.youtube.com/watch?v=4L4Kc2pFBlk" target="_blank" rel="noreferrer">Watch on YouTube ↗</a></div>
           </article>
           <article className="performance-card">
-            <div className="performance-frame"><iframe src="https://www.youtube-nocookie.com/embed/3_Lgf-9bhqg" title="Johnny Junior and BV Band — Full Live Performance at 2025 Luo Festival" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen /></div>
+            <div className="performance-frame"><YouTubeClickToPlay videoId="3_Lgf-9bhqg" title="Johnny Junior and BV Band — Full Live Performance at 2025 Luo Festival" /></div>
             <div className="performance-info"><span>JOHNNY JUNIOR · OFFICIAL ARTIST CHANNEL</span><h3>2025 Luo Festival — Full Live Performance</h3><a href="https://www.youtube.com/watch?v=3_Lgf-9bhqg" target="_blank" rel="noreferrer">Watch on YouTube ↗</a></div>
           </article>
         </div>
@@ -249,14 +273,7 @@ export default function Home() {
           <div className="promo-video-copy">
             <div><h2>The sound.<br /><em>The energy.</em></h2></div>
             <div className="video-placeholder promo-video-player">
-              <iframe
-                src="https://www.youtube-nocookie.com/embed/CeahvaMpxME?rel=0"
-                title="Official Dala Festival 2026 promotional video"
-                loading="lazy"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
-              />
+              <YouTubeClickToPlay videoId="CeahvaMpxME" title="Official Dala Festival 2026 promotional video" />
             </div>
           </div>
         </div>
