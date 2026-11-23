@@ -75,7 +75,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${manrope.variable} ${cormorant.variable} ${dmMono.variable}`}>
       <body>
         <script
           type="application/ld+json"
