@@ -125,7 +125,7 @@ export async function POST(request: NextRequest) {
     }
 
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || request.nextUrl.origin;
-    const paypal = await createPaypalOrder({ amountKes, orderReference, siteUrl, landingPage: body.paypalCheckoutMode === "card" ? "GUEST_CHECKOUT" : "NO_PREFERENCE" });
+    const paypal = await createPaypalOrder({ amountKes, orderReference, siteUrl, landingPage: "GUEST_CHECKOUT" });
     const { error: updateError } = await supabaseAdmin.from("ticket_orders").update({
       paypal_order_id: paypal.id,
       paypal_amount_usd: paypal.usdAmount,
