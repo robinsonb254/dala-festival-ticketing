@@ -135,6 +135,33 @@ export default function DalaFestivalTicketsPage() {
       </section>
 
       <section style={{ ...sectionStyle, borderTop: "1px solid #292a2d" }}>
+        <div style={{ textAlign: "center", maxWidth: 760, margin: "0 auto" }}>
+          <p style={{ color: "#e7b85c", fontSize: 12, fontWeight: 800, letterSpacing: 3, textTransform: "uppercase" }}>The Dala experience</p>
+          <div aria-label="Five decorative gold stars" style={{ color: "#e7b85c", fontSize: 34, letterSpacing: 8, margin: "10px 0" }}>★★★★★</div>
+          <h2 style={{ fontSize: 32, margin: "10px 0 14px" }}>Five-star energy. One unforgettable night.</h2>
+          <p style={{ color: "#aaa196", fontSize: 13, lineHeight: 1.6 }}>The stars are a decorative celebration of the experience we are aiming to create, not a customer rating. The highlights below are promotional opinions, not submitted customer reviews.</p>
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 16, marginTop: 30 }}>
+          <article style={{ background: "#141519", border: "1px solid #343238", borderRadius: 18, padding: 22 }}>
+            <div style={{ color: "#e7b85c", fontSize: 20, marginBottom: 12 }}>✦ ✦ ✦</div>
+            <h3 style={{ margin: "0 0 10px", fontSize: 19 }}>A headline performance to anticipate</h3>
+            <p style={{ color: "#d0c9bd", lineHeight: 1.7, margin: 0 }}>With Ferré Gola leading the announced lineup, Dala Festival is shaping up to be a major date for live music fans.</p>
+          </article>
+          <article style={{ background: "#141519", border: "1px solid #343238", borderRadius: 18, padding: 22 }}>
+            <div style={{ color: "#e7b85c", fontSize: 20, marginBottom: 12 }}>✦ ✦ ✦</div>
+            <h3 style={{ margin: "0 0 10px", fontSize: 19 }}>A night for music lovers</h3>
+            <p style={{ color: "#d0c9bd", lineHeight: 1.7, margin: 0 }}>A mix of Congolese sounds, Kenyan favourites and guest DJs promises a lively celebration of music and culture.</p>
+          </article>
+          <article style={{ background: "#141519", border: "1px solid #343238", borderRadius: 18, padding: 22 }}>
+            <div style={{ color: "#e7b85c", fontSize: 20, marginBottom: 12 }}>✦ ✦ ✦</div>
+            <h3 style={{ margin: "0 0 10px", fontSize: 19 }}>Choose your festival experience</h3>
+            <p style={{ color: "#d0c9bd", lineHeight: 1.7, margin: 0 }}>From Regular admission to VIP, VVIP and group tables, there are ticket categories for different ways to enjoy the event.</p>
+          </article>
+        </div>
+        <p style={{ textAlign: "center", marginTop: 28 }}><Link href="/#tickets" style={buttonStyle}>Get your Dala Festival tickets</Link></p>
+      </section>
+
+      <section style={{ ...sectionStyle, borderTop: "1px solid #292a2d" }}>
         <h2 style={{ fontSize: 32, marginTop: 0 }}>Dala Festival 2026: frequently asked questions</h2>
         {[
           ["When is Dala Festival 2026?", "The event starts at 2:00 PM on Saturday, 12 December 2026 and runs until 4:00 AM on Sunday, 13 December 2026 (East Africa Time)."],
