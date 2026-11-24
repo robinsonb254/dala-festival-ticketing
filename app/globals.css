@@ -217,3 +217,14 @@ body{font-family:var(--font-manrope),Arial,sans-serif;font-size:15px;line-height
 .youtube-play-icon{position:relative;z-index:1;width:66px;height:48px;border-radius:14px;background:#c4302b;color:white;display:grid;place-items:center;padding-left:4px;font-size:23px;box-shadow:0 8px 28px #0008}
 .youtube-play-label{position:absolute;z-index:1;bottom:15px;left:16px;padding:7px 10px;background:#080908c9;color:#fff;font:9px var(--font-dm-mono);letter-spacing:1.5px}
 .youtube-poster:focus-visible{outline:3px solid var(--lime);outline-offset:-4px}
+
+
+/* Clearly distinguish earlier sold-out releases from selectable ticket options */
+.sold-out-tiers{margin:0 0 28px;padding:22px;border:1px solid rgba(216,189,138,.24);background:#11130f}
+.sold-out-heading{margin-bottom:14px;color:var(--lime);font:10px var(--font-dm-mono);letter-spacing:1.7px}
+.sold-out-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.sold-out-tier{display:grid;gap:5px;padding:15px;background:#191b16;border:1px solid #34372b;min-width:0}
+.sold-out-tier span{color:#d5d3ca;font-size:11px}
+.sold-out-tier strong{color:var(--text);font:700 22px var(--font-manrope)}
+.sold-out-tier b{color:#d8bd8a;font:10px var(--font-dm-mono);letter-spacing:1.2px}
+@media(max-width:600px){.sold-out-tiers{padding:16px}.sold-out-grid{grid-template-columns:1fr}.sold-out-tier{grid-template-columns:1fr auto;align-items:center}.sold-out-tier b{grid-column:1/-1}}
