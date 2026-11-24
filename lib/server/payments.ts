@@ -6,15 +6,24 @@ const required = (name: string) => {
   return value;
 };
 
+let cachedDarajaToken: { token: string; base: string; expiresAt: number } | null = null;
+
 export async function darajaAccessToken() {
   const environment = process.env.MPESA_ENVIRONMENT === "sandbox" ? "sandbox" : "production";
   const base = environment === "sandbox" ? "https://sandbox.safaricom.co.ke" : "https://api.safaricom.co.ke";
+  // Reuse the Safaricom OAuth token in warm serverless instances. This avoids
+  // an extra OAuth round-trip for repeat checkouts while keeping a safety margin.
+  if (cachedDarajaToken && cachedDarajaToken.base === base && cachedDarajaToken.expiresAt > Date.now() + 60_000) {
+    return { token: cachedDarajaToken.token, base };
+  }
   const credentials = Buffer.from(required("MPESA_CONSUMER_KEY") + ":" + required("MPESA_CONSUMER_SECRET")).toString("base64");
   const response = await fetch(base + "/oauth/v1/generate?grant_type=client_credentials", {
     headers: { Authorization: "Basic " + credentials }, cache: "no-store", signal: AbortSignal.timeout(12000),
   });
   const data = await response.json();
   if (!response.ok || !data.access_token) throw new Error("Unable to authenticate with M-Pesa. Check Daraja credentials.");
+  const lifetimeSeconds = Number(data.expires_in) || 3599;
+  cachedDarajaToken = { token: data.access_token as string, base, expiresAt: Date.now() + lifetimeSeconds * 1000 };
   return { token: data.access_token as string, base };
 }
 
