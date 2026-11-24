@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Terms & Conditions | Dala Festival Ticketing",
-  description: "Terms governing use of the Dala Festival Ticketing website and ticket orders."
+  description: "Terms governing use of the Dala Festival Ticketing website and ticket orders.",
+  alternates: { canonical: "https://dalafestivaltickets.com/terms" }
 };
 
 export default function TermsPage() {
