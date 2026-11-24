@@ -89,7 +89,8 @@ export default function DalaFestivalTicketsPage() {
         <p style={{ maxWidth: 760, color: "#d0c9bd", fontSize: 19, lineHeight: 1.7 }}>Find Dala Festival December 2026 event information in one place: ticket prices in Kenya, the announced artist lineup, venue directions and event hours. The festival brings Congolese music star Ferré Gola, Kenyan favourites and special guest DJs to ASK Arena, Nairobi Showground.</p>
         <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: 28 }}>
           <span style={{ border: "1px solid #444", borderRadius: 999, padding: "10px 15px" }}>📅 Saturday, 12 December 2026</span>
-          <span style={{ border: "1px solid #444", borderRadius: 999, padding: "10px 15px" }}>📍 ASK Arena, Nairobi Showground</span>\n          <span style={{ border: "1px solid #444", borderRadius: 999, padding: "10px 15px" }}>🕑 2:00 PM – 4:00 AM (overnight)</span>
+          <span style={{ border: "1px solid #444", borderRadius: 999, padding: "10px 15px" }}>📍 ASK Arena, Nairobi Showground</span>
+          <span style={{ border: "1px solid #444", borderRadius: 999, padding: "10px 15px" }}>🕑 2:00 PM – 4:00 AM (overnight)</span>
         </div>
         <div style={{ marginTop: 30 }}><Link href="/#tickets" style={buttonStyle}>Buy Dala Festival tickets</Link></div>
       </section>
