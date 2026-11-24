@@ -3,6 +3,7 @@ import Link from "next/link";
 
 const siteUrl = "https://dalafestivaltickets.com";
 const pageUrl = `${siteUrl}/ferre-gola-nairobi-december-2026`;
+const socialImage = "https://i.ibb.co/TDVhfnGC/file-00000000ab5482089142cc3e3b527b44.png";
 
 export const metadata: Metadata = {
   title: "Ferré Gola in Nairobi 2026 | Dala Festival, 12 December",
@@ -14,7 +15,8 @@ export const metadata: Metadata = {
     url: pageUrl,
     siteName: "Dala Festival Ticketing",
     locale: "en_KE",
-    type: "article"
+    type: "article",
+    images: [{ url: socialImage, alt: "Dala Festival 2026 event poster featuring Ferré Gola" }]
   },
   robots: { index: true, follow: true }
 };
@@ -25,7 +27,7 @@ const articleData = {
   "headline": "Ferré Gola in Nairobi: Dala Festival December 2026",
   "description": "A guide to Ferré Gola's live performance in Nairobi at Dala Festival on 12 December 2026.",
   "datePublished": "2026-11-22",
-  "dateModified": "2026-11-24",
+  "dateModified": "2026-11-25",
   "image": "https://i.ibb.co/TDVhfnGC/file-00000000ab5482089142cc3e3b527b44.png",
   "mainEntityOfPage": pageUrl,
   "author": { "@type": "Organization", "name": "Dala Festival Ticketing" },
@@ -63,6 +65,10 @@ export default function FerreGolaNairobiArticle() {
           <h2 style={{ fontSize: 30, marginTop: 0 }}>Ferré Gola live in Nairobi on 12 December 2026</h2>
           <p style={{ color: "#d0c9bd", lineHeight: 1.85 }}>Ferré Gola is widely recognised for his expressive vocals and his place in modern Congolese music. His Nairobi appearance gives fans an opportunity to experience his music live alongside other performers from Kenya's vibrant music scene.</p>
           <p style={{ color: "#d0c9bd", lineHeight: 1.85 }}>Dala Festival brings together live music, culture and entertainment for a one-day festival programme in Nairobi. The event is scheduled for Saturday, 12 December 2026, at ASK Arena within the Nairobi Showground.</p>
+          <h3 style={{ fontSize: 23, marginTop: 28 }}>Ferré Gola’s musical journey</h3>
+          <p style={{ color: "#d0c9bd", lineHeight: 1.85 }}>Born Hervé Gola Bataringe in Kinshasa, Ferré Gola built his career through influential Congolese music groups, including Wenge Musica Maison Mère and Koffi Olomidé’s Quartier Latin, before establishing himself as a solo artist. His solo catalogue includes <em>Sens Interdit</em>, <em>Qui Est Derrière Toi?</em> and <em>Boîte Noire</em>, and his sound draws on Congolese rumba, soukous and ndombolo.</p>
+          <p style={{ color: "#d0c9bd", lineHeight: 1.85 }}>His connection with Kenyan listeners also includes the 2016 collaboration “Tucheze” with Kenyan singer Victoria Kimani. At Dala Festival, he is scheduled to headline a Nairobi lineup featuring Prince Indah, Johnny Junior, Les Wanyika and special guest DJs.</p>
+          <p style={{ color: "#a9a49a", fontSize: 13, lineHeight: 1.7 }}>Artist background: <a href="https://musicinafrica.net/node/214422" target="_blank" rel="noreferrer" style={linkStyle}>Music In Africa</a> and <a href="https://www.allmusic.com/artist/ferre-gola-mn0002554960" target="_blank" rel="noreferrer" style={linkStyle}>AllMusic</a>.</p>
         </section>
 
         <section style={{ ...sectionStyle, borderTop: "1px solid #292a2d" }}>
@@ -85,7 +91,7 @@ export default function FerreGolaNairobiArticle() {
 
         <section style={{ ...sectionStyle, borderTop: "1px solid #292a2d" }}>
           <h2 style={{ fontSize: 30, marginTop: 0 }}>Dala Festival 2026 ticket information</h2>
-          <p style={{ color: "#d0c9bd", lineHeight: 1.85 }}>Ticket categories listed on this ticketing website include Regular, VIP, VVIP, Table of 4 and Table of 8. Prices and availability are displayed on the checkout page and may change as ticket allocations are updated.</p>
+          <p style={{ color: "#d0c9bd", lineHeight: 1.85 }}>Current listed categories are Regular at KSh 5,000, VIP at KSh 10,000, VVIP at KSh 25,000, Table of 4 at KSh 100,000 and Table of 8 at KSh 200,000. Earlier releases displayed on this website are marked sold out. Check the live checkout for the latest category availability and order total.</p>
           <p style={{ marginTop: 26 }}><Link href="/#tickets" style={ctaStyle}>View Dala Festival tickets</Link></p>
         </section>
 
