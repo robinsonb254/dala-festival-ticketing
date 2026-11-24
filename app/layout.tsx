@@ -28,8 +28,8 @@ const websiteStructuredData = {
 };
 
 export const metadata: Metadata = {
-  title: "Dala Festival 2026 Tickets in Nairobi | Ferré Gola",
-  description: "Book Dala Festival 2026 tickets for 12 December at ASK Arena, Nairobi Showground. Featuring Ferré Gola, Prince Indah, Johnny Junior and more. Tickets from KSh 5,000.",
+  title: "Dala Festival 2026 Tickets | Ferré Gola Live in Nairobi",
+  description: "Buy Dala Festival 2026 tickets in Nairobi for Ferré Gola live on 12 December at ASK Arena. Choose Regular, VIP, VVIP or group tables.",
   metadataBase: new URL(siteUrl),
   icons: { icon: "/dala-festival-logo.webp", shortcut: "/dala-festival-logo.webp", apple: "/dala-festival-logo.webp" },
   applicationName: "Dala Festival Ticketing",
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Dala Festival 2026 Tickets in Nairobi | Ferré Gola",
-    description: "Book tickets for Dala Festival on 12 December 2026 at ASK Arena, Nairobi Showground. Featuring Ferré Gola, Prince Indah, Johnny Junior and more.",
+    description: "Buy Dala Festival tickets for Ferré Gola live in Nairobi on 12 December 2026 at ASK Arena. Regular, VIP, VVIP and group tables.",
     url: `${siteUrl}/`,
     siteName: "Dala Festival Ticketing",
     locale: "en_KE",
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     card: "summary",
     images: ["/dala-festival-logo.webp"],
     title: "Dala Festival 2026 Tickets in Nairobi | Ferré Gola",
-    description: "Book tickets for 12 December 2026 at ASK Arena, Nairobi Showground. Featuring Ferré Gola, Prince Indah and Johnny Junior."
+    description: "Get Dala Festival 2026 tickets for Ferré Gola in Nairobi on 12 December. Choose your ticket category and book online."
   }
 };
 
