@@ -25,7 +25,7 @@ const articleData = {
   "headline": "Ferré Gola in Nairobi: Dala Festival December 2026",
   "description": "A guide to Ferré Gola's live performance in Nairobi at Dala Festival on 12 December 2026.",
   "datePublished": "2026-11-22",
-  "dateModified": "2026-11-23",
+  "dateModified": "2026-11-24",
   "image": "https://i.ibb.co/TDVhfnGC/file-00000000ab5482089142cc3e3b527b44.png",
   "mainEntityOfPage": pageUrl,
   "author": { "@type": "Organization", "name": "Dala Festival Ticketing" },
