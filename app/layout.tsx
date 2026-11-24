@@ -29,7 +29,7 @@ const websiteStructuredData = {
 
 export const metadata: Metadata = {
   title: "Dala Festival 2026 Tickets | Ferré Gola Live in Nairobi",
-  description: "Buy Dala Festival 2026 tickets in Nairobi for Ferré Gola live on 12 December at ASK Arena. Choose Regular, VIP, VVIP or group tables.",
+  description: "Buy Dala Festival 2026 tickets in Nairobi for Ferré Gola on 12 December at ASK Arena. Regular, VIP, VVIP and group tables.",
   metadataBase: new URL(siteUrl),
   icons: { icon: "/dala-festival-logo.webp", shortcut: "/dala-festival-logo.webp", apple: "/dala-festival-logo.webp" },
   applicationName: "Dala Festival Ticketing",
