@@ -189,7 +189,7 @@ export default function Home() {
 
       <section className="hero hero-cinematic">
         <div className="hero-slideshow" aria-hidden="true">
-          <div className="hero-slide active"><Image src={artists[heroArtistIndex].image} alt="" fill priority fetchPriority="high" sizes="100vw" quality={65} /></div>
+          <div className="hero-slide active"><Image src={artists[heroArtistIndex].image} alt="" fill priority fetchPriority="high" sizes="100vw" quality={55} /></div>
         </div>
         <div className="hero-image-shade" />
         <div className="hero-content hero-cinematic-content">
