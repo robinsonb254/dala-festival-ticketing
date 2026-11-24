@@ -61,9 +61,7 @@ export default function Home() {
   const [checkoutLoading, setCheckoutLoading] = useState(false);
   const checkoutInFlightRef = useRef(false);
   const [checkoutError, setCheckoutError] = useState("");
-  const [checkoutMessage, setCheckoutMessage] = useState("");
-  const [orderReference, setOrderReference] = useState("");
-  const [paymentStatus, setPaymentStatus] = useState("");
+  const [mpesaPromptSent, setMpesaPromptSent] = useState(false);
   const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   useEffect(() => {
     const requestedTicket = new URLSearchParams(window.location.search).get("ticket");
@@ -111,30 +109,6 @@ export default function Home() {
   const chosen = useMemo(() => tickets.find((item) => item.name === selected) ?? tickets[0], [selected]);
   const total = chosen.price * quantity;
 
-  useEffect(() => {
-    if (!orderReference || paymentProvider !== "mpesa" || paymentStatus === "paid" || paymentStatus === "failed") return;
-    let active = true;
-    const checkStatus = async () => {
-      try {
-        const response = await fetch("/api/orders/" + encodeURIComponent(orderReference), { cache: "no-store" });
-        const data = await response.json();
-        if (!active || !response.ok || !data.order) return;
-        setPaymentStatus(data.order.payment_status);
-        if (data.order.payment_status === "paid") {
-          setCheckoutMessage("Payment received. Your order is confirmed. Keep your order reference safe: " + orderReference);
-        } else if (data.order.payment_status === "failed") {
-          checkoutInFlightRef.current = false;
-          setCheckoutMessage("The M-Pesa payment was not completed. You can start a new checkout.");
-        }
-      } catch {
-        // Keep polling if the status endpoint is temporarily unavailable.
-      }
-    };
-    void checkStatus();
-    const timer = window.setInterval(checkStatus, 4000);
-    return () => { active = false; window.clearInterval(timer); };
-  }, [orderReference, paymentProvider, paymentStatus]);
-
   async function startCheckout() {
     if (checkoutInFlightRef.current) return;
     if (customerName.trim().length < 2) {
@@ -160,9 +134,7 @@ export default function Home() {
     checkoutInFlightRef.current = true;
     setCheckoutLoading(true);
     setCheckoutError("");
-    setCheckoutMessage("");
-    setOrderReference("");
-    setPaymentStatus("");
+    setMpesaPromptSent(false);
     try {
       const response = await fetch("/api/checkout", {
         method: "POST",
@@ -177,13 +149,14 @@ export default function Home() {
       });
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || "Checkout could not be started.");
-      setOrderReference(data.reference);
       if (data.provider === "paypal" && data.approvalUrl) {
         window.location.assign(data.approvalUrl);
         return;
       }
-      setPaymentStatus("pending");
-      setCheckoutMessage(data.message || "Check your phone and complete the M-Pesa prompt.");
+      // Safaricom accepted the STK request. Remove the checkout panel and
+      // leave all payment confirmation to Safaricom SMS.
+      setMpesaPromptSent(true);
+      setCheckoutError("");
     } catch (error) {
       checkoutInFlightRef.current = false;
       setCheckoutError(error instanceof Error ? error.message : "Checkout could not be started.");
@@ -293,7 +266,7 @@ export default function Home() {
       <section className="tickets-section section" id="tickets">
         <div className="section-kicker">05 — MAKE IT YOURS</div><div className="tickets-head"><h2>Your night.<br /><em>Your ticket.</em></h2><p>Choose your experience, enter your details and pay securely using M-Pesa, PayPal or debit / credit card through PayPal.</p></div>
         <div className="ticket-layout"><div className="ticket-options">{tickets.map((ticket, i) => <button type="button" key={ticket.name} aria-pressed={selected === ticket.name} className={selected === ticket.name ? "ticket-option active" : "ticket-option"} onClick={() => setSelected(ticket.name)}><span className="ticket-index">0{i + 1}</span><span className="ticket-info"><b>{ticket.name}</b><small>{ticket.note}</small></span><strong>{money(ticket.price)}</strong><span className="radio-dot" /></button>)}</div>
-          <aside className="order-card"><div className="order-top"><span>YOUR SELECTION</span><Ticket /></div><h3>{chosen.name}</h3><p>{chosen.note}</p><div className="order-divider" /><div className="quantity-row"><span>Quantity</span><div className="quantity-control"><button type="button" onClick={() => setQuantity(Math.max(1, quantity - 1))} aria-label="Decrease quantity">−</button><b>{quantity}</b><button type="button" onClick={() => setQuantity(Math.min(10, quantity + 1))} aria-label="Increase quantity">+</button></div></div><div className="total-row"><span>Total</span><strong>{money(total)}</strong></div><div className="checkout-fields"><label>Full name<input value={customerName} onChange={(event) => setCustomerName(event.target.value)} autoComplete="name" placeholder="Your full name" required /></label><label>Email (optional)<input value={email} onChange={(event) => setEmail(event.target.value)} type="email" autoComplete="email" placeholder="you@example.com" /></label>{paymentProvider === "mpesa" && <label>M-Pesa phone number<input value={phone} onChange={(event) => setPhone(event.target.value)} type="tel" autoComplete="tel" placeholder="07XXXXXXXX" required /></label>}</div><div className="payment-choice"><span>PAY WITH</span><label><input type="radio" name="paymentProvider" checked={paymentProvider === "mpesa"} onChange={() => setPaymentProvider("mpesa")} /> M-Pesa</label><label><input type="radio" name="paymentProvider" checked={paymentProvider === "paypal"} onChange={() => setPaymentProvider("paypal")} /> PayPal</label><label><input type="radio" name="paymentProvider" checked={paymentProvider === "card"} onChange={() => setPaymentProvider("card")} /> Debit / Credit Card <span className="payment-hint">via PayPal</span></label></div><label className="terms-consent"><input type="checkbox" checked={termsAccepted} onChange={(event) => setTermsAccepted(event.target.checked)} /><span>I have read and agree to the <a href="/terms" target="_blank" rel="noreferrer">Terms &amp; Conditions</a>.</span></label><button type="button" className="checkout-button" onClick={startCheckout} disabled={checkoutLoading || (!!orderReference && paymentStatus !== "failed")}>{checkoutLoading ? "Starting checkout..." : paymentProvider === "mpesa" ? "Pay with M-Pesa" : paymentProvider === "card" ? "Pay by Card" : "Continue to PayPal"} <ArrowRight size={18} /></button><div className="secure-note"><ShieldCheck size={15} /> Secure payment verification · M-Pesa & PayPal</div>{checkoutError && <p className="checkout-error" role="alert">{checkoutError}</p>}{checkoutMessage && <div className="checkout-status" role="status"><b>{paymentStatus === "paid" ? "PAYMENT CONFIRMED" : paymentStatus === "failed" ? "PAYMENT NOT COMPLETED" : "ORDER " + orderReference}</b><span>{checkoutMessage}</span></div>}</aside>
+          {!mpesaPromptSent && (<aside className="order-card"><div className="order-top"><span>YOUR SELECTION</span><Ticket /></div><h3>{chosen.name}</h3><p>{chosen.note}</p><div className="order-divider" /><div className="quantity-row"><span>Quantity</span><div className="quantity-control"><button type="button" onClick={() => setQuantity(Math.max(1, quantity - 1))} aria-label="Decrease quantity">−</button><b>{quantity}</b><button type="button" onClick={() => setQuantity(Math.min(10, quantity + 1))} aria-label="Increase quantity">+</button></div></div><div className="total-row"><span>Total</span><strong>{money(total)}</strong></div><div className="checkout-fields"><label>Full name<input value={customerName} onChange={(event) => setCustomerName(event.target.value)} autoComplete="name" placeholder="Your full name" required /></label><label>Email (optional)<input value={email} onChange={(event) => setEmail(event.target.value)} type="email" autoComplete="email" placeholder="you@example.com" /></label>{paymentProvider === "mpesa" && <label>M-Pesa phone number<input value={phone} onChange={(event) => setPhone(event.target.value)} type="tel" autoComplete="tel" placeholder="07XXXXXXXX" required /></label>}</div><div className="payment-choice"><span>PAY WITH</span><label><input type="radio" name="paymentProvider" checked={paymentProvider === "mpesa"} onChange={() => setPaymentProvider("mpesa")} /> M-Pesa</label><label><input type="radio" name="paymentProvider" checked={paymentProvider === "paypal"} onChange={() => setPaymentProvider("paypal")} /> PayPal</label><label><input type="radio" name="paymentProvider" checked={paymentProvider === "card"} onChange={() => setPaymentProvider("card")} /> Debit / Credit Card <span className="payment-hint">via PayPal</span></label></div><label className="terms-consent"><input type="checkbox" checked={termsAccepted} onChange={(event) => setTermsAccepted(event.target.checked)} /><span>I have read and agree to the <a href="/terms" target="_blank" rel="noreferrer">Terms &amp; Conditions</a>.</span></label><button type="button" className="checkout-button" onClick={startCheckout} disabled={checkoutLoading || mpesaPromptSent}>{checkoutLoading ? "Starting checkout..." : paymentProvider === "mpesa" ? "Pay with M-Pesa" : paymentProvider === "card" ? "Pay by Card" : "Continue to PayPal"} <ArrowRight size={18} /></button><div className="secure-note"><ShieldCheck size={15} /> Secure payment verification · M-Pesa & PayPal</div>{checkoutError && <p className="checkout-error" role="alert">{checkoutError}</p>}</aside>) }
         </div>
       </section>
 
