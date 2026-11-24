@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
+import DeferredArtistMedia from "../components/DeferredArtistMedia";
 import { ArrowRight, CalendarDays, MapPin, Music2, ShieldCheck, Ticket, Menu, X, ChevronDown } from "lucide-react";
 
 const tickets = [
@@ -24,33 +25,9 @@ const money = (value: number) => new Intl.NumberFormat("en-KE", {
 }).format(value);
 
 
-function YouTubeClickToPlay({ videoId, title }: { videoId: string; title: string }) {
-  const [playing, setPlaying] = useState(false);
-  return (
-    <div className="youtube-click-player">
-      {playing ? (
-        <iframe
-          src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0`}
-          title={title}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerPolicy="strict-origin-when-cross-origin"
-          allowFullScreen
-        />
-      ) : (
-        <button type="button" className="youtube-poster" onClick={() => setPlaying(true)} aria-label={`Play video: ${title}`}>
-          <img src={`https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`} alt="" loading="lazy" decoding="async" />
-          <span className="youtube-play-icon" aria-hidden="true">▶</span>
-          <span className="youtube-play-label">PLAY VIDEO</span>
-        </button>
-      )}
-    </div>
-  );
-}
-
 export default function Home() {
   const [selected, setSelected] = useState("Regular");
   const [heroArtistIndex, setHeroArtistIndex] = useState(0);
-  const [selectedArtistIndex, setSelectedArtistIndex] = useState<number | null>(null);
   const [quantity, setQuantity] = useState(1);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [customerName, setCustomerName] = useState("");
@@ -74,22 +51,6 @@ export default function Home() {
     const timer = window.setInterval(() => setHeroArtistIndex((current) => (current + 1) % artists.length), 5200);
     return () => window.clearInterval(timer);
   }, []);
-
-  useEffect(() => {
-    if (selectedArtistIndex === null) return;
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setSelectedArtistIndex(null);
-      if (event.key === "ArrowRight") setSelectedArtistIndex((current) => current === null ? null : (current + 1) % artists.length);
-      if (event.key === "ArrowLeft") setSelectedArtistIndex((current) => current === null ? null : (current - 1 + artists.length) % artists.length);
-    };
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    window.addEventListener("keydown", handleKeyDown);
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [selectedArtistIndex]);
 
   useEffect(() => {
     const eventTime = new Date("2026-12-12T14:00:00+03:00").getTime();
@@ -224,46 +185,7 @@ export default function Home() {
 
       <section className="lineup-section" id="lineup"><div className="section"><div className="section-kicker">02 — THE SOUNDTRACK</div><div className="lineup-head"><h2>The<br /><em>lineup.</em></h2><p>Meet the featured performers bringing the Dala Festival stage to life. The featured lineup includes Ferré Gola, Prince Indah and Johnny Junior, alongside Les Wanyika and special guest DJs.</p></div><div className="artist-card-grid">{artists.map((artist, i) => <article className="artist-card" key={artist.name}><div className="artist-photo-wrap"><button type="button" className="artist-photo-trigger" onClick={() => setSelectedArtistIndex(i)} aria-label={`Enlarge ${artist.name} photo`}><Image src={artist.image} alt={artist.alt} fill sizes="(max-width: 800px) 100vw, 33vw" quality={76} /></button><span className="artist-photo-index">0{i + 1}</span></div><div className="artist-card-info"><div><span>{artist.role}</span><h3>{artist.name}</h3></div><Music2 className="artist-icon" /></div></article>)}</div><div className="additional-acts"><span>ALSO ON THE BILL</span>{additionalActs.map((act) => <b key={act}>{act}</b>)}</div></div></section>
 
-      <section className="artist-performances section" id="performances">
-        <div className="section-kicker">03 — LIVE PERFORMANCE HIGHLIGHTS</div>
-        <div className="performances-heading"><h2>Feel the<br /><em>live energy.</em></h2><p>Watch selected performances from the featured Dala Festival artists. Videos are embedded from their original YouTube channels and publishers.</p></div>
-        <div className="performance-grid">
-          <article className="performance-card">
-            <div className="performance-frame"><YouTubeClickToPlay videoId="kBOYEghF9Ts" title="Ferré Gola — Accor Arena Live (Official Video)" /></div>
-            <div className="performance-info"><span>FERRÉ GOLA · OFFICIAL ARTIST CHANNEL</span><h3>Accor Arena Live</h3><a href="https://www.youtube.com/watch?v=kBOYEghF9Ts" target="_blank" rel="noreferrer">Watch on YouTube ↗</a></div>
-          </article>
-          <article className="performance-card">
-            <div className="performance-frame"><YouTubeClickToPlay videoId="4L4Kc2pFBlk" title="Prince Indah live performance from Nyali, Mombasa" /></div>
-            <div className="performance-info"><span>PRINCE INDAH · FREDY ENT. OFFICIAL</span><h3>Live Performance in Nyali, Mombasa</h3><a href="https://www.youtube.com/watch?v=4L4Kc2pFBlk" target="_blank" rel="noreferrer">Watch on YouTube ↗</a></div>
-          </article>
-          <article className="performance-card">
-            <div className="performance-frame"><YouTubeClickToPlay videoId="3_Lgf-9bhqg" title="Johnny Junior and BV Band — Full Live Performance at 2025 Luo Festival" /></div>
-            <div className="performance-info"><span>JOHNNY JUNIOR · OFFICIAL ARTIST CHANNEL</span><h3>2025 Luo Festival — Full Live Performance</h3><a href="https://www.youtube.com/watch?v=3_Lgf-9bhqg" target="_blank" rel="noreferrer">Watch on YouTube ↗</a></div>
-          </article>
-        </div>
-      </section>
-
-      <section className="promo-video-section" id="video">
-        <div className="section promo-video-inner">
-          <div className="section-kicker">03 — WATCH THE VIBE</div>
-          <div className="promo-video-copy">
-            <div><h2>The sound.<br /><em>The energy.</em></h2></div>
-            <div className="video-placeholder promo-video-player">
-              <YouTubeClickToPlay videoId="CeahvaMpxME" title="Official Dala Festival 2026 promotional video" />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="festival-gallery section" id="gallery">
-        <div className="section-kicker">04 — THE ARTISTS</div>
-        <div className="gallery-heading"><h2>Faces of<br /><em>Dala.</em></h2><p>Featured artist portraits from the Dala Festival lineup.</p></div>
-        <div className="gallery-grid">
-          <figure className="gallery-item gallery-feature"><button type="button" className="gallery-photo-trigger" onClick={() => setSelectedArtistIndex(0)} aria-label="Enlarge Ferré Gola photo"><Image src="/artists/ferre-gola.jpg" alt="Ferré Gola featured artist photograph" fill sizes="(max-width: 800px) 100vw, 42vw" quality={72} /></button><figcaption><span>01 / HEADLINER</span><b>Ferré Gola</b></figcaption></figure>
-          <figure className="gallery-item"><button type="button" className="gallery-photo-trigger" onClick={() => setSelectedArtistIndex(1)} aria-label="Enlarge Prince Indah photo"><Image src="/artists/prince-indah.jpg" alt="Prince Indah featured artist photograph" fill sizes="(max-width: 800px) 100vw, 29vw" quality={72} /></button><figcaption><span>02 / LIVE PERFORMANCE</span><b>Prince Indah</b></figcaption></figure>
-          <figure className="gallery-item"><button type="button" className="gallery-photo-trigger" onClick={() => setSelectedArtistIndex(2)} aria-label="Enlarge Johnny Junior photo"><Image src="/artists/johnny-junior.jpg" alt="Johnny Junior featured artist photograph" fill sizes="(max-width: 800px) 100vw, 29vw" quality={72} /></button><figcaption><span>03 / LIVE PERFORMANCE</span><b>Johnny Junior</b></figcaption></figure>
-        </div>
-      </section>
+      <DeferredArtistMedia artists={artists} />
 
       <section className="tickets-section section" id="tickets">
         <div className="section-kicker">05 — MAKE IT YOURS</div><div className="tickets-head"><h2>Your night.<br /><em>Your ticket.</em></h2><p>Choose your experience, enter your details and pay securely using M-Pesa, PayPal or debit / credit card through PayPal.</p></div>
@@ -311,17 +233,6 @@ export default function Home() {
       <section className="faq-section section" id="faq"><div className="section-kicker">06 — GOOD TO KNOW</div><h2>Frequently asked <em>questions.</em></h2><div className="faq-list"><details><summary>When is Dala Festival 2026?<ChevronDown /></summary><p>The event starts at 2:00 PM on Saturday, 12 December 2026 and runs until 4:00 AM on Sunday, 13 December 2026 (East Africa Time).</p></details><details><summary>Where is the festival taking place?<ChevronDown /></summary><p>At ASK Arena, Nairobi Showground, in the Jamhuri Park area off Ngong Road, Nairobi. Use the Venue &amp; travel guide above for directions.</p></details><details><summary>Who is performing?<ChevronDown /></summary><p>The announced lineup features Ferré Gola, Prince Indah, Johnny Junior, Les Wanyika and special guest DJs.</p></details><details><summary>What tickets are available and how much do they cost?<ChevronDown /></summary><p>Regular: KSh 5,000; VIP: KSh 10,000; VVIP: KSh 25,000; Table of 4: KSh 100,000; and Table of 8: KSh 200,000. Check the live checkout for the category and total before paying.</p></details><details><summary>How do I buy tickets online?<ChevronDown /></summary><p>Choose your ticket category and quantity in the Tickets section, enter your details, select a payment method and follow the checkout instructions.</p></details><details><summary>Which payment methods are available?<ChevronDown /></summary><p>You can pay using M-Pesa, PayPal or select Debit / Credit Card. Card payments are securely processed through PayPal.</p></details><details><summary>When is my order confirmed?<ChevronDown /></summary><p>Your order is confirmed after the payment provider verifies successful payment and the order status is updated. Keep your order reference and payment confirmation. If payment is deducted but your order is not confirmed, email dalafestive@gmail.com with your order reference.</p></details><details><summary>How do I get help with a ticket or payment?<ChevronDown /></summary><p>Email <a href="mailto:dalafestive@gmail.com">dalafestive@gmail.com</a> and include your order reference if you have one. Never share your M-Pesa PIN, PayPal password or one-time verification codes.</p></details></div></section>
 
       <footer><a className="brand footer-brand" href="#"><span className="brand-mark">D</span><span>DALA<span className="brand-light"> FESTIVAL</span><small>TICKETING & EXPERIENCES</small></span></a><nav className="footer-links" aria-label="Footer navigation"><a href="#about">Festival</a><a href="#lineup">Lineup</a><a href="#tickets">Tickets</a><a href="#venue">Venue & travel</a><a href="/dala-festival-2026-venue-location">Venue & location guide</a><a href="/ferre-gola-nairobi-december-2026">Ferré Gola in Nairobi</a><a href="#faq">FAQs</a><a href="/dala-festival-2026-tickets">Event guide & tickets</a><a href="/terms">Terms &amp; Conditions</a></nav><div className="footer-contact"><span>CONTACT</span><a href="mailto:dalafestive@gmail.com">dalafestive@gmail.com</a></div><div>© 2026 Dala Festival Ticketing. All rights reserved.</div></footer>
-      {selectedArtistIndex !== null && (
-        <div className="artist-lightbox" role="dialog" aria-modal="true" aria-label={`Artist photograph: ${artists[selectedArtistIndex].name}`} onClick={() => setSelectedArtistIndex(null)}>
-          <button type="button" className="artist-lightbox-close" onClick={() => setSelectedArtistIndex(null)} aria-label="Close photo">×</button>
-          <button type="button" className="artist-lightbox-nav artist-lightbox-prev" onClick={(event) => { event.stopPropagation(); setSelectedArtistIndex((selectedArtistIndex - 1 + artists.length) % artists.length); }} aria-label="Previous artist">‹</button>
-          <div className="artist-lightbox-content" onClick={(event) => event.stopPropagation()}>
-            <Image src={artists[selectedArtistIndex].image} alt={artists[selectedArtistIndex].alt} width={1200} height={1600} sizes="76vw" quality={85} />
-            <div className="artist-lightbox-caption"><span>{artists[selectedArtistIndex].role}</span><strong>{artists[selectedArtistIndex].name}</strong><small>{String(selectedArtistIndex + 1).padStart(2, "0")} / {String(artists.length).padStart(2, "0")}</small></div>
-          </div>
-          <button type="button" className="artist-lightbox-nav artist-lightbox-next" onClick={(event) => { event.stopPropagation(); setSelectedArtistIndex((selectedArtistIndex + 1) % artists.length); }} aria-label="Next artist">›</button>
-        </div>
-      )}
       </main>
     </>
   );
