@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     }
   },
   openGraph: {
-    title: "Dala Festival 2026 Tickets in Nairobi | Ferré Gola",
+    title: "Dala Festival 2026 Tickets | Ferré Gola Live in Nairobi",
     description: "Buy Dala Festival tickets for Ferré Gola live in Nairobi on 12 December 2026 at ASK Arena. Regular, VIP, VVIP and group tables.",
     url: `${siteUrl}/`,
     siteName: "Dala Festival Ticketing",
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary",
     images: ["/dala-festival-logo.webp"],
-    title: "Dala Festival 2026 Tickets in Nairobi | Ferré Gola",
+    title: "Dala Festival 2026 Tickets | Ferré Gola Live in Nairobi",
     description: "Get Dala Festival 2026 tickets for Ferré Gola in Nairobi on 12 December. Choose your ticket category and book online."
   }
 };
