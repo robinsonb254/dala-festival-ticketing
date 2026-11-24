@@ -64,9 +64,9 @@ const eventData = {
 };
 
 const ticketPrices = [
-  ["Super Early Bird", "KSh 3,000", "SOLD OUT"],
-  ["Early Bird", "KSh 3,500", "SOLD OUT"],
-  ["Advance", "KSh 4,000", "SOLD OUT"],
+  ["Die Hard", "KSh 3,500", "SOLD OUT"],
+  ["Regular (Wave 1)", "KSh 4,000", "SOLD OUT"],
+  ["First Wave VIP", "KSh 8,000", "SOLD OUT"],
   ["Regular", "KSh 5,000", "General admission"],
   ["VIP", "KSh 10,000", "VIP ticket category"],
   ["VVIP", "KSh 25,000", "VVIP ticket category"],
@@ -173,7 +173,7 @@ export default function DalaFestivalTicketsPage() {
           ["When is Dala Festival 2026?", "The event starts at 3:00 PM on Saturday, 12 December 2026 and runs until 4:00 AM on Sunday, 13 December 2026 (East Africa Time)."],
           ["Where is Dala Festival held?", "Dala Festival takes place at ASK Arena, Nairobi Showground, in the Jamhuri Park area off Ngong Road, Nairobi."],
           ["Who is performing at Dala Festival?", "The announced lineup features Ferré Gola, Prince Indah, Johnny Junior, Les Wanyika and special guest DJs."],
-          ["How much are Dala Festival tickets?", "Earlier releases were Super Early Bird at KSh 3,000, Early Bird at KSh 3,500 and Advance at KSh 4,000; all three are sold out. Current categories are Regular KSh 5,000, VIP KSh 10,000, VVIP KSh 25,000, Table of 4 KSh 100,000 and Table of 8 KSh 200,000."],
+          ["How much are Dala Festival tickets?", "Earlier releases included Die Hard at KSh 3,500, Regular (Wave 1) at KSh 4,000 and First Wave VIP at KSh 8,000; all three are sold out. Current categories are Regular KSh 5,000, VIP KSh 10,000, VVIP KSh 25,000, Table of 4 KSh 100,000 and Table of 8 KSh 200,000."],
           ["How can I buy tickets online?", "Choose a ticket category and quantity on the ticket checkout page, enter your details, select a payment method and follow the checkout instructions."],
           ["Which payment methods can I use?", "M-Pesa and PayPal are available. A debit/credit card option is also shown at checkout and is processed through PayPal."],
           ["When is my order confirmed?", "Your order is confirmed after the payment provider verifies successful payment and the platform records the confirmed status. Keep your order reference and payment confirmation."],
