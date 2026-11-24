@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 const siteUrl = "https://dalafestivaltickets.com";
+const socialImage = "https://i.ibb.co/TDVhfnGC/file-00000000ab5482089142cc3e3b527b44.png";
 
 
 const websiteStructuredData = {
@@ -62,11 +63,11 @@ export const metadata: Metadata = {
     siteName: "Dala Festival Ticketing",
     locale: "en_KE",
     type: "website",
-    images: [{ url: "/dala-festival-logo.webp", width: 192, height: 192, alt: "Dala Festival logo" }]
+    images: [{ url: socialImage, alt: "Dala Festival 2026 event poster featuring Ferré Gola" }]
   },
   twitter: {
-    card: "summary",
-    images: ["/dala-festival-logo.webp"],
+    card: "summary_large_image",
+    images: [socialImage],
     title: "Dala Festival 2026 Tickets | Ferré Gola Live in Nairobi",
     description: "Get Dala Festival 2026 tickets for Ferré Gola in Nairobi on 12 December. Choose your ticket category and book online."
   }
