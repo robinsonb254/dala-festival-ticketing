@@ -62,6 +62,9 @@ const eventData = {
 };
 
 const ticketPrices = [
+  ["Super Early Bird", "KSh 3,000", "SOLD OUT"],
+  ["Early Bird", "KSh 3,500", "SOLD OUT"],
+  ["Advance", "KSh 4,000", "SOLD OUT"],
   ["Regular", "KSh 5,000", "General admission"],
   ["VIP", "KSh 10,000", "VIP ticket category"],
   ["VVIP", "KSh 25,000", "VVIP ticket category"],
@@ -132,7 +135,7 @@ export default function DalaFestivalTicketsPage() {
       <section style={{ ...sectionStyle, borderTop: "1px solid #292a2d" }}>
         <h2 style={{ fontSize: 32, marginTop: 0 }}>Venue and event information</h2>
         <p style={{ color: "#d0c9bd", lineHeight: 1.8 }}>Dala Festival 2026 takes place at <strong>ASK Arena, Nairobi Showground, Nairobi, Kenya</strong>. Gates/event programme begins at <strong>2:00 PM on Saturday, 12 December 2026</strong> and runs until <strong>4:00 AM on Sunday, 13 December 2026</strong> (East Africa Time). The venue is in the Jamhuri Park area, off Ngong Road. <a href="https://www.google.com/maps/search/?api=1&query=ASK+Arena%2C+Nairobi+Showground%2C+Nairobi" target="_blank" rel="noreferrer" style={{ color: "#e7b85c", fontWeight: 800 }}>Open venue directions in Google Maps ↗</a> · <Link href="/dala-festival-2026-venue-location" style={{ color: "#e7b85c", fontWeight: 800 }}>Read the full ASK Arena venue and travel guide ↗</Link></p>
-        <p style={{ color: "#d0c9bd", lineHeight: 1.8 }}>This website is an independently operated, organizer-authorized ticketing platform for Dala Festival 2026. For ticket enquiries, contact <a href="mailto:dalafestive@gmail.com" style={{ color: "#17130d", background: "#e7b85c", padding: "3px 8px", borderRadius: 6, fontWeight: 800, textDecoration: "none", whiteSpace: "nowrap" }}>dalafestive@gmail.com</a>.</p>
+        <p style={{ color: "#d0c9bd", lineHeight: 1.8 }}>For ticket enquiries, contact <a href="mailto:dalafestive@gmail.com" style={{ color: "#17130d", background: "#e7b85c", padding: "3px 8px", borderRadius: 6, fontWeight: 800, textDecoration: "none", whiteSpace: "nowrap" }}>dalafestive@gmail.com</a>.</p>
       </section>
 
       <section style={{ ...sectionStyle, borderTop: "1px solid #292a2d" }}>
@@ -168,7 +171,7 @@ export default function DalaFestivalTicketsPage() {
           ["When is Dala Festival 2026?", "The event starts at 2:00 PM on Saturday, 12 December 2026 and runs until 4:00 AM on Sunday, 13 December 2026 (East Africa Time)."],
           ["Where is Dala Festival held?", "Dala Festival takes place at ASK Arena, Nairobi Showground, in the Jamhuri Park area off Ngong Road, Nairobi."],
           ["Who is performing at Dala Festival?", "The announced lineup features Ferré Gola, Prince Indah, Johnny Junior, Les Wanyika and special guest DJs."],
-          ["How much are Dala Festival tickets?", "Regular tickets are KSh 5,000; VIP KSh 10,000; VVIP KSh 25,000; Table of 4 KSh 100,000; and Table of 8 KSh 200,000."],
+          ["How much are Dala Festival tickets?", "Earlier releases were Super Early Bird at KSh 3,000, Early Bird at KSh 3,500 and Advance at KSh 4,000; all three are sold out. Current categories are Regular KSh 5,000, VIP KSh 10,000, VVIP KSh 25,000, Table of 4 KSh 100,000 and Table of 8 KSh 200,000."],
           ["How can I buy tickets online?", "Choose a ticket category and quantity on the ticket checkout page, enter your details, select a payment method and follow the checkout instructions."],
           ["Which payment methods can I use?", "M-Pesa and PayPal are available. A debit/credit card option is also shown at checkout and is processed through PayPal."],
           ["When is my order confirmed?", "Your order is confirmed after the payment provider verifies successful payment and the platform records the confirmed status. Keep your order reference and payment confirmation."],
