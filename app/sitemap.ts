@@ -12,7 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${siteUrl}/dala-festival-2026-tickets`,
-      lastModified: new Date("2026-11-23T00:00:00+03:00"),
+      lastModified: new Date("2026-11-25T00:00:00+03:00"),
       changeFrequency: "weekly",
       priority: 0.9
     },
