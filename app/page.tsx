@@ -206,7 +206,8 @@ export default function Home() {
           <a href="#performances" onClick={() => setMobileOpen(false)}>Performances</a><a href="#video" onClick={() => setMobileOpen(false)}>Promo film</a>
           <a href="#gallery" onClick={() => setMobileOpen(false)}>Gallery</a>
           <a href="#tickets" onClick={() => setMobileOpen(false)}>Tickets</a>
-          <a href="#venue" onClick={() => setMobileOpen(false)}>Venue & travel</a>\n          <a href="#faq" onClick={() => setMobileOpen(false)}>FAQs</a>
+          <a href="#venue" onClick={() => setMobileOpen(false)}>Venue & travel</a>
+          <a href="#faq" onClick={() => setMobileOpen(false)}>FAQs</a>
           <a className="nav-cta" href="#tickets" onClick={() => setMobileOpen(false)}>Get tickets <ArrowRight size={16} /></a>
         </nav>
       </header>
