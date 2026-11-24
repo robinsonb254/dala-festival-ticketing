@@ -54,7 +54,8 @@ export default function FerreGolaNairobiArticle() {
           <p style={{ color: "#d0c9bd", fontSize: 19, lineHeight: 1.75, maxWidth: 780 }}>Looking for Ferré Gola concert details in Nairobi for December 2026? Ferré Gola, known to fans as Le Padre, is scheduled to headline Dala Festival on Saturday, 12 December 2026. The concert takes place from 2:00 PM on Saturday, 12 December until 4:00 AM on Sunday, 13 December 2026 at ASK Arena, Nairobi Showground, with a lineup that also features popular Kenyan performers.</p>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: 24 }}>
             <span style={{ border: "1px solid #444", borderRadius: 999, padding: "10px 15px" }}>📅 12 December 2026</span>
-            <span style={{ border: "1px solid #444", borderRadius: 999, padding: "10px 15px" }}>📍 ASK Arena, Nairobi</span>\n            <span style={{ border: "1px solid #444", borderRadius: 999, padding: "10px 15px" }}>🕑 2:00 PM – 4:00 AM (overnight)</span>
+            <span style={{ border: "1px solid #444", borderRadius: 999, padding: "10px 15px" }}>📍 ASK Arena, Nairobi</span>
+            <span style={{ border: "1px solid #444", borderRadius: 999, padding: "10px 15px" }}>🕑 2:00 PM – 4:00 AM (overnight)</span>
           </div>
         </section>
 
