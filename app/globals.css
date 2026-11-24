@@ -228,3 +228,5 @@ body{font-family:var(--font-manrope),Arial,sans-serif;font-size:15px;line-height
 .sold-out-tier strong{color:var(--text);font:700 22px var(--font-manrope)}
 .sold-out-tier b{color:#d8bd8a;font:10px var(--font-dm-mono);letter-spacing:1.2px}
 @media(max-width:600px){.sold-out-tiers{padding:16px}.sold-out-grid{grid-template-columns:1fr}.sold-out-tier{grid-template-columns:1fr auto;align-items:center}.sold-out-tier b{grid-column:1/-1}}
+
+.payment-help{margin:-7px 0 18px;color:#aaa99f;font-size:11px;line-height:1.65}
