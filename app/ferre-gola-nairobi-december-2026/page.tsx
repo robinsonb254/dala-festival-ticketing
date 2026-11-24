@@ -86,7 +86,6 @@ export default function FerreGolaNairobiArticle() {
         <section style={{ ...sectionStyle, borderTop: "1px solid #292a2d" }}>
           <h2 style={{ fontSize: 30, marginTop: 0 }}>Dala Festival 2026 ticket information</h2>
           <p style={{ color: "#d0c9bd", lineHeight: 1.85 }}>Ticket categories listed on this ticketing website include Regular, VIP, VVIP, Table of 4 and Table of 8. Prices and availability are displayed on the checkout page and may change as ticket allocations are updated.</p>
-          <p style={{ color: "#d0c9bd", lineHeight: 1.85 }}>This is an independently operated, organizer-authorized ticketing platform. Review the event details and ticket category carefully before completing a purchase.</p>
           <p style={{ marginTop: 26 }}><Link href="/#tickets" style={ctaStyle}>View Dala Festival tickets</Link></p>
         </section>
 
