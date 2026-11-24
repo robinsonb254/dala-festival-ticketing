@@ -13,7 +13,7 @@ const websiteStructuredData = {
       "name": "Dala Festival Ticketing",
       "url": siteUrl,
       "email": "dalafestive@gmail.com",
-      "description": "An independently operated, organizer-authorized ticketing platform providing online ticket sales for Dala Festival 2026."
+      "description": "Online ticketing and event information for Dala Festival 2026 in Nairobi."
     },
     {
       "@type": "WebSite",
