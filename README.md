@@ -33,9 +33,9 @@ Set these variables in Vercel Project Settings → Environment Variables. Never 
 - \`SUPABASE_SECRET_KEY\`: create a Supabase secret API key for this Dala project.
 - \`MPESA_CONSUMER_KEY\`, \`MPESA_CONSUMER_SECRET\`, \`MPESA_PASSKEY\`: Daraja credentials for the selected environment.
 - \`MPESA_SHORTCODE\`: the registered PayBill/Till shortcode for the Daraja product and transaction type.
-- \`MPESA_CALLBACK_URL\`: \`https://dala-festival-ticketing.vercel.app/api/payments/mpesa/callback\` after the production domain is active.
+- \`MPESA_CALLBACK_URL\`: \`https://dalafestivaltickets.com/api/payments/mpesa/callback\` after the production domain is active.
 - \`PAYPAL_CLIENT_SECRET\`: secret paired with the PayPal client ID.
 - \`PAYPAL_KES_TO_USD_RATE\`: number of Kenyan shillings per one US dollar. PayPal checkout requires an explicit, approved conversion rate; each order stores its quoted USD amount before the customer approves payment.
 - \`PAYPAL_ENVIRONMENT\`: use \`sandbox\` for testing, then \`live\` only after credentials and end-to-end verification.
 
-Do not accept live payments until the environment variables are complete and the payment flows have been tested. The M-Pesa callback independently queries Daraja before marking an order paid. PayPal capture is checked against the stored order reference and USD quote.
+Do not accept live payments until the environment variables are complete and the payment flows have been tested. The M-Pesa callback independently queries Daraja before marking an order paid; callback metadata is cross-checked against the stored order. Keep the callback URL on the canonical apex domain. PayPal capture is checked against the stored order reference and USD quote.
