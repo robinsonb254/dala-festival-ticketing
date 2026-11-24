@@ -48,11 +48,11 @@ const eventData = {
     { "@type": "MusicGroup", "name": "Les Wanyika" }
   ],
   "offers": [
-    { "@type": "Offer", "name": "Regular", "url": `${siteUrl}/tickets/regular`, "priceCurrency": "KES", "price": 5000 },
-    { "@type": "Offer", "name": "VIP", "url": `${siteUrl}/tickets/vip`, "priceCurrency": "KES", "price": 10000 },
-    { "@type": "Offer", "name": "VVIP", "url": `${siteUrl}/tickets/vvip`, "priceCurrency": "KES", "price": 25000 },
-    { "@type": "Offer", "name": "Table of 4", "url": `${siteUrl}/tickets/table-of-4`, "priceCurrency": "KES", "price": 100000 },
-    { "@type": "Offer", "name": "Table of 8", "url": `${siteUrl}/tickets/table-of-8`, "priceCurrency": "KES", "price": 200000 }
+    { "@type": "Offer", "name": "Regular", "url": `${siteUrl}/tickets/regular`, "priceCurrency": "KES", "price": 5000, "availability": "https://schema.org/InStock" },
+    { "@type": "Offer", "name": "VIP", "url": `${siteUrl}/tickets/vip`, "priceCurrency": "KES", "price": 10000, "availability": "https://schema.org/InStock" },
+    { "@type": "Offer", "name": "VVIP", "url": `${siteUrl}/tickets/vvip`, "priceCurrency": "KES", "price": 25000, "availability": "https://schema.org/InStock" },
+    { "@type": "Offer", "name": "Table of 4", "url": `${siteUrl}/tickets/table-of-4`, "priceCurrency": "KES", "price": 100000, "availability": "https://schema.org/InStock" },
+    { "@type": "Offer", "name": "Table of 8", "url": `${siteUrl}/tickets/table-of-8`, "priceCurrency": "KES", "price": 200000, "availability": "https://schema.org/InStock" }
   ]
 };
 
