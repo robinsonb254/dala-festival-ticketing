@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { Music2 } from "lucide-react";
 
 type Artist = { name: string; role: string; image: string; alt: string };
 
