@@ -3,6 +3,7 @@ import Link from "next/link";
 
 const siteUrl = "https://dalafestivaltickets.com";
 const pageUrl = `${siteUrl}/dala-festival-2026-venue-location`;
+const socialImage = "https://i.ibb.co/TDVhfnGC/file-00000000ab5482089142cc3e3b527b44.png";
 
 export const metadata: Metadata = {
   title: "Dala Festival 2026 Venue & Location | ASK Arena Nairobi",
@@ -14,7 +15,8 @@ export const metadata: Metadata = {
     url: pageUrl,
     siteName: "Dala Festival Ticketing",
     locale: "en_KE",
-    type: "website"
+    type: "website",
+    images: [{ url: socialImage, alt: "Dala Festival 2026 event poster featuring Ferré Gola" }]
   },
   robots: { index: true, follow: true }
 };
