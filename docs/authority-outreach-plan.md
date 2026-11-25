@@ -22,7 +22,7 @@ Earn relevant, editorially justified mentions and links that help Kenyan audienc
 
 - Event: Dala Festival 2026
 - Date: Saturday, 12 December 2026
-- Published event hours: 2:00 PM Saturday, 12 December to 4:00 AM Sunday, 13 December 2026 (EAT)
+- Published event hours: 3:00 PM Saturday, 12 December to 4:00 AM Sunday, 13 December 2026 (EAT)
 - Venue: ASK Arena, Nairobi Showground, Jamhuri Park, Nairobi
 - Headliner: Ferré Gola
 - Announced performers: Prince Indah, Johnny Junior, Les Wanyika and special guest DJs
@@ -31,7 +31,7 @@ Earn relevant, editorially justified mentions and links that help Kenyan audienc
 - Venue guide: https://dalafestivaltickets.com/dala-festival-2026-venue-location
 - Contact shown on the website: dalafestive@gmail.com
 
-Preserve the 2:00 PM start and 4:00 AM end in all submitted copy. Some third-party listings display a different start time; match the 2:00 PM start shown on the ticket listing and published media coverage.
+Preserve the 3:00 PM start and 4:00 AM end in all submitted copy. Some third-party listings display a different start time; match the 3:00 PM start shown on the ticket listing and published media coverage.
 
 ## Outreach email draft
 
@@ -41,7 +41,7 @@ Hello [Editor / Events Desk],
 
 I’m sharing the event details for Dala Festival 2026 in Nairobi in case they are useful for your December events coverage or calendar.
 
-Ferré Gola is scheduled to headline the festival at ASK Arena, Nairobi Showground, on Saturday, 12 December 2026. The published programme runs from 2:00 PM on Saturday to 4:00 AM on Sunday, 13 December. The announced lineup also includes Prince Indah, Johnny Junior, Les Wanyika and special guest DJs.
+Ferré Gola is scheduled to headline the festival at ASK Arena, Nairobi Showground, on Saturday, 12 December 2026. The published programme runs from 3:00 PM on Saturday to 4:00 AM on Sunday, 13 December. The announced lineup also includes Prince Indah, Johnny Junior, Les Wanyika and special guest DJs.
 
 The event guide includes the venue, lineup, ticket categories and current listed prices:
 https://dalafestivaltickets.com/dala-festival-2026-tickets
