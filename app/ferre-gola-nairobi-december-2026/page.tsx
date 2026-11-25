@@ -53,11 +53,11 @@ export default function FerreGolaNairobiArticle() {
         <section style={{ ...sectionStyle, paddingTop: 68, paddingBottom: 36 }}>
           <p style={{ color: "#e7b85c", fontSize: 12, fontWeight: 800, letterSpacing: 3, textTransform: "uppercase" }}>Nairobi concert guide · 12 December 2026</p>
           <h1 style={{ fontSize: "clamp(38px, 7vw, 68px)", lineHeight: 1.04, letterSpacing: -2, margin: "18px 0" }}>Ferré Gola in Nairobi: Dala Festival December 2026</h1>
-          <p style={{ color: "#d0c9bd", fontSize: 19, lineHeight: 1.75, maxWidth: 780 }}>Looking for Ferré Gola concert details in Nairobi for December 2026? Ferré Gola, known to fans as Le Padre, is scheduled to headline Dala Festival on Saturday, 12 December 2026. The concert takes place from 3:00 PM on Saturday, 12 December until 4:00 AM on Sunday, 13 December 2026 at ASK Arena, Nairobi Showground, with a lineup that also features popular Kenyan performers.</p>
+          <p style={{ color: "#d0c9bd", fontSize: 19, lineHeight: 1.75, maxWidth: 780 }}>Looking for Ferré Gola concert details in Nairobi for December 2026? Ferré Gola, known to fans as Le Padre, is scheduled to headline Dala Festival on Saturday, 12 December 2026. The concert takes place from 2:00 PM on Saturday, 12 December until 4:00 AM on Sunday, 13 December 2026 at ASK Arena, Nairobi Showground, with a lineup that also features popular Kenyan performers.</p>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: 24 }}>
             <span style={{ border: "1px solid #444", borderRadius: 999, padding: "10px 15px" }}>📅 12 December 2026</span>
             <span style={{ border: "1px solid #444", borderRadius: 999, padding: "10px 15px" }}>📍 ASK Arena, Nairobi</span>
-            <span style={{ border: "1px solid #444", borderRadius: 999, padding: "10px 15px" }}>🕑 3:00 PM – 4:00 AM (overnight)</span>
+            <span style={{ border: "1px solid #444", borderRadius: 999, padding: "10px 15px" }}>🕑 2:00 PM – 4:00 AM (overnight)</span>
           </div>
         </section>
 
@@ -85,7 +85,7 @@ export default function FerreGolaNairobiArticle() {
 
         <section style={{ ...sectionStyle, borderTop: "1px solid #292a2d" }}>
           <h2 style={{ fontSize: 30, marginTop: 0 }}>Date and venue: where to see Ferré Gola in Nairobi</h2>
-          <p style={{ color: "#d0c9bd", lineHeight: 1.85 }}>The concert runs from <strong>3:00 PM on Saturday, 12 December until 4:00 AM on Sunday, 13 December 2026</strong> (East Africa Time) at <strong>ASK Arena, Nairobi Showground, Nairobi, Kenya</strong>. The venue is in the Jamhuri Park area, off Ngong Road. If you are travelling into Nairobi, plan your journey to the Showground in advance. <a href="https://www.google.com/maps/search/?api=1&query=ASK+Arena%2C+Nairobi+Showground%2C+Nairobi" target="_blank" rel="noreferrer" style={{ color: "#e7b85c", fontWeight: 800 }}>Open venue directions in Google Maps ↗</a> · <Link href="/#venue" style={linkStyle}>Read the Nairobi venue and travel guide ↗</Link></p>
+          <p style={{ color: "#d0c9bd", lineHeight: 1.85 }}>The concert runs from <strong>2:00 PM on Saturday, 12 December until 4:00 AM on Sunday, 13 December 2026</strong> (East Africa Time) at <strong>ASK Arena, Nairobi Showground, Nairobi, Kenya</strong>. The venue is in the Jamhuri Park area, off Ngong Road. If you are travelling into Nairobi, plan your journey to the Showground in advance. <a href="https://www.google.com/maps/search/?api=1&query=ASK+Arena%2C+Nairobi+Showground%2C+Nairobi" target="_blank" rel="noreferrer" style={{ color: "#e7b85c", fontWeight: 800 }}>Open venue directions in Google Maps ↗</a> · <Link href="/#venue" style={linkStyle}>Read the Nairobi venue and travel guide ↗</Link></p>
           <p style={{ color: "#d0c9bd", lineHeight: 1.85 }}>For location and ticket-category information, visit the <Link href="/dala-festival-2026-tickets" style={linkStyle}>Dala Festival tickets page</Link>.</p>
         </section>
 
@@ -98,7 +98,7 @@ export default function FerreGolaNairobiArticle() {
         <section style={{ ...sectionStyle, borderTop: "1px solid #292a2d" }}>
           <h2 style={{ fontSize: 30, marginTop: 0 }}>Frequently asked questions</h2>
           <div style={{ borderBottom: "1px solid #292a2d", padding: "14px 0" }}><h3>When is Ferré Gola performing in Nairobi?</h3><p style={{ color: "#d0c9bd", lineHeight: 1.75 }}>Ferré Gola is scheduled to headline Dala Festival on Saturday, 12 December 2026.</p></div>
-          <div style={{ borderBottom: "1px solid #292a2d", padding: "14px 0" }}><h3>Where is the Dala Festival concert?</h3><p style={{ color: "#d0c9bd", lineHeight: 1.75 }}>The venue is ASK Arena, Nairobi Showground, Nairobi, Kenya. Event hours are 3:00 PM on 12 December to 4:00 AM on 13 December 2026 (EAT).</p></div>
+          <div style={{ borderBottom: "1px solid #292a2d", padding: "14px 0" }}><h3>Where is the Dala Festival concert?</h3><p style={{ color: "#d0c9bd", lineHeight: 1.75 }}>The venue is ASK Arena, Nairobi Showground, Nairobi, Kenya. Event hours are 2:00 PM on 12 December to 4:00 AM on 13 December 2026 (EAT).</p></div>
           <div style={{ borderBottom: "1px solid #292a2d", padding: "14px 0" }}><h3>Which other artists are on the lineup?</h3><p style={{ color: "#d0c9bd", lineHeight: 1.75 }}>The announced lineup includes Prince Indah, Johnny Junior, Les Wanyika and special guest DJs.</p></div>
           <div style={{ borderBottom: "1px solid #292a2d", padding: "14px 0" }}><h3>Where can I find ticket prices?</h3><p style={{ color: "#d0c9bd", lineHeight: 1.75 }}>See the <Link href="/dala-festival-2026-tickets" style={linkStyle}>Dala Festival 2026 ticket guide</Link> or visit the <Link href="/#tickets" style={linkStyle}>ticket checkout section</Link> for current categories and prices.</p></div>
         </section>
