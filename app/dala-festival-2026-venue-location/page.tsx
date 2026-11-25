@@ -60,7 +60,7 @@ export default function DalaVenueLocationPage() {
         <p style={{ color: "#d0c9bd", fontSize: 19, lineHeight: 1.8, maxWidth: 780 }}>Dala Festival takes place at <strong>ASK Arena, Nairobi Showground, in the Jamhuri Park area off Ngong Road, Nairobi, Kenya</strong>. This guide covers the venue location and how to open directions before travelling to the festival.</p>
         <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: 24 }}>
           <span style={{ border: "1px solid #444", borderRadius: 999, padding: "10px 15px" }}>Saturday, 12 December 2026</span>
-          <span style={{ border: "1px solid #444", borderRadius: 999, padding: "10px 15px" }}>3:00 PM – 4:00 AM EAT</span>
+          <span style={{ border: "1px solid #444", borderRadius: 999, padding: "10px 15px" }}>2:00 PM – 4:00 AM EAT</span>
           <span style={{ border: "1px solid #444", borderRadius: 999, padding: "10px 15px" }}>ASK Arena, Nairobi</span>
         </div>
         <p style={{ marginTop: 28 }}><a href="https://www.google.com/maps/search/?api=1&query=ASK+Arena%2C+Nairobi+Showground%2C+Nairobi" target="_blank" rel="noreferrer" style={{ display: "inline-flex", padding: "15px 24px", borderRadius: 999, background: "#e7b85c", color: "#17130d", fontWeight: 900, textDecoration: "none" }}>Get directions on Google Maps ↗</a></p>
@@ -74,7 +74,7 @@ export default function DalaVenueLocationPage() {
 
       <section style={{ ...section, borderTop: "1px solid #292a2d" }}>
         <h2 style={{ fontSize: 30, marginTop: 0 }}>Dala Festival December 2026 event hours</h2>
-        <p style={{ color: "#d0c9bd", lineHeight: 1.85 }}>The festival programme is scheduled to begin at <strong>3:00 PM on Saturday, 12 December 2026</strong> and run until <strong>4:00 AM on Sunday, 13 December 2026</strong> (East Africa Time, EAT). It is an overnight event, so plan your transport to and from Nairobi Showground accordingly.</p>
+        <p style={{ color: "#d0c9bd", lineHeight: 1.85 }}>The festival programme is scheduled to begin at <strong>2:00 PM on Saturday, 12 December 2026</strong> and run until <strong>4:00 AM on Sunday, 13 December 2026</strong> (East Africa Time, EAT). It is an overnight event, so plan your transport to and from Nairobi Showground accordingly.</p>
       </section>
 
       <section style={{ ...section, borderTop: "1px solid #292a2d" }}>
@@ -96,7 +96,7 @@ export default function DalaVenueLocationPage() {
         </div>
         <div style={{ borderBottom: "1px solid #292a2d", padding: "15px 0" }}>
           <h3>What time does Dala Festival start and end?</h3>
-          <p style={{ color: "#d0c9bd", lineHeight: 1.75 }}>The published event hours are 3:00 PM on Saturday, 12 December to 4:00 AM on Sunday, 13 December 2026 (EAT).</p>
+          <p style={{ color: "#d0c9bd", lineHeight: 1.75 }}>The published event hours are 2:00 PM on Saturday, 12 December to 4:00 AM on Sunday, 13 December 2026 (EAT).</p>
         </div>
         <div style={{ borderBottom: "1px solid #292a2d", padding: "15px 0" }}>
           <h3>Where can I buy tickets?</h3>
