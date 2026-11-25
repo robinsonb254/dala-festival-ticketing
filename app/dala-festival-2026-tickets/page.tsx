@@ -26,7 +26,7 @@ const eventData = {
   "@type": "Event",
   "name": "Dala Festival 2026",
   "description": "A live music and culture festival in Nairobi featuring Ferré Gola, Prince Indah, Johnny Junior, Les Wanyika and special guest DJs.",
-  "startDate": "2026-12-12T15:00:00+03:00",
+  "startDate": "2026-12-12T14:00:00+03:00",
   "endDate": "2026-12-13T04:00:00+03:00",
   "eventStatus": "https://schema.org/EventScheduled",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
@@ -95,7 +95,7 @@ export default function DalaFestivalTicketsPage() {
         <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: 28 }}>
           <span style={{ border: "1px solid #444", borderRadius: 999, padding: "10px 15px" }}>📅 Saturday, 12 December 2026</span>
           <span style={{ border: "1px solid #444", borderRadius: 999, padding: "10px 15px" }}>📍 ASK Arena, Nairobi Showground</span>
-          <span style={{ border: "1px solid #444", borderRadius: 999, padding: "10px 15px" }}>🕑 3:00 PM – 4:00 AM (overnight)</span>
+          <span style={{ border: "1px solid #444", borderRadius: 999, padding: "10px 15px" }}>🕑 2:00 PM – 4:00 AM (overnight)</span>
         </div>
         <div style={{ marginTop: 30 }}><Link href="/#tickets" style={buttonStyle}>Buy Dala Festival tickets</Link></div>
       </section>
@@ -136,7 +136,7 @@ export default function DalaFestivalTicketsPage() {
 
       <section style={{ ...sectionStyle, borderTop: "1px solid #292a2d" }}>
         <h2 style={{ fontSize: 32, marginTop: 0 }}>Venue and event information</h2>
-        <p style={{ color: "#d0c9bd", lineHeight: 1.8 }}>Dala Festival 2026 takes place at <strong>ASK Arena, Nairobi Showground, Nairobi, Kenya</strong>. Gates/event programme begins at <strong>3:00 PM on Saturday, 12 December 2026</strong> and runs until <strong>4:00 AM on Sunday, 13 December 2026</strong> (East Africa Time). The venue is in the Jamhuri Park area, off Ngong Road. <a href="https://www.google.com/maps/search/?api=1&query=ASK+Arena%2C+Nairobi+Showground%2C+Nairobi" target="_blank" rel="noreferrer" style={{ color: "#e7b85c", fontWeight: 800 }}>Open venue directions in Google Maps ↗</a> · <Link href="/dala-festival-2026-venue-location" style={{ color: "#e7b85c", fontWeight: 800 }}>Read the full ASK Arena venue and travel guide ↗</Link></p>
+        <p style={{ color: "#d0c9bd", lineHeight: 1.8 }}>Dala Festival 2026 takes place at <strong>ASK Arena, Nairobi Showground, Nairobi, Kenya</strong>. Gates/event programme begins at <strong>2:00 PM on Saturday, 12 December 2026</strong> and runs until <strong>4:00 AM on Sunday, 13 December 2026</strong> (East Africa Time). The venue is in the Jamhuri Park area, off Ngong Road. <a href="https://www.google.com/maps/search/?api=1&query=ASK+Arena%2C+Nairobi+Showground%2C+Nairobi" target="_blank" rel="noreferrer" style={{ color: "#e7b85c", fontWeight: 800 }}>Open venue directions in Google Maps ↗</a> · <Link href="/dala-festival-2026-venue-location" style={{ color: "#e7b85c", fontWeight: 800 }}>Read the full ASK Arena venue and travel guide ↗</Link></p>
         <p style={{ color: "#d0c9bd", lineHeight: 1.8 }}>For ticket enquiries, contact <a href="mailto:dalafestive@gmail.com" style={{ color: "#17130d", background: "#e7b85c", padding: "3px 8px", borderRadius: 6, fontWeight: 800, textDecoration: "none", whiteSpace: "nowrap" }}>dalafestive@gmail.com</a>.</p>
       </section>
 
@@ -170,7 +170,7 @@ export default function DalaFestivalTicketsPage() {
       <section style={{ ...sectionStyle, borderTop: "1px solid #292a2d" }}>
         <h2 style={{ fontSize: 32, marginTop: 0 }}>Dala Festival 2026: frequently asked questions</h2>
         {[
-          ["When is Dala Festival 2026?", "The event starts at 3:00 PM on Saturday, 12 December 2026 and runs until 4:00 AM on Sunday, 13 December 2026 (East Africa Time)."],
+          ["When is Dala Festival 2026?", "The event starts at 2:00 PM on Saturday, 12 December 2026 and runs until 4:00 AM on Sunday, 13 December 2026 (East Africa Time)."],
           ["Where is Dala Festival held?", "Dala Festival takes place at ASK Arena, Nairobi Showground, in the Jamhuri Park area off Ngong Road, Nairobi."],
           ["Who is performing at Dala Festival?", "The announced lineup features Ferré Gola, Prince Indah, Johnny Junior, Les Wanyika and special guest DJs."],
           ["How much are Dala Festival tickets?", "Earlier releases included Die Hard at KSh 3,500, Regular (Wave 1) at KSh 4,000 and First Wave VIP at KSh 8,000; all three are sold out. Current categories are Regular KSh 5,000, VIP KSh 10,000, VVIP KSh 25,000, Table of 4 KSh 100,000 and Table of 8 KSh 200,000."],
