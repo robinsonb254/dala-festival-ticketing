@@ -123,6 +123,12 @@ export default function DalaFestivalTicketsPage() {
           </table>
         </div>
         <p style={{ marginTop: 24 }}><Link href="/#tickets" style={buttonStyle}>Choose tickets and checkout</Link></p>
+        <div style={{ marginTop: 28, maxWidth: 820 }}>
+          <h3 style={{ fontSize: 22 }}>Booking Dala Festival tickets online in Kenya</h3>
+          <p style={{ color: "#d0c9bd", lineHeight: 1.8 }}>If you are searching for Dala Festival tickets in Nairobi, compare the available categories above before placing an order. Regular admission is listed at KSh 5,000, while VIP and VVIP options provide higher ticket categories. Groups planning to attend together can review the Table of 4 and Table of 8 options. Check the checkout page for the current quantity available and the final order total before paying.</p>
+          <p style={{ color: "#d0c9bd", lineHeight: 1.8 }}>Online checkout supports M-Pesa and PayPal. Follow the payment instructions shown for your selected method, and wait for the payment provider and order page to confirm the transaction. Keep your order reference and payment confirmation for any follow-up enquiry. Never share your M-Pesa PIN, PayPal password or one-time verification code.</p>
+          <p style={{ color: "#d0c9bd", lineHeight: 1.8 }}>For a quick comparison, open the individual <Link href="/tickets/regular" style={{ color: "#e7b85c", fontWeight: 800 }}>Regular</Link>, <Link href="/tickets/vip" style={{ color: "#e7b85c", fontWeight: 800 }}>VIP</Link>, <Link href="/tickets/vvip" style={{ color: "#e7b85c", fontWeight: 800 }}>VVIP</Link>, <Link href="/tickets/table-of-4" style={{ color: "#e7b85c", fontWeight: 800 }}>Table of 4</Link> and <Link href="/tickets/table-of-8" style={{ color: "#e7b85c", fontWeight: 800 }}>Table of 8</Link> pages. Each page provides category-specific pricing and booking information.</p>
+        </div>
         <div style={{ marginTop: 22 }}>
           <h3 style={{ fontSize: 20 }}>Explore each ticket category</h3>
           <ul style={{ lineHeight: 2.1, paddingLeft: 22 }}>
