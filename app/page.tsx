@@ -138,7 +138,7 @@ export default function Home() {
     <>
       <a className="skip-link" href="#main-content">Skip to content</a>
       <main id="main-content">
-      <div className="announcement">THE COUNTDOWN TO AN UNFORGETTABLE EXPERIENCE IS ON</div>
+      <div className="announcement">ONE OF THE OFFICIAL TICKETING WEBSITES FOR DALA FESTIVAL 2026 · BEWARE OF MISLEADING OR FAKE TICKET LINKS · FOR ASSISTANCE: <a href="mailto:dalafestive@gmail.com">dalafestive@gmail.com</a></div>
       <header className="nav-wrap">
         <a className="brand" href="#" aria-label="Dala Festival home"><Image src="/dala-festival-logo.webp" alt="Dala Festival" width={62} height={62} priority className="brand-logo" /></a>
         <button className="menu-toggle" type="button" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Toggle navigation" aria-expanded={mobileOpen} aria-controls="main-navigation">{mobileOpen ? <X /> : <Menu />}</button>
