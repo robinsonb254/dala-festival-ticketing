@@ -96,7 +96,7 @@ export async function POST(request: NextRequest) {
       .from("ticket_orders")
       .insert({
         order_reference: orderReference, customer_name: customerName, email, phone,
-        ticket_type: ticketType, quantity, amount_kes: amountKes,
+        ticket_type: ticketType, offer_code: offerCode || null, quantity, amount_kes: amountKes,
         payment_status: "pending", payment_provider: paymentProvider,
         terms_accepted_at: new Date().toISOString(), terms_version: "2026-11-21",
       })
