@@ -1,8 +1,11 @@
--- Seven-day rolling public availability cycle for all active Dala ticket categories.
--- Counts are presentation counters, not hard inventory limits. Paid order quantities
--- advance the category counter; every third unit rolls the public count back to 3.
+-- Seven-day rolling public availability cycle for the three independent DALA75 offer categories.
+-- Counts are presentation counters, not hard inventory limits. Only paid DALA75 orders
+-- for Regular, VIP or VVIP advance the counter; every third unit rolls it back to 3.
+
+alter table public.ticket_orders
+  add column if not exists offer_code text;
 create table if not exists public.ticket_availability_cycles (
-  ticket_type text primary key check (ticket_type in ('Regular','VIP','VVIP','Table of 4','Table of 8')),
+  ticket_type text primary key check (ticket_type in ('Regular','VIP','VVIP')),
   cycle_progress integer not null default 0 check (cycle_progress between 0 and 2),
   starts_at timestamptz not null,
   ends_at timestamptz not null,
@@ -12,11 +15,9 @@ create table if not exists public.ticket_availability_cycles (
 
 insert into public.ticket_availability_cycles (ticket_type, cycle_progress, starts_at, ends_at)
 values
-  ('Regular', 0, now(), now() + interval '7 days'),
-  ('VIP', 0, now(), now() + interval '7 days'),
-  ('VVIP', 0, now(), now() + interval '7 days'),
-  ('Table of 4', 0, now(), now() + interval '7 days'),
-  ('Table of 8', 0, now(), now() + interval '7 days')
+  ('Regular', 0, timestamptz '2026-11-29 00:30:00+00', timestamptz '2026-12-06 00:30:00+00'),
+  ('VIP', 0, timestamptz '2026-11-29 00:30:00+00', timestamptz '2026-12-06 00:30:00+00'),
+  ('VVIP', 0, timestamptz '2026-11-29 00:30:00+00', timestamptz '2026-12-06 00:30:00+00')
 on conflict (ticket_type) do nothing;
 
 -- A ledger makes the update idempotent even if an order is ever reprocessed.
@@ -44,6 +45,11 @@ as $$
 declare
   recorded_order_id uuid;
 begin
+  if new.offer_code is distinct from 'DALA75'
+     or new.ticket_type not in ('Regular', 'VIP', 'VVIP') then
+    return new;
+  end if;
+
   insert into public.ticket_availability_sales (order_id, ticket_type, quantity)
   values (new.id, new.ticket_type, new.quantity)
   on conflict (order_id) do nothing
