@@ -1,5 +1,5 @@
-export const TICKET_OFFER_START = new Date("2026-11-28T03:25:00+03:00").getTime();
-export const TICKET_OFFER_END = new Date("2026-12-05T03:25:00+03:00").getTime();
+export const TICKET_OFFER_START = new Date("2026-11-29T03:30:00+03:00").getTime();
+export const TICKET_OFFER_END = new Date("2026-12-06T03:30:00+03:00").getTime();
 export const TICKET_OFFER_PRICES: Record<string, number> = { Regular: 3_750, VIP: 7_500, VVIP: 18_750 };
 
 export const TICKET_PRICES: Record<string, number> = {
