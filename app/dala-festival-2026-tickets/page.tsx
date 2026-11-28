@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import TicketAvailability from "@/components/TicketAvailability";
 
 const siteUrl = "https://dalafestivaltickets.com";
 const pageUrl = `${siteUrl}/dala-festival-2026-tickets`;
@@ -118,8 +119,8 @@ export default function DalaFestivalTicketsPage() {
         <p style={{ color: "#d0c9bd", lineHeight: 1.7 }}>Choose the ticket category that suits your festival plans. All prices are in Kenyan shillings.</p>
         <div style={{ overflowX: "auto" }}>
           <table style={{ width: "100%", borderCollapse: "collapse", minWidth: 320 }}>
-            <thead><tr style={{ textAlign: "left", color: "#e7b85c" }}><th style={{ padding: 14, borderBottom: "1px solid #555" }}>Ticket</th><th style={{ padding: 14, borderBottom: "1px solid #555" }}>Price</th><th style={{ padding: 14, borderBottom: "1px solid #555" }}>Access</th></tr></thead>
-            <tbody>{ticketPrices.map(([name, price, note]) => <tr key={name}><td style={{ padding: 14, borderBottom: "1px solid #292a2d", fontWeight: 700 }}>{name}</td><td style={{ padding: 14, borderBottom: "1px solid #292a2d", color: "#e7b85c", fontWeight: 800 }}>{price}</td><td style={{ padding: 14, borderBottom: "1px solid #292a2d", color: "#d0c9bd" }}>{note}</td></tr>)}</tbody>
+            <thead><tr style={{ textAlign: "left", color: "#e7b85c" }}><th style={{ padding: 14, borderBottom: "1px solid #555" }}>Ticket</th><th style={{ padding: 14, borderBottom: "1px solid #555" }}>Price</th><th style={{ padding: 14, borderBottom: "1px solid #555" }}>Access</th><th style={{ padding: 14, borderBottom: "1px solid #555" }}>Availability</th></tr></thead>
+            <tbody>{ticketPrices.map(([name, price, note]) => <tr key={name}><td style={{ padding: 14, borderBottom: "1px solid #292a2d", fontWeight: 700 }}>{name}</td><td style={{ padding: 14, borderBottom: "1px solid #292a2d", color: "#e7b85c", fontWeight: 800 }}>{price}</td><td style={{ padding: 14, borderBottom: "1px solid #292a2d", color: "#d0c9bd" }}>{note}</td><td style={{ padding: 14, borderBottom: "1px solid #292a2d", whiteSpace: "nowrap" }}>{["Regular", "VIP", "VVIP", "Table of 4", "Table of 8"].includes(name) ? <TicketAvailability ticketType={name} /> : "—"}</td></tr>)}</tbody>
           </table>
         </div>
         <p style={{ marginTop: 24 }}><Link href="/#tickets" style={buttonStyle}>Choose tickets and checkout</Link></p>

@@ -230,3 +230,6 @@ body{font-family:var(--font-manrope),Arial,sans-serif;font-size:15px;line-height
 @media(max-width:600px){.sold-out-tiers{padding:16px}.sold-out-grid{grid-template-columns:1fr}.sold-out-tier{grid-template-columns:1fr auto;align-items:center}.sold-out-tier b{grid-column:1/-1}}
 
 .payment-help{margin:-7px 0 18px;color:#aaa99f;font-size:11px;line-height:1.65}
+
+.ticket-info .ticket-availability{color:var(--lime);font:700 10px var(--font-dm-mono);letter-spacing:.2px;margin-top:7px}
+.order-availability{display:inline-flex;margin-top:12px;padding:7px 10px;border:1px solid #6b753f;border-radius:999px;color:var(--lime);font:700 10px var(--font-dm-mono);letter-spacing:.3px}
