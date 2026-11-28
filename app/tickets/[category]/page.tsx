@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import TicketAvailability from "@/components/TicketAvailability";
 import { notFound } from "next/navigation";
 
 const siteUrl = "https://dalafestivaltickets.com";
@@ -157,7 +156,6 @@ export default async function TicketCategoryPage({
             <span style={{ color: "#aaa196", fontSize: 13 }}>Listed ticket price</span>
             <strong style={{ color: "#e7b85c", fontSize: 32 }}>{ticket.priceLabel}</strong>
             <span style={{ color: "#aaa196", fontSize: 13 }}>{category.startsWith("table-") ? "Per table booking" : "Per ticket"}</span>
-            <TicketAvailability ticketType={ticket.name} />
           </div>
           <p style={{ color: "#d0c9bd", lineHeight: 1.8, maxWidth: 760, marginTop: 24 }}>{ticket.detail}</p>
           <p style={{ marginTop: 28 }}><Link href={`/?ticket=${category}#tickets`} style={buttonStyle}>Choose {ticket.name} and checkout</Link></p>
