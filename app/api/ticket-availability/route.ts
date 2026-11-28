@@ -14,7 +14,8 @@ export async function GET() {
 
     const now = Date.now();
     const rows = data || [];
-    const active = rows.length === 5 && rows.every((row) =>
+    const offerTypes = ["Regular", "VIP", "VVIP"];
+    const active = rows.length === 3 && offerTypes.every((type) => rows.some((row) => row.ticket_type === type)) && rows.every((row) =>
       now >= Date.parse(row.starts_at) && now < Date.parse(row.ends_at)
     );
     const availability = active
