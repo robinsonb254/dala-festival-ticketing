@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabaseAdmin } from "@/lib/server/supabase-admin";
-import { TICKET_PRICES, makeOrderReference, normalizeKenyanPhone } from "@/lib/server/tickets";
+import { TICKET_PRICES, TICKET_OFFER_PRICES, TICKET_OFFER_START, TICKET_OFFER_END, makeOrderReference, normalizeKenyanPhone } from "@/lib/server/tickets";
 import { createPaypalOrder, initiateMpesaStk } from "@/lib/server/payments";
 
 export const runtime = "nodejs";
@@ -13,6 +13,7 @@ export async function POST(request: NextRequest) {
     const email = String(body.email || "").trim().slice(0, 254) || null;
     const ticketType = String(body.ticketType || "");
     const quantity = Number(body.quantity);
+    const offerCode = String(body.offerCode || "");
     const paymentProvider = String(body.paymentProvider || "");
     const termsAccepted = body.termsAccepted === true;
     if (customerName.length < 2) return NextResponse.json({ error: "Enter your full name." }, { status: 400 });
@@ -20,6 +21,9 @@ export async function POST(request: NextRequest) {
     if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return NextResponse.json({ error: "Enter a valid email address." }, { status: 400 });
     if (!Number.isInteger(quantity) || quantity < 1 || quantity > 10) return NextResponse.json({ error: "Ticket quantity must be between 1 and 10." }, { status: 400 });
     if (!Object.hasOwn(TICKET_PRICES, ticketType)) return NextResponse.json({ error: "Choose a valid ticket category." }, { status: 400 });
+    if (offerCode && (offerCode !== "DALA75" || !Object.hasOwn(TICKET_OFFER_PRICES, ticketType))) return NextResponse.json({ error: "This offer is not valid for the selected ticket category." }, { status: 400 });
+    if (offerCode && (Date.now() < TICKET_OFFER_START || Date.now() >= TICKET_OFFER_END)) return NextResponse.json({ error: "This independent ticket offer has ended. Please choose a main ticket price." }, { status: 410 });
+    const amountKes = (offerCode ? TICKET_OFFER_PRICES[ticketType] : TICKET_PRICES[ticketType]) * quantity;
     if (!["mpesa", "paypal"].includes(paymentProvider)) return NextResponse.json({ error: "Choose M-Pesa or PayPal." }, { status: 400 });
     let phone: string | null = null;
     if (paymentProvider === "mpesa") {
@@ -55,7 +59,7 @@ export async function POST(request: NextRequest) {
       if (expireError) throw expireError;
       const { data: activeOrder, error: activeOrderError } = await supabaseAdmin
         .from("ticket_orders")
-        .select("order_reference, checkout_request_id, ticket_type, quantity")
+        .select("order_reference, checkout_request_id, ticket_type, quantity, amount_kes")
         .eq("phone", mpesaPhone)
         .eq("payment_provider", "mpesa")
         .eq("payment_status", "pending")
@@ -65,7 +69,7 @@ export async function POST(request: NextRequest) {
         .maybeSingle();
       if (activeOrderError) throw activeOrderError;
       if (activeOrder) {
-        const sameSelection = activeOrder.ticket_type === ticketType && Number(activeOrder.quantity) === quantity;
+        const sameSelection = activeOrder.ticket_type === ticketType && Number(activeOrder.quantity) === quantity && Number(activeOrder.amount_kes) === amountKes;
         if (!sameSelection) {
           return NextResponse.json(
             { error: "Another M-Pesa checkout is already pending for this phone number. Complete that payment or wait for its status before starting a different order." },
@@ -87,7 +91,6 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    const amountKes = TICKET_PRICES[ticketType] * quantity;
     const orderReference = makeOrderReference();
     const { data: order, error: insertError } = await supabaseAdmin
       .from("ticket_orders")
