@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import TicketAvailability from "./TicketAvailability";
 const startsAt = new Date("2026-11-29T03:30:00+03:00").getTime();
 const endsAt = new Date("2026-12-06T03:30:00+03:00").getTime();
 const offers = [
@@ -31,6 +32,7 @@ export default function DalaOfferSection(){
      <p style={{color:"#b9ad98",fontSize:11,fontWeight:800,letterSpacing:2}}>{offer.name.toUpperCase()}</p>
      <p style={{color:"#8f887c",textDecoration:"line-through",margin:"12px 0 4px",fontSize:14}}>Main price {money(offer.main)}</p>
      <strong style={{color:"#e7b85c",fontSize:30}}>{money(offer.offer)}</strong>
+     <TicketAvailability ticketType={offer.name} />
      <p style={{color:"#b9ad98",fontSize:12}}>{offer.note}</p>
      <a href={`/?ticket=${offer.slug}&offer=DALA75#tickets`} style={{display:"inline-flex",marginTop:12,borderRadius:999,padding:"12px 20px",background:"#e7b85c",color:"#17130d",textDecoration:"none",fontWeight:900,fontSize:13}}>Choose {offer.name}</a>
     </article>)}
